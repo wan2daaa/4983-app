@@ -12,7 +12,7 @@ const SigninButton = ({
   const handleLogin = async () => {
     try {
       await Signin(studentId, password);
-      navigation.navigate('FindPassword');
+      navigation.navigate('BottomTabs');
     } catch (error) {
       setLoginError(true);
       setErrorMsg(error.response.data.message);
