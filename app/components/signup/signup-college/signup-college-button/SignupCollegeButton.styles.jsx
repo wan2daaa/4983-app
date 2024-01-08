@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const ButtonBox = styled.View`
   width: 312px;
@@ -7,14 +7,13 @@ export const ButtonBox = styled.View`
   align-self: center;
   justify-content: center;
   border-radius: 15px;
-  border: 1px solid #d1d1d1;
   background: ${props =>
-    props.isCertificationNumberMatch ? '#02B878' : '#D1D1D1'};
+    props.selectedCollegeId === -1 ? '#D1D1D1' : '#02B878'};
 `;
 
 export const ButtonText = styled.Text`
   text-align: center;
-  color: ${props => (props.isCertificationNumberMatch ? '#FFF' : '#707479')};
+  color: ${props => (props.selectedCollegeId === -1 ? '#707479' : '#FFF')};
   font-size: 15px;
   font-weight: 700;
 `;

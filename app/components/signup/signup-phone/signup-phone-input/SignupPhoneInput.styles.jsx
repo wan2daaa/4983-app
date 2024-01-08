@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 100%;
@@ -47,5 +47,13 @@ export const ButtonText = styled.Text`
   text-align: center;
   color: #50555c;
   font-size: 14px;
+  font-weight: 500;
+`;
+
+export const MessageText = styled.Text`
+  margin-top: 3px;
+  padding-left: 6px;
+  color: ${props => (props.isCertificationNumberMatch ? '#02B878' : '#f61818')};
+  font-size: 10px;
   font-weight: 500;
 `;

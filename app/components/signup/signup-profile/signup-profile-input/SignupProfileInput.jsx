@@ -1,23 +1,19 @@
 import * as styles from './SignupProfileInput.styles';
 import {TouchableOpacity} from 'react-native';
-import {checkStudentIdDuplicate} from '@/apis/auth/signup/DuplicateApi';
+import {checkStudentIdDuplicate} from '@/apis/auth/signup/singupApi';
 import {useEffect, useState} from 'react';
 
 const SignupProfileInput = ({
   studentId,
   setStudentId,
+  nickname,
   setNickname,
   isStudentIdDuplicate,
-  setIsStudentIdDuplicate,
+  handleCheckStudentId,
+  isNicknameDuplicate,
+  handleCheckNickname,
 }) => {
   const [isHakbunButtonEnabled, setIsHakbunButtonEnabled] = useState(false);
-  const handleCheckStudentId = async () => {
-    try {
-      setIsStudentIdDuplicate(await checkStudentIdDuplicate(studentId));
-    } catch (error) {
-      setIsStudentIdDuplicate(false);
-    }
-  };
 
   useEffect(() => {
     const isNumeric = /^\d+$/.test(studentId);
@@ -45,7 +41,7 @@ const SignupProfileInput = ({
             }}>
             <TouchableOpacity
               onPress={handleCheckStudentId}
-              // disabled={!isHakbunButtonEnabled}
+              disabled={!isHakbunButtonEnabled}
               hitSlop={{top: 20, bottom: 20}}>
               <styles.ButtonText
                 style={{
@@ -73,12 +69,31 @@ const SignupProfileInput = ({
             placeholder="닉네임을 입력해 주세요."
             onChangeText={setNickname}
           />
-          <styles.ButtonBox>
-            <TouchableOpacity hitSlop={{top: 20, bottom: 20}}>
-              <styles.ButtonText>중복 확인</styles.ButtonText>
+          <styles.ButtonBox
+            style={{
+              backgroundColor: nickname.length === 0 ? '#D1D1D1' : '#02B878',
+            }}>
+            <TouchableOpacity
+              onPress={handleCheckNickname}
+              disabled={nickname.length === 0}
+              hitSlop={{top: 20, bottom: 20}}>
+              <styles.ButtonText
+                style={{
+                  color: nickname.length === 0 ? '#50555C' : '#FFF',
+                }}>
+                중복 확인
+              </styles.ButtonText>
             </TouchableOpacity>
           </styles.ButtonBox>
         </styles.InputButtonBox>
+        {isNicknameDuplicate !== null && (
+          <styles.MessageText
+            fontColor={isNicknameDuplicate ? '#f61818' : '#02B878'}>
+            {!isNicknameDuplicate
+              ? '사용 가능한 닉네임입니다.'
+              : '사용 중인 닉네임이에요!'}
+          </styles.MessageText>
+        )}
       </styles.InputBox>
     </styles.Container>
   );

@@ -12,7 +12,10 @@ const FindLinkBox = ({navigation}) => {
         </TouchableOpacity>
         <styles.Line>|</styles.Line>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SignupProfile')}
+          onPress={() => {
+            navigation.navigate('SignupProfile');
+            // navigation.navigate('SignupComplete');
+          }}
           hitSlop={{top: 20, bottom: 20}}>
           <styles.SignupText>회원가입</styles.SignupText>
         </TouchableOpacity>

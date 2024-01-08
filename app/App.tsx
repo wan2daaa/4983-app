@@ -24,6 +24,8 @@ import ChatListIcon from '@assets/images/bottom-tabs/ChatList.svg';
 import HelpIcon from '@assets/images/bottom-tabs/Help.svg';
 import SearchIcon from '@assets/images/bottom-tabs/Search.svg';
 import MypageIcon from '@assets/images/bottom-tabs/Mypage.svg';
+import SignupDepartment from '@screens/signup/Signup-Department';
+import SignupComplete from '@screens/signup/Signup-Complete';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -237,6 +239,25 @@ function App(): JSX.Element {
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="SignupDepartment"
+              component={SignupDepartment}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="SignupComplete"
+              component={SignupComplete}
+              options={{
+                headerShown: false,
               }}
             />
             <Stack.Screen name="BottomTabs" component={BottomTabs} />

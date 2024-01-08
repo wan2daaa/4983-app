@@ -109,7 +109,6 @@ const SignupProfilePasswordInput = ({
             type="password"
             placeholder="비밀번호를 다시 입력해 주세요."
             secureTextEntry={!showPassword}
-            value={verifyPassword}
             onChangeText={text => {
               setVerifyPassword(text);
               handleVerifyPasswordsMatch(text);

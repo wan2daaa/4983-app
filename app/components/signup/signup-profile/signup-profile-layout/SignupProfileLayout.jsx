@@ -4,13 +4,23 @@ import SignupProfileInput from '@components/signup/signup-profile/signup-profile
 import SignupProfilePasswordInput from '@components/signup/signup-profile/signup-profile-input/signup-profile-password-input/SignupProfilePasswordInput';
 import SignupProfileTerms from '@components/signup/signup-profile/signup-profile-terms/SignupProfileTerms';
 import SignupProfileButton from '@components/signup/signup-profile/signup-profile-button/SignupProfileButton';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {
+  checkNicknameDuplicate,
+  checkStudentIdDuplicate,
+} from '@/apis/auth/signup/singupApi';
+import {useRecoilState} from 'recoil';
+import {
+  recoilMarketingAgreement,
+  recoilNickname,
+  recoilPassword,
+  recoilStudentId,
+} from '@/recoil/atoms/SignupAtoms';
 
 const SignupProfileLayout = ({navigation}) => {
   const [studentId, setStudentId] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
-  const [marketingAgreement, setMarketingAgreement] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [accountHolder, setAccountHolder] = useState('');
   const [accountBank, setAccountBank] = useState('');
@@ -18,7 +28,71 @@ const SignupProfileLayout = ({navigation}) => {
   const [department, setDepartment] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [verifySuccess, setVerifySuccess] = useState(false);
-  const [isStudentIdDuplicate, setIsStudentIdDuplicate] = useState(false);
+  const [isStudentIdDuplicate, setIsStudentIdDuplicate] = useState(null);
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(null);
+
+  // 이용약관 동의
+  const [termsOfUse, setTermsOfUse] = useState(false);
+  const [personalInformationCollection, setPersonalInformationCollection] =
+    useState(false);
+  const [marketingAgreement, setMarketingAgreement] = useState(false);
+
+  const [canGoNextPage, setCanGoNextPage] = useState(false);
+
+  const [useRecoilStudentId, setRecoilStudentId] =
+    useRecoilState(recoilStudentId);
+  const [useRecoilNickname, setRecoilNickname] = useRecoilState(recoilNickname);
+  const [useRecoilPassword, setRecoilPassword] = useRecoilState(recoilPassword);
+  const [useRecoilMarketingAgree, setRecoilMarketingAgree] = useRecoilState(
+    recoilMarketingAgreement,
+  );
+
+  useEffect(() => {
+    studentId.length === 8 &&
+    !isStudentIdDuplicate &&
+    !isNicknameDuplicate &&
+    verifySuccess &&
+    termsOfUse &&
+    personalInformationCollection
+      ? setCanGoNextPage(true)
+      : setCanGoNextPage(false);
+  }, [
+    isStudentIdDuplicate,
+    isNicknameDuplicate,
+    verifySuccess,
+    termsOfUse,
+    personalInformationCollection,
+  ]);
+
+  const handleCheckStudentId = async () => {
+    try {
+      setIsStudentIdDuplicate(await checkStudentIdDuplicate(studentId));
+    } catch (error) {
+      setIsStudentIdDuplicate(false);
+    }
+  };
+
+  const handleCheckNickname = async () => {
+    try {
+      setIsNicknameDuplicate(await checkNicknameDuplicate(nickname));
+    } catch (error) {
+      setIsNicknameDuplicate(false);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (!canGoNextPage) return;
+
+    console.log('studentId', studentId);
+    console.log('nickname', nickname);
+    console.log('password', password);
+
+    setRecoilStudentId(studentId);
+    setRecoilNickname(nickname);
+    setRecoilPassword(password);
+    setRecoilMarketingAgree(marketingAgreement);
+    navigation.navigate('SignupPhone');
+  };
 
   return (
     <styles.Container>
@@ -31,9 +105,12 @@ const SignupProfileLayout = ({navigation}) => {
           <SignupProfileInput
             studentId={studentId}
             setStudentId={setStudentId}
+            nickname={nickname}
             setNickname={setNickname}
             isStudentIdDuplicate={isStudentIdDuplicate}
-            setIsStudentIdDuplicate={setIsStudentIdDuplicate}
+            handleCheckStudentId={handleCheckStudentId}
+            isNicknameDuplicate={isNicknameDuplicate}
+            handleCheckNickname={handleCheckNickname}
           />
           <SignupProfilePasswordInput
             password={password}
@@ -44,11 +121,19 @@ const SignupProfileLayout = ({navigation}) => {
           />
           <SignupProfileTerms
             navigation={navigation}
+            termsOfUse={termsOfUse}
+            setTermsOfUse={setTermsOfUse}
+            personalInformationCollection={personalInformationCollection}
+            setPersonalInformationCollection={setPersonalInformationCollection}
+            marketingAgreement={marketingAgreement}
             setMarketingAgreement={setMarketingAgreement}
           />
         </ScrollView>
       </TouchableWithoutFeedback>
-      <SignupProfileButton navigation={navigation} />
+      <SignupProfileButton
+        handleNextPage={handleNextPage}
+        canGoNextPage={canGoNextPage}
+      />
     </styles.Container>
   );
 };

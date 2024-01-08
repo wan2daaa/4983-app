@@ -1,46 +1,46 @@
 import {atom} from 'recoil';
 
-export const studentId = atom({
+export const recoilStudentId = atom({
   key: 'studentId',
   default: '',
 });
 
-export const nickname = atom({
+export const recoilNickname = atom({
   key: 'nickname',
   default: '',
 });
 
-export const password = atom({
+export const recoilPassword = atom({
   key: 'password',
   default: '',
 });
 
-export const marketingAgreement = atom({
+export const recoilMarketingAgreement = atom({
   key: 'marketingAgreement',
-  default: '',
+  default: false,
 });
 
-export const phoneNumber = atom({
+export const recoilPhoneNumber = atom({
   key: 'phoneNumber',
   default: '',
 });
 
-export const accountHolder = atom({
+export const recoilAccountHolder = atom({
   key: 'accountHolder',
   default: '',
 });
 
-export const accountBank = atom({
+export const recoilAccountBank = atom({
   key: 'accountBank',
   default: '',
 });
 
-export const accountNumber = atom({
+export const recoilAccountNumber = atom({
   key: 'accountNumber',
   default: '',
 });
 
-export const department = atom({
+export const recoilDepartment = atom({
   key: 'department',
   default: '',
 });
