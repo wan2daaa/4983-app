@@ -26,6 +26,7 @@ import SearchIcon from '@assets/images/bottom-tabs/Search.svg';
 import MypageIcon from '@assets/images/bottom-tabs/Mypage.svg';
 import SignupDepartment from '@screens/signup/Signup-Department';
 import SignupComplete from '@screens/signup/Signup-Complete';
+import Category from '@screens/Category';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -260,6 +261,7 @@ function App(): JSX.Element {
                 headerShown: false,
               }}
             />
+            <Stack.Screen name="Category" component={Category} />
             <Stack.Screen name="BottomTabs" component={BottomTabs} />
           </Stack.Navigator>
         </NavigationContainer>

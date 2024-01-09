@@ -9,6 +9,13 @@ export const BASE_API = axios.create({
   timeout: 2000,
 });
 
+export const API = axios.create({
+  baseURL: 'https://dev-server.4983.link',
+  responseType: 'json',
+  withCredentials: true,
+  timeout: 2000,
+});
+
 // export const API = axios.create({
 //   baseURL: 'https://dev.4983.link',
 //   responseType: 'json',
@@ -29,16 +36,18 @@ export const BASE_API = axios.create({
 //   ]);
 // };
 //
-// BASE_API.interceptors.request.use(async config => {
-//   const accessToken = await AsyncStorage.getItem('accessToken');
-//
-//   if (accessToken != null && accessToken !== '' && accessToken !== undefined) {
-//     config.headers.Authorization = accessToken;
-//   }
-//
-//   return config;
-// });
-//
+BASE_API.interceptors.request.use(async config => {
+  const accessToken = await AsyncStorage.getItem('accessToken');
+
+  console.log('BASE_API : accessToken , ', accessToken);
+
+  if (accessToken != null && accessToken !== '' && accessToken !== undefined) {
+    config.headers.Authorization = accessToken;
+  }
+
+  return config;
+});
+
 // BASE_API.interceptors.response.use(
 //   res => res,
 //   async err => {
@@ -54,7 +63,7 @@ export const BASE_API = axios.create({
 //     }
 //
 //     await axios
-//       .get('https://prod.deunku.com/api/v1/token/update', {
+//       .get('https://dev-server.4983.link/api/v1/token/update', {
 //         withCredentials: true,
 //       })
 //       .then(res => {
