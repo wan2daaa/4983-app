@@ -24,11 +24,6 @@ export const SearchIconContainer = styled.TouchableOpacity`
   right: 12px;
 `;
 
-export const ConditionContainer = styled.View`
-  height: 39px;
-  flex-direction: row;
-`;
-
 export const FastTradeContainer = styled.View`
   height: 56px;
   flex-direction: row;

@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as styles from '@/components/category/form/category-form.styles';
-
+import {Text, TouchableOpacity, View} from 'react-native';
+import CheckedButton from '@assets/images/signup/CheckedButton.svg';
+import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
+import ExpandButton from '@assets/images/category/ExpandButton.svg';
 const CategoryForm = ({
   id,
   category,
@@ -30,26 +33,22 @@ const CategoryForm = ({
   return (
     <styles.ContentDiv depth={depth}>
       <styles.TitleBox>
-        <styles.CheckBoxLabel>
-          <styles.CheckBoxDiv>
-            <styles.CheckBoxButton
-              type="checkbox"
-              checked={isChecked}
-              onChange={() =>
-                handleClick(category, parentCategoryList, !isChecked)
-              }
-            />
-            {isChecked ? <styles.CheckedBox /> : <styles.UnCheckedBox />}
-          </styles.CheckBoxDiv>
-        </styles.CheckBoxLabel>
-        <styles.CollegeDiv>
-          <styles.CollegeName> {category.name}</styles.CollegeName>
-          {hasChildren && (
-            <styles.ExpandButtonDiv>
-              <styles.ExpandButton onClick={toggleExpansion} />
-            </styles.ExpandButtonDiv>
+        <styles.TitleTouchableOpacity
+          onPress={() => {
+            handleClick(category, parentCategoryList, !isChecked);
+          }}>
+          {isChecked ? (
+            <CheckedButton width={20} height={20} />
+          ) : (
+            <UnCheckedButton width={20} height={20} />
           )}
-        </styles.CollegeDiv>
+        </styles.TitleTouchableOpacity>
+        <styles.TitleText>{category.name}</styles.TitleText>
+        {hasChildren && (
+          <styles.ExpandButtonBox onPress={toggleExpansion}>
+            <ExpandButton width={20} height={20} />
+          </styles.ExpandButtonBox>
+        )}
       </styles.TitleBox>
     </styles.ContentDiv>
   );

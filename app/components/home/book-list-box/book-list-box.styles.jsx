@@ -32,7 +32,6 @@ export const BookDateContainer = styled.View`
 `;
 
 export const BookTradeAvailableDate = styled.Text`
-  color: #02b878;
   font-size: 14px;
   font-weight: 700;
 `;

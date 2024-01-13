@@ -261,7 +261,7 @@ function App(): JSX.Element {
                 headerShown: false,
               }}
             />
-            <Stack.Screen name="Category" component={Category} />
+            <Stack.Screen name="Category" component={Category} options={{}} />
             <Stack.Screen name="BottomTabs" component={BottomTabs} />
           </Stack.Navigator>
         </NavigationContainer>

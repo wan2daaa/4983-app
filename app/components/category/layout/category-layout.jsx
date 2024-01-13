@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react';
 import {useState} from 'react';
 import {Categories} from '@data/categories';
 import CategoryForm from '@components/category/form/category-form';
@@ -7,8 +8,8 @@ import CancelButton from '@assets/images/category/CancelButton.svg';
 import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 
-import {TouchableOpacity} from 'react-native';
-import {AllSelectButton} from '@components/category/layout/category-layout.styles';
+import {ScrollView, Text, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CategoryLayout = ({navigation}) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -17,6 +18,23 @@ const CategoryLayout = ({navigation}) => {
   const [isExpandCategoryIds, setIsExpandCategoryIds] = useState([]);
 
   let childIds = [];
+
+  useEffect(() => {
+    let categoryIds = [];
+    AsyncStorage.getItem('category-department')
+      .then(department => {
+        categoryIds.push(...JSON.parse(department));
+      })
+      .then(() => {
+        AsyncStorage.getItem('category-college').then(college => {
+          categoryIds.push(...JSON.parse(college));
+        });
+      })
+      .then(() => {
+        console.log('categoryIds : ', categoryIds);
+        setSelectedCategoryIds(categoryIds);
+      });
+  }, []);
 
   const getAllChildIds = category => {
     const children = category.children;
@@ -32,7 +50,7 @@ const CategoryLayout = ({navigation}) => {
     return childIds;
   };
 
-  const toggleCategory = (clickedCategory, parentCategoryList) => {
+  const toggleCategory = async (clickedCategory, parentCategoryList) => {
     // 자식들의 id를 가져온다.
     childIds = getAllChildIds(clickedCategory);
 
@@ -47,6 +65,8 @@ const CategoryLayout = ({navigation}) => {
         }
       }
       tempIds = tempIds.filter(id => !childIds.includes(id));
+
+      console.log('tempIds : ', tempIds);
       setSelectedCategoryIds(tempIds);
 
       const collegeList = [];
@@ -54,11 +74,15 @@ const CategoryLayout = ({navigation}) => {
       tempIds.forEach(tempId =>
         tempId <= 9 ? collegeList.push(tempId) : departmentList.push(tempId),
       );
-      // localStorage.setItem('category-college', JSON.stringify(collegeList));
-      // localStorage.setItem(
-      //   'category-department',
-      //   JSON.stringify(departmentList),
-      // );
+
+      await AsyncStorage.setItem(
+        'category-college',
+        JSON.stringify(collegeList),
+      );
+      await AsyncStorage.setItem(
+        'category-department',
+        JSON.stringify(departmentList),
+      );
     } else {
       let tempIds = [...selectedCategoryIds, ...childIds, clickedCategory.id];
       const reversedParents = [...parentCategoryList].reverse();
@@ -86,14 +110,18 @@ const CategoryLayout = ({navigation}) => {
       tempIds.forEach(tempId =>
         tempId <= 9 ? collegeList.push(tempId) : departmentList.push(tempId),
       );
-      // localStorage.setItem('category-college', JSON.stringify(collegeList));
-      // localStorage.setItem(
-      //   'category-department',
-      //   JSON.stringify(departmentList),
-      // );
+
+      await AsyncStorage.setItem(
+        'category-college',
+        JSON.stringify(collegeList),
+      );
+      await AsyncStorage.setItem(
+        'category-department',
+        JSON.stringify(departmentList),
+      );
     }
   };
-  const toggleAllCheckboxes = () => {
+  const toggleAllCheckboxes = async () => {
     const allChildAndParentIds = [];
     const collegeList = [];
     setIsAllChecked(!isAllChecked);
@@ -110,17 +138,30 @@ const CategoryLayout = ({navigation}) => {
       });
       setSelectedCategoryIds(allChildAndParentIds);
 
-      // localStorage.setItem('category-department', '');
-      // localStorage.setItem('category-college', JSON.stringify(collegeList));
+      await AsyncStorage.setItem('category-department', '');
+      await AsyncStorage.setItem(
+        'category-college',
+        JSON.stringify(collegeList),
+      );
+    }
+
+    if (isAllChecked) {
+      setIsAllChecked(false);
+
+      setSelectedCategoryIds([]);
+
+      await AsyncStorage.setItem('category-department', '');
+      await AsyncStorage.setItem('category-college', '');
     }
   };
 
-  const unableAllCheckBoxes = () => {
+  const unableAllCheckBoxes = async () => {
     setIsAllChecked(false);
 
     setSelectedCategoryIds([]);
-    // localStorage.setItem('category-department', '');
-    // localStorage.setItem('category-college', '');
+
+    await AsyncStorage.setItem('category-department', '');
+    await AsyncStorage.setItem('category-college', '');
   };
 
   const renderCategories = (
@@ -163,26 +204,19 @@ const CategoryLayout = ({navigation}) => {
         }}>
         <CancelButton width={20} height={20} />
       </styles.CancelButtonBox>
-      <styles.AllSelectContainer>
-        <styles.AllSelectButton onPress={toggleAllCheckboxes}>
-          {isAllChecked ? <CheckedButton /> : <UnCheckedButton />}
-        </styles.AllSelectButton>
-      </styles.AllSelectContainer>
-      {/*<style.TopDiv>*/}
-      {/*  <style.TitleDiv>*/}
-      {/*    <style.CancelButtonDiv>*/}
-      {/*      <style.CancelButton />*/}
-      {/*    </style.CancelButtonDiv>*/}
-      {/*    <style.TitleA>관심 카테고리 설정</style.TitleA>*/}
-      {/*  </style.TitleDiv>*/}
-      {/*  <style.AllDiv>*/}
-      {/*    <style.AllButton onClick={toggleAllCheckboxes} />*/}
-      {/*    {isAllChecked ? <style.CheckedBox /> : <style.UnCheckedBox />}*/}
-      {/*    <style.AllA>전체선택</style.AllA>*/}
-      {/*    <style.AllB onClick={unableAllCheckBoxes}>전체선택 취소</style.AllB>*/}
-      {/*  </style.AllDiv>*/}
-      {/*</style.TopDiv>*/}
-      {/*{renderCategories(categoriesState, 0, [], isExpandCategoryIds)}*/}
+      <TouchableOpacity
+        onPress={isAllChecked ? unableAllCheckBoxes : toggleAllCheckboxes}>
+        <styles.AllSelectContainer>
+          <styles.AllSelectButton
+            onPress={isAllChecked ? unableAllCheckBoxes : toggleAllCheckboxes}>
+            {isAllChecked ? <CheckedButton /> : <UnCheckedButton />}
+          </styles.AllSelectButton>
+          <styles.AllSelectText>전체선택</styles.AllSelectText>
+        </styles.AllSelectContainer>
+      </TouchableOpacity>
+      <ScrollView>
+        {renderCategories(categoriesState, 0, [], isExpandCategoryIds)}
+      </ScrollView>
     </styles.CategoryContainer>
   );
 };

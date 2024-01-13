@@ -27,10 +27,20 @@ export const CancelButtonBox = styled.TouchableOpacity`
 
 export const AllSelectContainer = styled.View`
   height: 40px;
-  justify-content: center;
   background-color: #f6f6f6;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const AllSelectButton = styled.TouchableOpacity`
   left: 16px;
+`;
+
+export const AllSelectText = styled.Text`
+  left: 22px;
+  color: #36332e;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
 `;

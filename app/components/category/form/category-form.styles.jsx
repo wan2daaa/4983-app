@@ -1,15 +1,39 @@
-// import styled from 'styled-components/native';
+import styled from 'styled-components/native';
 // import CheckBoxSvg from '@assets/images/signup/CheckedButton.svg';
 // import UnCheckBoxSvg from '@assets/images/signup/UnCheckedButton.svg';
 // import ExpandButtonSvg from '@assets/images/category/ExpandButton.svg';
-//
-// export const TitleBox = styled.View`
-//   height: 5.2rem;
-//   width: 100%;
-//   background: #fff;
-//   display: flex;
-// `;
-//
+
+export const ContentDiv = styled.View`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: ${({depth}) => `${depth * 19}px`};
+`;
+export const TitleBox = styled.View`
+  height: 52px;
+  background: #fff;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const TitleTouchableOpacity = styled.TouchableOpacity`
+  margin-left: 16px;
+`;
+
+export const TitleText = styled.Text`
+  margin-left: 11px;
+  color: #36332e;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+`;
+
+export const ExpandButtonBox = styled.TouchableOpacity`
+  position: absolute;
+  right: 16px;
+`;
+
 // export const CheckBoxLabel = styled.Text`
 //   width: 4.7rem;
 //   height: 5.2rem;
@@ -78,14 +102,7 @@
 //
 // export const ExpandButton = styled(ExpandButtonSvg)``;
 //
-// export const ContentDiv = styled.View`
-//   position: relative;
-//   display: flex;
-//   top: 8.4rem;
-//   width: 37.5rem;
-//   flex-direction: column;
-//   margin-left: ${({depth}) => `${depth * 1.9}rem`};
-// `;
+
 // export const CheckBoxDepartmentsLabel = styled.label`
 //   position: relative;
 //   width: 7rem;

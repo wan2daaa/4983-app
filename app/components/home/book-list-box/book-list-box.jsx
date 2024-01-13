@@ -4,11 +4,11 @@ import {BookStatus} from '@components/home/book-status/book-status';
 import useFormatTimeAgo from '@/hooks/use-format-time-ago';
 import {useFormatPrice} from '@/hooks/use-format-price';
 
-const BookListBox = ({bookData}) => {
+const BookListBox = ({bookData, index}) => {
   const dateTime = new Date(bookData.tradeAvailableDatetime);
 
   return (
-    <styles.EachBookContainer>
+    <styles.EachBookContainer key={`eachBookListBox${index}`}>
       <styles.MainImage
         width={100}
         height={100}
@@ -22,7 +22,11 @@ const BookListBox = ({bookData}) => {
           <styles.BookName>{bookData.name}</styles.BookName>
         </styles.BookNameStatusContainer>
         <styles.BookDateContainer>
-          <styles.BookTradeAvailableDate>
+          <styles.BookTradeAvailableDate
+            style={{
+              color: bookData.bookStatus === 'SALE' ? '#02b878' : '#8F8F8F',
+            }}
+            status={bookData.bookStatus}>
             {dateTime.getMonth() + 1}월 {dateTime.getDate()}일 거래가능
           </styles.BookTradeAvailableDate>
           <Text
@@ -37,7 +41,7 @@ const BookListBox = ({bookData}) => {
         <View>
           <Text
             style={{
-              color: 'var(--B-100, #36332E)',
+              color: '#36332E',
               fontSize: 14,
               fontStyle: 'normal',
               fontWeight: 700,

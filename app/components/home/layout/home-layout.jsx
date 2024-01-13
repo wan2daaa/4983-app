@@ -1,16 +1,17 @@
 import * as styles from '@components/home/layout/home-layout.styles';
 import BookListBox from '@components/home/book-list-box/book-list-box';
-import SettingIcon from '@assets/images/home/SettingIcon.svg';
 import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import SearchIcon from '@assets/images/home/SearchIcon.svg';
-import {TouchableOpacity} from 'react-native';
-import {SearchIconContainer} from '@components/home/layout/home-layout.styles';
+import FilterButton from '@components/home/filter-button/filter-button';
 
 const HomeLayout = ({
   isFastTradeChecked,
   setIsFastTradeChecked,
   bookListData,
+  filterOptions,
+  setParamCollege,
+  setParamDepartment,
   navigation,
 }) => {
   return (
@@ -21,14 +22,12 @@ const HomeLayout = ({
       <styles.SearchIconContainer>
         <SearchIcon width={20} height={20} />
       </styles.SearchIconContainer>
-      <styles.ConditionContainer>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Category');
-          }}>
-          <SettingIcon width={49} height={35} />
-        </TouchableOpacity>
-      </styles.ConditionContainer>
+      <FilterButton
+        navigation={navigation}
+        filterOptions={filterOptions}
+        setParamCollege={setParamCollege}
+        setParamDepartment={setParamDepartment}
+      />
       <styles.FastTradeContainer>
         <styles.FastTradeIcon
           onPress={() => {
@@ -44,7 +43,7 @@ const HomeLayout = ({
       </styles.FastTradeContainer>
       <styles.ScrollViewContainer>
         {bookListData.map((bookData, index) => {
-          return <BookListBox bookData={bookData} />;
+          return <BookListBox bookData={bookData} index={index} />;
         })}
       </styles.ScrollViewContainer>
       <styles.SellButtonContainer>
