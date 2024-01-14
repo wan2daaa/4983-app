@@ -11,33 +11,28 @@ import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import {ScrollView, Text, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const CategoryLayout = ({navigation}) => {
+const CategoryLayout = ({navigation, filterOptions}) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState(filterOptions);
   const [categoriesState, _] = useState(Categories);
   const [isExpandCategoryIds, setIsExpandCategoryIds] = useState([]);
 
-  let childIds = [];
-
   useEffect(() => {
-    let categoryIds = [];
-    AsyncStorage.getItem('category-department')
-      .then(department => {
-        categoryIds.push(...JSON.parse(department));
-      })
-      .then(() => {
-        AsyncStorage.getItem('category-college').then(college => {
-          categoryIds.push(...JSON.parse(college));
-        });
-      })
-      .then(() => {
-        console.log('categoryIds : ', categoryIds);
-        setSelectedCategoryIds(categoryIds);
-      });
+    let categoryIdLength = categoriesState.length;
+    categoriesState.map(category => {
+      categoryIdLength += category.children.length;
+    });
+
+    if (selectedCategoryIds.length === categoryIdLength) {
+      setIsAllChecked(true);
+    } else {
+      setIsAllChecked(false);
+    }
   }, []);
 
   const getAllChildIds = category => {
     const children = category.children;
+    let childIds = [];
 
     if (children.length === 0) {
       return childIds;
@@ -50,29 +45,38 @@ const CategoryLayout = ({navigation}) => {
     return childIds;
   };
 
-  const toggleCategory = async (clickedCategory, parentCategoryList) => {
-    // 자식들의 id를 가져온다.
-    childIds = getAllChildIds(clickedCategory);
+  const toggleCategory = async (clickedCategory, parentCategory, isClicked) => {
+    // 체크 취소 할 때
+    if (isClicked) {
+      let filteredIds;
 
-    if (selectedCategoryIds.includes(clickedCategory.id)) {
-      let tempIds = selectedCategoryIds.filter(
-        id => id !== clickedCategory.id && !childIds.includes(id),
-      );
-      for (let i = 0; i < parentCategoryList.length; i += 1) {
-        const parentCategory = parentCategoryList[i];
-        if (parentCategory && selectedCategoryIds.includes(parentCategory.id)) {
-          tempIds = tempIds.filter(id => id !== parentCategory.id);
-        }
+      if (clickedCategory.id > 9) {
+        filteredIds = selectedCategoryIds
+          .filter(id => id !== clickedCategory.id)
+          .sort((a, b) => a - b);
+
+        const childrenCategoryIds = parentCategory.children.map(
+          children => children.id,
+        );
+
+        filteredIds = filteredIds.filter(id => id !== parentCategory.id);
+        setSelectedCategoryIds(filteredIds);
+      } else {
+        const childIds = clickedCategory.children.map(children => children.id);
+
+        filteredIds = selectedCategoryIds
+          .filter(id => id !== clickedCategory.id && !childIds.includes(id))
+          .sort((a, b) => a - b);
+
+        setSelectedCategoryIds(filteredIds);
       }
-      tempIds = tempIds.filter(id => !childIds.includes(id));
-
-      console.log('tempIds : ', tempIds);
-      setSelectedCategoryIds(tempIds);
 
       const collegeList = [];
       const departmentList = [];
-      tempIds.forEach(tempId =>
-        tempId <= 9 ? collegeList.push(tempId) : departmentList.push(tempId),
+      filteredIds.forEach(filteredId =>
+        filteredId < 10
+          ? collegeList.push(filteredId)
+          : departmentList.push(filteredId),
       );
 
       await AsyncStorage.setItem(
@@ -83,32 +87,46 @@ const CategoryLayout = ({navigation}) => {
         'category-department',
         JSON.stringify(departmentList),
       );
-    } else {
-      let tempIds = [...selectedCategoryIds, ...childIds, clickedCategory.id];
-      const reversedParents = [...parentCategoryList].reverse();
-      reversedParents.forEach(parentCategory => {
-        const parentChildrenIds = parentCategory?.children.map(item => item.id);
-        const allChildrenChecked = parentChildrenIds.every(id =>
-          tempIds.includes(id),
+    }
+    // 체크 할 때
+    else {
+      let filteredIds;
+      if (clickedCategory.id > 9) {
+        filteredIds = [...selectedCategoryIds, clickedCategory.id];
+
+        const childrenCategoryIds = parentCategory.children.map(
+          children => children.id,
         );
-        if (
-          allChildrenChecked &&
-          parentCategory &&
-          parentChildrenIds?.every(item => tempIds.includes(item))
-        ) {
-          tempIds.push(parentCategory.id);
+
+        const isFilteredIdsIncludes = childrenCategoryIds.every(id =>
+          filteredIds.includes(id),
+        );
+
+        if (isFilteredIdsIncludes) {
+          filteredIds.push(parentCategory.id);
         }
-      });
-      // 중복제거
-      tempIds = tempIds.filter(
-        (value, index, self) => self.indexOf(value) === index,
-      );
-      setSelectedCategoryIds(tempIds);
+        setSelectedCategoryIds(filteredIds);
+      } else {
+        filteredIds = [...selectedCategoryIds, clickedCategory.id];
+
+        let childrenCategoryIds = clickedCategory.children.map(
+          children => children.id,
+        );
+
+        childrenCategoryIds.map(childrenCategoryId => {
+          if (!filteredIds.includes(childrenCategoryId)) {
+            filteredIds.push(childrenCategoryId);
+          }
+        });
+        setSelectedCategoryIds(filteredIds);
+      }
 
       const collegeList = [];
       const departmentList = [];
-      tempIds.forEach(tempId =>
-        tempId <= 9 ? collegeList.push(tempId) : departmentList.push(tempId),
+      filteredIds.forEach(filteredId =>
+        filteredId < 10
+          ? collegeList.push(filteredId)
+          : departmentList.push(filteredId),
       );
 
       await AsyncStorage.setItem(
@@ -124,11 +142,28 @@ const CategoryLayout = ({navigation}) => {
   const toggleAllCheckboxes = async () => {
     const allChildAndParentIds = [];
     const collegeList = [];
-    setIsAllChecked(!isAllChecked);
-    setSelectedCategoryIds([]);
 
-    if (!isAllChecked) {
-      categoriesState.forEach(category => {
+    if (isAllChecked) {
+      setIsAllChecked(false);
+
+      setSelectedCategoryIds([]);
+
+      await AsyncStorage.setItem('category-department', '');
+      await AsyncStorage.setItem('category-college', '');
+    } else {
+      const allCollegeIds = [];
+      const allDepartmentIds = [];
+
+      setIsAllChecked(true);
+
+      Categories.forEach(category => {
+        allCollegeIds.push(category.id);
+        category.children.forEach(children => {
+          allDepartmentIds.push(children.id);
+        });
+      });
+
+      Categories.forEach(category => {
         collegeList.push(category.id);
 
         allChildAndParentIds.push(category.id);
@@ -138,20 +173,14 @@ const CategoryLayout = ({navigation}) => {
       });
       setSelectedCategoryIds(allChildAndParentIds);
 
-      await AsyncStorage.setItem('category-department', '');
+      await AsyncStorage.setItem(
+        'category-department',
+        JSON.stringify(allDepartmentIds),
+      );
       await AsyncStorage.setItem(
         'category-college',
-        JSON.stringify(collegeList),
+        JSON.stringify(allCollegeIds),
       );
-    }
-
-    if (isAllChecked) {
-      setIsAllChecked(false);
-
-      setSelectedCategoryIds([]);
-
-      await AsyncStorage.setItem('category-department', '');
-      await AsyncStorage.setItem('category-college', '');
     }
   };
 
@@ -171,25 +200,21 @@ const CategoryLayout = ({navigation}) => {
     isExpandedCategoryIds = [],
   ) =>
     categoryList.map(category => (
-      <React.Fragment key={category.id}>
+      <React.Fragment key={`fragment${category.id}`}>
         <CategoryForm
           id={category.id}
           depth={depth}
           category={category}
-          handleClick={clickedCategory =>
-            toggleCategory(clickedCategory, parentCategory)
+          handleClick={isClicked =>
+            toggleCategory(category, parentCategory, isClicked)
           }
           selectedCategoryIds={selectedCategoryIds}
-          parentCategoryList={parentCategory}
           isExpandedCategoryIds={isExpandedCategoryIds}
           setIsExpandCategoryIds={setIsExpandCategoryIds}
         />
         {category.children.length > 0 &&
           !isExpandedCategoryIds.includes(category.id) &&
-          renderCategories(category.children, depth + 1, [
-            ...parentCategory,
-            category,
-          ])}
+          renderCategories(category.children, depth + 1, category, [])}
       </React.Fragment>
     ));
 
@@ -200,7 +225,7 @@ const CategoryLayout = ({navigation}) => {
       </styles.HeaderContainer>
       <styles.CancelButtonBox
         onPress={() => {
-          navigation.goBack();
+          navigation.reset({routes: [{name: 'BottomTabs'}]});
         }}>
         <CancelButton width={20} height={20} />
       </styles.CancelButtonBox>
@@ -215,7 +240,7 @@ const CategoryLayout = ({navigation}) => {
         </styles.AllSelectContainer>
       </TouchableOpacity>
       <ScrollView>
-        {renderCategories(categoriesState, 0, [], isExpandCategoryIds)}
+        {renderCategories(categoriesState, 0, null, isExpandCategoryIds)}
       </ScrollView>
     </styles.CategoryContainer>
   );

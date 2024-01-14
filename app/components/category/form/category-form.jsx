@@ -1,23 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import * as styles from '@/components/category/form/category-form.styles';
-import {Text, TouchableOpacity, View} from 'react-native';
 import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import ExpandButton from '@assets/images/category/ExpandButton.svg';
+
 const CategoryForm = ({
   id,
   category,
   depth,
   handleClick,
   selectedCategoryIds,
-  parentCategoryList,
   isExpandedCategoryIds,
   setIsExpandCategoryIds,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const hasChildren = category.children.length > 0;
-  const isChecked = selectedCategoryIds.includes(category.id);
+  let isChecked = selectedCategoryIds.includes(category.id);
+
+  useEffect(() => {
+    isChecked = selectedCategoryIds.includes(category.id);
+  }, [selectedCategoryIds]);
 
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
@@ -35,7 +38,7 @@ const CategoryForm = ({
       <styles.TitleBox>
         <styles.TitleTouchableOpacity
           onPress={() => {
-            handleClick(category, parentCategoryList, !isChecked);
+            handleClick(isChecked);
           }}>
           {isChecked ? (
             <CheckedButton width={20} height={20} />

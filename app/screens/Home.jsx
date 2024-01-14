@@ -38,12 +38,15 @@ const Home = ({navigation}) => {
 
     AsyncStorage.getItem('category-college')
       .then(college => {
+        console.log('college', college);
+
         asyncStorageCollegeIdList = college;
         collegeIdList = JSON.parse(asyncStorageCollegeIdList);
       })
       .then(() => {
         AsyncStorage.getItem('category-department')
           .then(department => {
+            console.log('department', department);
             asyncStorageDepartmentIdList = department;
             departmentIdList = JSON.parse(asyncStorageDepartmentIdList);
           })
@@ -82,55 +85,58 @@ const Home = ({navigation}) => {
               });
             }
 
+            newFilterOptions.sort((a, b) => a.key - b.key);
+
             setFilterOptions(newFilterOptions);
           });
       });
-    // if (asyncStorageCollegeIdList) {
-    //   collegeIdList = JSON.parse(asyncStorageCollegeIdList);
-    // }
-    //
+    if (asyncStorageCollegeIdList) {
+      collegeIdList = JSON.parse(asyncStorageCollegeIdList);
+    }
+
     // let asyncStorageDepartmentIdList = '';
-    // AsyncStorage.getItem('category-department').then(department => {
-    //   console.log('department', department);
-    //   asyncStorageDepartmentIdList = department;
-    //   departmentIdList = JSON.parse(asyncStorageDepartmentIdList);
-    // });
-    //
-    // if (asyncStorageDepartmentIdList) {
-    //   departmentIdList = JSON.parse(asyncStorageDepartmentIdList);
-    // }
-    //
-    // const newFilterOptions = [...filterOptions];
-    //
-    // Categories.forEach(({id, name, value}) => {
-    //   if (
-    //     collegeIdList.includes(id) &&
-    //     !newFilterOptions.some(option => option.key === id)
-    //   ) {
-    //     newFilterOptions.push({
-    //       key: id,
-    //       filter: name,
-    //       param: value,
-    //     });
-    //   }
-    // });
-    //
-    // Categories.forEach(category => {
-    //   category.children.forEach(({id, name, value}) => {
-    //     if (
-    //       departmentIdList.includes(id) &&
-    //       !newFilterOptions.some(option => option.key === id)
-    //     ) {
-    //       newFilterOptions.push({
-    //         key: id,
-    //         filter: name,
-    //         param: value,
-    //       });
-    //     }
-    //   });
-    // });
-    //
-    // setFilterOptions(newFilterOptions);
+    AsyncStorage.getItem('category-department').then(department => {
+      console.log('department', department);
+      asyncStorageDepartmentIdList = department;
+      departmentIdList = JSON.parse(asyncStorageDepartmentIdList);
+    });
+
+    if (asyncStorageDepartmentIdList) {
+      departmentIdList = JSON.parse(asyncStorageDepartmentIdList);
+    }
+
+    const newFilterOptions = [...filterOptions];
+
+    Categories.forEach(({id, name, value}) => {
+      if (
+        collegeIdList.includes(id) &&
+        !newFilterOptions.some(option => option.key === id)
+      ) {
+        newFilterOptions.push({
+          key: id,
+          filter: name,
+          param: value,
+        });
+      }
+    });
+
+    Categories.forEach(category => {
+      category.children.forEach(({id, name, value}) => {
+        if (
+          departmentIdList.includes(id) &&
+          !newFilterOptions.some(option => option.key === id)
+        ) {
+          newFilterOptions.push({
+            key: id,
+            filter: name,
+            param: value,
+          });
+        }
+      });
+    });
+    console.log('isFocused', isFocused);
+    console.log('newFilterOptions, ', newFilterOptions);
+    setFilterOptions(newFilterOptions);
   }, [isFocused]);
 
   return (

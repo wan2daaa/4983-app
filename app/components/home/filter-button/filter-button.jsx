@@ -39,7 +39,7 @@ const FilterButton = ({
     <styles.ConditionContainer>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Category');
+          navigation.navigate('Category', {filterOptions});
         }}>
         <SettingIcon width={49} height={35} />
       </TouchableOpacity>
