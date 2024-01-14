@@ -1,9 +1,5 @@
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import {
-  NavigationContainer,
-  useIsFocused,
-  useRoute,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {RecoilRoot} from 'recoil';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Signin from '@screens/Signin';
@@ -24,6 +20,15 @@ import ChatListIcon from '@assets/images/bottom-tabs/ChatList.svg';
 import HelpIcon from '@assets/images/bottom-tabs/Help.svg';
 import SearchIcon from '@assets/images/bottom-tabs/Search.svg';
 import MypageIcon from '@assets/images/bottom-tabs/Mypage.svg';
+import Mypage from '@screens/mypage/Mypage';
+import MypageTerms from '@screens/mypage/MypageTerms';
+import Help from '@screens/Help';
+import MypageContactusLayout from '@screens/mypage/MypageContactus';
+import MypageContactus from '@screens/mypage/MypageContactus';
+import ChangePassword from '@screens/mypage/ChangePassword';
+import MypageEditProfile from '@screens/mypage/MypageEditProfile';
+import MypageSalesHistory from '@screens/mypage/MypageSalesHistory';
+import MypagePurchaseHistory from '@screens/mypage/MypagePurchaseHistory';
 import SignupDepartment from '@screens/signup/Signup-Department';
 import SignupComplete from '@screens/signup/Signup-Complete';
 import Category from '@screens/Category';
@@ -111,8 +116,12 @@ function BottomTabs() {
       />
       <Tab.Screen
         name="마이페이지"
-        component={Home}
-        options={{unmountOnBlur: true, tabBarLabel: ''}}
+        component={Mypage}
+        options={{
+          tabBarStyle: {display: 'none'},
+          unmountOnBlur: true,
+          tabBarLabel: '',
+        }}
       />
     </Tab.Navigator>
   );
@@ -263,6 +272,93 @@ function App(): JSX.Element {
             />
             <Stack.Screen name="Category" component={Category} options={{}} />
             <Stack.Screen name="BottomTabs" component={BottomTabs} />
+            <Stack.Screen
+              name="MypageTerms"
+              component={MypageTerms}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '이용약관',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="Help"
+              component={Help}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerStyle: {
+                  backgroundColor: '#1DAE73',
+                },
+              }}
+            />
+            <Stack.Screen
+              name="MypageContactus"
+              component={MypageContactus}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '문의하기',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="ChangePassword"
+              component={ChangePassword}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '비밀번호 변경',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="MypageEditProfile"
+              component={MypageEditProfile}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '회원 정보 수정',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="MypageSalesHistory"
+              component={MypageSalesHistory}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '판매 내역',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="MypagePurchaseHistory"
+              component={MypagePurchaseHistory}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '구매 내역',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
