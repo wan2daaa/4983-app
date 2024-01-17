@@ -32,6 +32,7 @@ import MypagePurchaseHistory from '@screens/mypage/MypagePurchaseHistory';
 import SignupDepartment from '@screens/signup/Signup-Department';
 import SignupComplete from '@screens/signup/Signup-Complete';
 import Category from '@screens/Category';
+import {ChatList} from '@screens/ChatList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -100,8 +101,12 @@ function BottomTabs() {
       />
       <Tab.Screen
         name="채팅리스트"
-        component={Home}
-        options={{unmountOnBlur: true, tabBarLabel: ''}}
+        component={ChatList}
+        options={{
+          unmountOnBlur: true,
+          tabBarLabel: '',
+          tabBarStyle: {display: 'none'},
+        }}
       />
 
       <Tab.Screen
@@ -354,6 +359,18 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '구매 내역',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="ChatList"
+              component={ChatList}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '중고 서적 거래 채팅',
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
