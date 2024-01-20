@@ -34,6 +34,7 @@ import SignupDepartment from '@screens/signup/Signup-Department';
 import SignupComplete from '@screens/signup/Signup-Complete';
 import Category from '@screens/Category';
 import {ChatList} from '@screens/ChatList';
+import {Search} from '@screens/Search';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -121,8 +122,12 @@ function BottomTabs() {
       />
       <Tab.Screen
         name="검색"
-        component={Home}
-        options={{unmountOnBlur: true, tabBarLabel: ''}}
+        component={Search}
+        options={{
+          unmountOnBlur: true,
+          tabBarLabel: '',
+          tabBarStyle: {display: 'none'},
+        }}
       />
       <Tab.Screen
         name="마이페이지"
@@ -388,15 +393,10 @@ function App() {
               }}
             />
             <Stack.Screen
-              name="ChatList"
-              component={ChatList}
+              name="Search"
+              component={Search}
               options={{
-                headerShown: true,
-                headerShadowVisible: false,
-                headerTitle: '중고 서적 거래 채팅',
-                headerTitleAlign: 'center',
-                headerBackTitleVisible: false,
-                headerTintColor: '#414141',
+                headerShown: false,
               }}
             />
           </Stack.Navigator>

@@ -1,12 +1,7 @@
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import BackButton from '@assets/images/common/BlackBackButton.svg';
 import {EachChat} from '@components/chat-list/each-chat/each-chat';
 import * as styles from '@components/chat-list/chat-list-layout.styles';
-import {
-  BorderLine,
-  HeaderText,
-  ScrollViewContainer,
-} from '@components/chat-list/chat-list-layout.styles';
+
 export const ChatListLayout = ({navigation, chatDataList}) => {
   return (
     <styles.Container>

@@ -19,7 +19,6 @@ const Home = ({navigation}) => {
   useEffect(() => {
     fetchBookList(isFastTradeChecked, paramCollege, paramDepartment)
       .then(res => {
-        // console.log(res);
         setBookListData(res);
       })
       .catch(error => {

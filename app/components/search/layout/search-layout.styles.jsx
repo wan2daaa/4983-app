@@ -9,15 +9,29 @@ export const HeaderContainer = styled.View`
   height: 56px;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
 `;
 
-export const HeaderText = styled.Text`
-  color: #36332e;
-  font-size: 20px;
-  font-weight: 700;
-`;
 export const BackButtonTouchableOpacity = styled.TouchableOpacity`
   position: absolute;
   left: 12px;
+`;
+
+export const SearchTextInput = styled.TextInput`
+  height: 24px;
+  width: 280px;
+
+  position: absolute;
+  left: 50px;
+
+  font-size: 16px;
+  text-align: left;
+`;
+
+export const SearchButtonTouchableOpacity = styled.TouchableOpacity`
+  position: absolute;
+  right: 16px;
+`;
+
+export const OtherContainer = styled.View`
+  flex: 1;
 `;

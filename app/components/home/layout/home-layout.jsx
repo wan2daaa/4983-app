@@ -19,7 +19,10 @@ const HomeLayout = ({
       <styles.HeaderContainer>
         <styles.HeaderText>중고 서적 거래</styles.HeaderText>
       </styles.HeaderContainer>
-      <styles.SearchIconContainer>
+      <styles.SearchIconContainer
+        onPress={() => {
+          navigation.navigate('Search');
+        }}>
         <SearchIcon width={20} height={20} />
       </styles.SearchIconContainer>
       <FilterButton
@@ -43,7 +46,13 @@ const HomeLayout = ({
       </styles.FastTradeContainer>
       <styles.ScrollViewContainer>
         {bookListData.map((bookData, index) => {
-          return <BookListBox bookData={bookData} index={index} />;
+          return (
+            <BookListBox
+              key={`eachBook${index}`}
+              bookData={bookData}
+              index={index}
+            />
+          );
         })}
       </styles.ScrollViewContainer>
       <styles.SellButtonContainer>

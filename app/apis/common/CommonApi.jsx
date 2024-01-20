@@ -39,7 +39,7 @@ export const API = axios.create({
 BASE_API.interceptors.request.use(async config => {
   const accessToken = await AsyncStorage.getItem('accessToken');
 
-  console.log('BASE_API : accessToken , ', accessToken);
+  // console.log('BASE_API : accessToken , ', accessToken);
 
   if (accessToken != null && accessToken !== '' && accessToken !== undefined) {
     config.headers.Authorization = accessToken;
