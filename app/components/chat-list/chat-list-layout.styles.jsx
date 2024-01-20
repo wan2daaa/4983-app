@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
+  background-color: #fff;
 `;
 
 export const HeaderContainer = styled.View`
@@ -24,4 +25,10 @@ export const BackButtonTouchableOpacity = styled.TouchableOpacity`
 
 export const ScrollViewContainer = styled.ScrollView`
   flex: 1;
+`;
+
+export const BorderLine = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: #e1e1e1;
 `;
