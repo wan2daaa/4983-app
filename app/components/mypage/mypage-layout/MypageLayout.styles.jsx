@@ -7,7 +7,6 @@ export const Container = styled.View`
 
 export const ProfileContainer = styled.View`
   width: 100%;
-  //height: 15.841133004926108%;
   height: 139.46px;
   align-items: center;
   justify-content: center;
@@ -18,10 +17,8 @@ export const ProfileContainer = styled.View`
 
 export const ProfileBox = styled.View`
   width: 352px;
-  //height: 76.964938194822359%;
   height: 99px;
   flex-direction: row;
-
   justify-content: space-between;
   align-items: center;
   border-radius: 30px;
@@ -29,26 +26,20 @@ export const ProfileBox = styled.View`
   box-shadow: -1px 2px 9px rgba(0, 0, 0, 0.1);
 `;
 
-// export const ProfileImage = styled.Image`
-//   align-self: center;
-//   margin-left: 17px;
-//   width: 84px;
-//   height: 84px;
-//   fill: #eee;
-//   border-radius: 42px;
-//   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
-// `;
-
 export const ProfileImage = styled.View`
-  margin-left: 19px;
-
-  width: 70px;
-  height: 70px;
+  align-self: center;
+  margin-left: 17px;
+  margin-right: 13px;
+  width: 84px;
+  height: 84px;
   border-radius: 42px;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
-  background: bisque; //임시 설정, 위의 image 로 변경 필요
+  background: #eceae0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 `;
 
+export const NameBox = styled.View`
+  width: 130px;
+`;
 export const Name = styled.Text`
   color: #36332e;
   font-size: 18px;
@@ -101,19 +92,23 @@ export const ModalTitleColor = styled.Text`
   font-weight: 700;
 `;
 
+export const ModalInputBox = styled.View`
+  width: 285px;
+  height: 73px;
+`;
+
 export const ModalInput = styled.TextInput.attrs({
   placeholderTextColor: '#818181',
 })`
-  margin-bottom: 21px;
   padding-left: 15px;
   width: 285px;
   height: 41px;
   border-radius: 10px;
-  background: #f2f2f2;
+  background: #f6f6f6;
 `;
 
 export const ModalButtonBox = styled.View`
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   width: 283px;
   height: 42px;
   flex-direction: row;
@@ -158,6 +153,14 @@ export const FindPasswordButtonText = styled.Text`
   text-align: center;
   font-size: 12px;
   font-weight: 500;
-  line-height: 25px; /* 208.333% */
+  line-height: 25px;
   text-decoration-line: underline;
+`;
+
+export const ErrorMessage = styled.Text`
+  padding-left: 15px;
+  color: #f00;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 32px;
 `;

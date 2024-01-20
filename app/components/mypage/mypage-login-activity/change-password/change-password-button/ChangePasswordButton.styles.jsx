@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonContainer = styled.View`
+export const ButtonContainer = styled.TouchableOpacity`
   width: 309px;
   height: 52px;
   align-self: center;

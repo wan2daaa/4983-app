@@ -1,3 +1,5 @@
+// TODO. headerTitle 넣은곳에 headerTitleStyle 넣기 -> headerTitleStyle: {fontSize: 20, fontWeight: '700'}
+
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {RecoilRoot} from 'recoil';
@@ -23,7 +25,6 @@ import MypageIcon from '@assets/images/bottom-tabs/Mypage.svg';
 import Mypage from '@screens/mypage/Mypage';
 import MypageTerms from '@screens/mypage/MypageTerms';
 import Help from '@screens/Help';
-import MypageContactusLayout from '@screens/mypage/MypageContactus';
 import MypageContactus from '@screens/mypage/MypageContactus';
 import ChangePassword from '@screens/mypage/ChangePassword';
 import MypageEditProfile from '@screens/mypage/MypageEditProfile';
@@ -37,7 +38,7 @@ import {ChatList} from '@screens/ChatList';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function getTabBarIcon(routeName: string, focused: boolean) {
+function getTabBarIcon(routeName, focused) {
   switch (routeName) {
     case '홈':
       return focused ? (
@@ -111,8 +112,12 @@ function BottomTabs() {
 
       <Tab.Screen
         name="도움말"
-        component={Home}
-        options={{unmountOnBlur: true, tabBarLabel: ''}}
+        component={Help}
+        options={{
+          tabBarStyle: {display: 'none'},
+          unmountOnBlur: true,
+          tabBarLabel: '',
+        }}
       />
       <Tab.Screen
         name="검색"
@@ -132,7 +137,7 @@ function BottomTabs() {
   );
 }
 
-function App(): JSX.Element {
+function App() {
   return (
     <RecoilRoot>
       <SafeAreaView style={styles.container}>
@@ -284,6 +289,7 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '이용약관',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -311,6 +317,7 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '문의하기',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -323,6 +330,7 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '비밀번호 변경',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -335,6 +343,7 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '회원 정보 수정',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -347,6 +356,7 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '판매 내역',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -359,6 +369,19 @@ function App(): JSX.Element {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '구매 내역',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="ChatList"
+              component={ChatList}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '중고 서적 거래 채팅',
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',

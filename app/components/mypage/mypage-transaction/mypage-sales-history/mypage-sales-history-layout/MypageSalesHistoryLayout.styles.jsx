@@ -10,6 +10,7 @@ export const Container = styled.View`
 export const TabsContainer = styled.View`
   width: 100%;
   height: 43px;
+  margin-bottom: 19px;
   flex-direction: row;
 `;
 
@@ -22,8 +23,8 @@ export const TabBox = styled.View`
 export const Tab = styled.TouchableOpacity`
   width: 67px;
   height: 100%;
-  border-bottom-width: 1px;
-  border-bottom-color: #000;
+  border-bottom-width: ${({active}) => (active ? '1px' : '0')};
+  border-bottom-color: ${({active}) => (active ? '#000' : 'transparent')};
   justify-content: center;
   align-items: center;
 `;

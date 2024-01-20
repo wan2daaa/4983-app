@@ -16,7 +16,7 @@ export const Title = styled.Text`
   padding-left: 15px;
   color: #02be7c;
   font-size: 15px;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 32px;
 `;
 
@@ -47,11 +47,18 @@ export const InputButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background: rgba(2, 184, 120, 0.8);
+  background: #d1d1d1;
 `;
 
 export const InputButtonText = styled.Text`
-  color: #fff;
+  color: #50555c;
   font-size: 14px;
   font-weight: 500;
+`;
+
+export const Message = styled.Text`
+  padding-left: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 32px;
 `;

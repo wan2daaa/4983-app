@@ -1,4 +1,4 @@
-import HelpLayout from '@components/help/HelpLayout';
+import HelpLayout from '@components/mypage/mypage-inquiry/help/help-layout/HelpLayout';
 
 const Help = ({navigation}) => {
   return <HelpLayout navigation={navigation} />;

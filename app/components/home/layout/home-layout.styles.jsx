@@ -50,7 +50,7 @@ export const SellButtonContainer = styled.View`
   position: absolute;
   flex-direction: row-reverse;
   right: 9px;
-  bottom: 28px;
+  bottom: 12px;
 `;
 
 export const SellButtonBox = styled.View`
@@ -60,14 +60,7 @@ export const SellButtonBox = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  //box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  //    shadowColor: 'black',
-  //    shadowOffset: {
-  //    width: 0,
-  //    height: 4,
-  //},
-  //shadowOpacity: 0.3,
-  //shadowRadius: 4,
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const SellButtonText = styled.Text`

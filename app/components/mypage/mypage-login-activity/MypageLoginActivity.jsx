@@ -4,24 +4,37 @@ import WithdrawalIcon from '@assets/images/mypage/WithdrawalIcon.svg';
 import ChangePasswordIcon from '@assets/images/mypage/ChangePasswordIcon.svg';
 import {Modal} from 'react-native';
 import {useState} from 'react';
+import {UserLogout, UserSecede} from '@/apis/mypage/MypageLoginActivityApi';
 
 const MypageLoginActivity = ({navigation}) => {
   const [isLogoutModal, setIsLogoutModal] = useState(false);
-  const [isWithdrawalModal, setIsWithdrawalModal] = useState(false);
+  const [isSecedeModal, setIsSecedeModal] = useState(false);
 
-  const handleLogout = () => {
+  const openLogoutModal = () => {
     setIsLogoutModal(!isLogoutModal);
   };
   const closeLogoutModal = () => {
     setIsLogoutModal(false);
   };
 
-  const handleWithdrawal = () => {
-    setIsWithdrawalModal(!isWithdrawalModal);
+  const handleLogout = () => {
+    UserLogout();
+    setIsLogoutModal(false);
+    navigation.navigate('Signin');
+  };
+
+  const openWithdrawalModal = () => {
+    setIsSecedeModal(!isSecedeModal);
   };
 
   const closeWithdrawalModal = () => {
-    setIsWithdrawalModal(false);
+    setIsSecedeModal(false);
+  };
+
+  const handleSecede = () => {
+    UserSecede();
+    setIsSecedeModal(false);
+    navigation.navigate('Signin');
   };
 
   return (
@@ -30,12 +43,12 @@ const MypageLoginActivity = ({navigation}) => {
         <styles.Title>로그인 활동</styles.Title>
       </styles.TitleContainer>
 
-      <styles.BoxContainer onPress={handleLogout}>
+      <styles.BoxContainer onPress={openLogoutModal}>
         <LogoutIcon width={31} height={29} />
         <styles.ContentText>로그아웃</styles.ContentText>
       </styles.BoxContainer>
 
-      <styles.BoxContainer onPress={handleWithdrawal}>
+      <styles.BoxContainer onPress={openWithdrawalModal}>
         <WithdrawalIcon width={31} height={28} />
         <styles.ContentText>탈퇴하기</styles.ContentText>
       </styles.BoxContainer>
@@ -53,7 +66,7 @@ const MypageLoginActivity = ({navigation}) => {
               로그아웃 하시겠어요?
             </styles.ModalContentText>
             <styles.ModalButtonContainer>
-              <styles.ModalButton>
+              <styles.ModalButton onPress={handleLogout}>
                 <styles.ModalButtonText>로그아웃</styles.ModalButtonText>
               </styles.ModalButton>
               <styles.ModalCancelButton onPress={closeLogoutModal}>
@@ -66,17 +79,14 @@ const MypageLoginActivity = ({navigation}) => {
         </styles.ModalContainer>
       </Modal>
 
-      <Modal
-        visible={isWithdrawalModal}
-        transparent={true}
-        animationType="none">
+      <Modal visible={isSecedeModal} transparent={true} animationType="none">
         <styles.ModalContainer>
           <styles.ModalBox>
             <styles.ModalContentText>
               4983 서비스를 탈퇴하시겠어요?
             </styles.ModalContentText>
             <styles.ModalButtonContainer>
-              <styles.ModalButton>
+              <styles.ModalButton onPress={handleSecede}>
                 <styles.ModalButtonText>탈퇴할래요</styles.ModalButtonText>
               </styles.ModalButton>
               <styles.ModalCancelButton onPress={closeWithdrawalModal}>
