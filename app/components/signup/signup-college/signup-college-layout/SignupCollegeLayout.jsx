@@ -28,7 +28,7 @@ const SignupCollegeLayout = ({
       </styles.Title>
       <TouchableWithoutFeedback>
         <ScrollView>
-          <View style={styles.container}>
+          <View>
             {Categories.map((category, index) =>
               !category.isNotCollege ? (
                 <styles.CollegeBox

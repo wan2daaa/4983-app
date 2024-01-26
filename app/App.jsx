@@ -35,6 +35,10 @@ import SignupComplete from '@screens/signup/Signup-Complete';
 import Category from '@screens/Category';
 import {ChatList} from '@screens/ChatList';
 import {Search} from '@screens/Search';
+import {Sell} from '@screens/sell/Sell';
+import {LocaleConfig} from 'react-native-calendars/src/index';
+import {SellCollege} from '@screens/sell/sell-college';
+import {SellDepartment} from '@screens/sell/sell-department';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -143,6 +147,42 @@ function BottomTabs() {
 }
 
 function App() {
+  LocaleConfig.locales['kr'] = {
+    monthNames: [
+      '1월',
+      '2월',
+      '3월',
+      '4월',
+      '5월',
+      '6월',
+      '7월',
+      '8월',
+      '9월',
+      '10월',
+      '11월',
+      '12월',
+    ],
+    monthNamesShort: [
+      '1월',
+      '2월',
+      '3월',
+      '4월',
+      '5월',
+      '6월',
+      '7월',
+      '8월',
+      '9월',
+      '10월',
+      '11월',
+      '12월',
+    ],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    today: '오늘',
+  };
+
+  LocaleConfig.defaultLocale = 'kr';
+
   return (
     <RecoilRoot>
       <SafeAreaView style={styles.container}>
@@ -397,6 +437,43 @@ function App() {
               component={Search}
               options={{
                 headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Sell"
+              component={Sell}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '전공서적 판매 글쓰기',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="SellCollege"
+              component={SellCollege}
+              options={{
+                headerShown: true,
+                headerTitle: '단과대 선택',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="SellDepartment"
+              component={SellDepartment}
+              options={{
+                headerShown: true,
+                headerTitle: '학과 선택',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
               }}
             />
           </Stack.Navigator>

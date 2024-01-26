@@ -53,7 +53,7 @@ export const SellButtonContainer = styled.View`
   bottom: 12px;
 `;
 
-export const SellButtonBox = styled.View`
+export const SellButtonBox = styled.TouchableOpacity`
   width: 146px;
   height: 62px;
   background-color: #02b878;

@@ -44,3 +44,13 @@ export const recoilDepartment = atom({
   key: 'department',
   default: '',
 });
+
+export const recoilSellCollege = atom({
+  key: 'sell-college',
+  default: '',
+});
+
+export const recoilSellDepartment = atom({
+  key: 'sell-department',
+  default: '',
+});

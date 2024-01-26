@@ -56,7 +56,10 @@ const HomeLayout = ({
         })}
       </styles.ScrollViewContainer>
       <styles.SellButtonContainer>
-        <styles.SellButtonBox>
+        <styles.SellButtonBox
+          onPress={() => {
+            navigation.navigate('Sell');
+          }}>
           <styles.SellButtonText>판매하기</styles.SellButtonText>
         </styles.SellButtonBox>
       </styles.SellButtonContainer>
