@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 326px;
   height: 119px;
   align-self: center;
+  z-index: -1;
 `;
 
 export const Title = styled.Text`
@@ -38,11 +39,27 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background: #32c491;
+  background: ${props => (props.isCertificationValid ? '#32c491' : '#D1D1D1')};
 `;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${props => (props.isCertificationValid ? '#fff' : '#50555C')};
   font-size: 14px;
+  font-weight: 500;
+`;
+
+export const Error = styled.Text`
+  padding-left: 5px;
+  margin-top: -8px;
+  color: #f61818;
+  font-size: 12px;
+  font-weight: 500;
+`;
+
+export const Success = styled.Text`
+  padding-left: 5px;
+  margin-top: -8px;
+  color: #02b878;
+  font-size: 12px;
   font-weight: 500;
 `;

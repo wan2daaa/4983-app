@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 100%;
-  height: 170px;
+  height: 200px;
   align-items: center;
-  margin-bottom: 3%;
 `;
 
 export const InputContainer = styled.View`

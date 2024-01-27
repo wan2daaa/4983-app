@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Categories} from '@data/categories';
 import * as styles from '@components/home/filter-button/filter-button.styles';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import SettingIcon from '@assets/images/home/SettingIcon.svg';
 
 const FilterButton = ({

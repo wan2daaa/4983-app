@@ -13,6 +13,7 @@ import {
   recoilPhoneNumber,
   recoilStudentId,
 } from '@/recoil/atoms/SignupAtoms';
+import {Signin} from '@/apis/auth/signin/SigninApi';
 
 const SignupDepartmentButton = ({navigation, selectedCollegeId}) => {
   const [studentId] = useRecoilState(recoilStudentId);
@@ -44,7 +45,13 @@ const SignupDepartmentButton = ({navigation, selectedCollegeId}) => {
           )
             .then(response => {
               console.log('회원가입 성공:', response);
-              navigation.navigate('SignupComplete');
+              Signin(studentId, password)
+                .then(() => {
+                  navigation.navigate('SignupComplete');
+                })
+                .catch(err => {
+                  console.log('회원가입후 로그인 실패:', err);
+                });
             })
             .catch(error => {
               console.error('회원가입 실패:', error);

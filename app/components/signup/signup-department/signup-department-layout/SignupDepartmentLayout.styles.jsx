@@ -22,6 +22,7 @@ export const TitleColor = styled.Text`
 `;
 
 export const Title = styled.Text`
+  margin-bottom: 25px;
   color: #818181;
   text-align: center;
   font-size: 15px;

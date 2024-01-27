@@ -3,7 +3,7 @@ import SignUpCompleteIcon from '@assets/images/signup/SignUpCompleteIcon.svg';
 
 const SignupComplete = ({navigation}) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <View
         style={{
           justifyContent: 'center',
@@ -36,7 +36,8 @@ const SignupComplete = ({navigation}) => {
               fontSize: 15,
               fontWeight: 700,
               textAlign: 'center',
-            }}>
+            }}
+            onPress={() => navigation.navigate('Help')}>
             사용법 보러 가기
           </Text>
         </TouchableOpacity>

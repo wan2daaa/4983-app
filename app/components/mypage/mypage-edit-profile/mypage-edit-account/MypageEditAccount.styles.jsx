@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 326px;
@@ -21,7 +21,7 @@ export const InputBox = styled.View`
   align-items: center;
 `;
 
-export const DropDown = styled.View`
+export const DropDown = styled.TouchableOpacity`
   width: 100px;
   height: 59px;
   flex-direction: row;
@@ -49,4 +49,12 @@ export const Input = styled.TextInput.attrs({
   border-radius: 15px;
   border: 1px solid #fff;
   background: rgba(236, 236, 236, 0.6);
+`;
+
+export const BankListBox = styled.View`
+  width: 100px;
+  height: 250px;
+  margin-top: 10px;
+  border-radius: 50px;
+  box-shadow: 0px -8px 8px rgba(0, 0, 0, 0.1);
 `;

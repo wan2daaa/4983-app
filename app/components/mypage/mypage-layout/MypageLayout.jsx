@@ -6,6 +6,7 @@ import {Image, Modal, ScrollView, TouchableOpacity} from 'react-native';
 import MypageInquiry from '@components/mypage/mypage-inquiry/MypageInquiry';
 import MypageLoginActivity from '@components/mypage/mypage-login-activity/MypageLoginActivity';
 import {getMemberInfo, PasswordCheck} from '@/apis/mypage/MypageApi';
+import DefaultImage from '@assets/images/mypage/DefaultImage.svg';
 
 const MypageLayout = ({navigation}) => {
   const [isModal, setIsModal] = useState(false);
@@ -19,7 +20,6 @@ const MypageLayout = ({navigation}) => {
       getMemberInfo().then(response => {
         setNickname(response.nickname);
         setImageUrl(response.imageUrl);
-        console.log('response,imageUrl:', response.imageUrl);
       });
     });
 
@@ -72,12 +72,16 @@ const MypageLayout = ({navigation}) => {
         <styles.ProfileContainer>
           <styles.ProfileBox>
             <styles.ProfileImage>
-              <Image
-                source={{uri: imageUrl ? imageUrl : null}}
-                width={84}
-                height={84}
-                style={{borderRadius: 42}}
-              />
+              {imageUrl ? (
+                <Image
+                  source={{uri: imageUrl}}
+                  width={84}
+                  height={84}
+                  style={{borderRadius: 42}}
+                />
+              ) : (
+                <DefaultImage width={49} height={61} />
+              )}
             </styles.ProfileImage>
             <styles.NameBox>
               <styles.Name>{nickname}</styles.Name>
@@ -106,6 +110,7 @@ const MypageLayout = ({navigation}) => {
               <styles.ModalInput
                 id={password}
                 type="password"
+                secureTextEntry={true}
                 onChangeText={setPassword}
                 placeholder="비밀번호를 입력해 주세요."
               />

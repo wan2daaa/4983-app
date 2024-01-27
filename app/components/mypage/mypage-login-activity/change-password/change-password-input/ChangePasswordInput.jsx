@@ -90,6 +90,7 @@ const ChangePasswordInput = ({
           <styles.Input
             id={passwords}
             type="password"
+            secureTextEntry={true}
             placeholder="현재 비밀번호를 입력해 주세요."
             onChangeText={setPasswords}
           />
@@ -125,6 +126,7 @@ const ChangePasswordInput = ({
           <styles.Input
             id={newPasswords}
             type="password"
+            secureTextEntry={true}
             disabled={isPasswordMatch === undefined ? true : !isPasswordMatch}
             onChangeText={setNewPasswords}
             placeholder="새로운 비밀번호를 입력해 주세요."
@@ -164,6 +166,7 @@ const ChangePasswordInput = ({
           <styles.Input
             id={checkPasswords}
             type="password"
+            secureTextEntry={true}
             disabled={
               !isNewPasswordValid === undefined ? true : !isNewPasswordValid
             }

@@ -22,6 +22,7 @@ export const TitleColor = styled.Text`
 `;
 
 export const Title = styled.Text`
+  margin-bottom: 25px;
   color: #818181;
   text-align: center;
   font-size: 15px;
@@ -32,7 +33,7 @@ export const CollegeBox = styled.TouchableOpacity`
   flex-direction: row;
   height: 52px;
   align-items: center;
-  border-bottom-width: 1px;
+  border-bottom-width: 0.5px;
   border-color: #e5e5e5;
 `;
 

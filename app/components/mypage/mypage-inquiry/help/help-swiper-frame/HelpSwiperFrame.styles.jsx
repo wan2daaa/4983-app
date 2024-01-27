@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const HelpBox = styled.View`
   width: 100%;
@@ -21,9 +21,6 @@ export const HelpFrame = styled.View`
   height: 408.55237px;
   margin-top: 11.19px;
   padding: 20px 15px 79.552px 28px;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 13px;
   border: 0.4px solid #c8c8c8;
   background: #fff;
   box-shadow: 0.3px 0.5px 3px rgba(0, 0, 0, 0.1);

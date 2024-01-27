@@ -44,3 +44,12 @@ export const BankInput = styled.TextInput.attrs({
   height: 32px;
   padding-left: 5px;
 `;
+
+export const BankListBox = styled.View`
+  width: 82.666666666666667%;
+  height: 250px;
+  position: absolute;
+  top: 150px;
+  border-radius: 50px;
+  box-shadow: 0px -8px 8px rgba(0, 0, 0, 0.1);
+`;

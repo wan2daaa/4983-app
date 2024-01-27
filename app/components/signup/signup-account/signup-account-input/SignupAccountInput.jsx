@@ -8,9 +8,36 @@ const SignupAccountInput = ({
   setAccountNumber,
   setSelectedBank,
 }) => {
+  const renderBankList = () => (
+    <styles.BankListBox
+      style={{
+        zIndex: isListVisible ? 1000 : 0,
+      }}>
+      <ScrollView style={{height: '100%'}}>
+        {isListVisible &&
+          banks.map((bank, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                setIsListVisible(false);
+                setSelectedBank(bank.value);
+                setSelectedBankLabel(bank.label);
+              }}
+              style={{
+                padding: 10,
+                backgroundColor: '#fff',
+                borderBottomColor: '#818181',
+                borderBottomWidth: 0.3,
+              }}>
+              <Text style={{backgroundColor: '#fff'}}>{bank.label}</Text>
+            </TouchableOpacity>
+          ))}
+      </ScrollView>
+    </styles.BankListBox>
+  );
+
   const [isListVisible, setIsListVisible] = useState(false);
   const [selectedBankLabel, setSelectedBankLabel] = useState('');
-  const [_, setAccountBanks] = useState('');
 
   const banks = [
     {label: '우리은행', value: 'WOORI'},
@@ -36,12 +63,6 @@ const SignupAccountInput = ({
     {label: '케이뱅크', value: 'K'},
     {label: '토스뱅크', value: 'TOSS'},
   ];
-
-  const handleBankClick = bank => {
-    setAccountBanks(bank.enName);
-    setSelectedBank(bank.name);
-    setListVisible(false);
-  };
 
   const toggleList = () => {
     setIsListVisible(!isListVisible);
@@ -70,31 +91,8 @@ const SignupAccountInput = ({
             <ArrowDownIcon />
           </TouchableOpacity>
         </styles.BankListContainer>
-        <View style={{height: 150, width: '100%', backgroundColor: '#fff'}}>
-          <ScrollView style={{height: '100%', zIndex: 1000}}>
-            {isListVisible &&
-              banks.map((bank, index) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    setIsListVisible(false);
-                    setSelectedBank(bank.value);
-                    setSelectedBankLabel(bank.label);
-                  }}
-                  style={{
-                    borderBottomWidth: 1,
-                    borderBottomColor: '#E5E5E5',
-                    padding: 10,
-                    backgroundColor: '#fff',
-                    borderWidth: 0.3,
-                    borderRadius: 2,
-                    zIndex: 1000,
-                  }}>
-                  <Text style={{backgroundColor: '#fff'}}>{bank.label}</Text>
-                </TouchableOpacity>
-              ))}
-          </ScrollView>
-        </View>
       </styles.InputContainer>
+      {renderBankList()}
       <styles.InputContainer>
         <styles.InputTitle>계좌번호</styles.InputTitle>
         <styles.Input

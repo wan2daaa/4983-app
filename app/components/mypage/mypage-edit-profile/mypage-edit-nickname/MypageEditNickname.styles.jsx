@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 326px;
@@ -38,11 +38,27 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background: #32c491;
+  background: ${props => (props.isNicknameValid ? '#32c491' : '#D1D1D1')};
 `;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${props => (props.isNicknameValid ? '#fff' : '#50555C')};
   font-size: 14px;
   font-weight: 500;
+`;
+
+export const Error = styled.Text`
+  padding-left: 13px;
+  color: #f61818;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 28px;
+`;
+
+export const Success = styled.Text`
+  padding-left: 13px;
+  color: #02b878;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 28px;
 `;

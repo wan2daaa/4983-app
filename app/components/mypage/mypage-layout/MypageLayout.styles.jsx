@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -27,13 +27,13 @@ export const ProfileBox = styled.View`
 `;
 
 export const ProfileImage = styled.View`
+  width: 84px;
+  height: 84px;
   align-self: center;
   margin-left: 17px;
   margin-right: 13px;
-  width: 84px;
-  height: 84px;
   border-radius: 42px;
-  background: #eceae0;
+  background: #eee;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 `;
 
