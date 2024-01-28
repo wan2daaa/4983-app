@@ -182,7 +182,7 @@ export const Categories = [
 ];
 
 export const findCategoryNameByValue = (targetValue, isChild) => {
-  console.log('targetValue:', targetValue);
+  // console.log('targetValue:', targetValue);
 
   if (isChild) {
     let targetName;
@@ -195,14 +195,14 @@ export const findCategoryNameByValue = (targetValue, isChild) => {
         targetName = targetChild.name;
       }
     });
-    console.log('targetName:', targetName);
+    // console.log('targetName:', targetName);
     return targetName;
   } else {
     const targetCategory = Categories.find(
       category => category.value === targetValue,
     );
 
-    console.log('category name:', targetCategory.name);
+    // console.log('category name:', targetCategory.name);
     return targetCategory.name;
   }
 };

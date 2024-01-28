@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const EachBookContainer = styled.View`
+export const EachBookContainer = styled.TouchableOpacity`
   height: 113px;
   flex-direction: row;
   align-items: center;

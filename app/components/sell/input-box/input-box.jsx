@@ -1,8 +1,8 @@
 import * as styles from './input-box.styles';
 import {ExplanationBox} from '@components/sell/input-box/explanation-box/explanation-box';
 import {View} from 'react-native';
-import SelectIcon from '@assets/images/sell/select-icon.svg';
-import NotSelectIcon from '@assets/images/sell/not-select-icon.svg';
+import SelectIcon from '@assets/images/common/select-icon.svg';
+import NotSelectIcon from '@assets/images/common/not-select-icon.svg';
 import {useState} from 'react';
 import LeftArrow from '@assets/images/sell/left-arrow.svg';
 import RightArrow from '@assets/images/sell/right-arrow.svg';

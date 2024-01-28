@@ -107,7 +107,9 @@ export const Sell = ({navigation}) => {
       imageUris,
     ).then(usedBookId => {
       console.log('usedBookId: ', usedBookId);
-      //   TODO: usedBookId를 가지고 상세페이지로 이동 해야대용
+      navigation.navigate('Detail', {
+        usedBookId,
+      });
     });
   };
 

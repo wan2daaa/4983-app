@@ -39,6 +39,7 @@ import {Sell} from '@screens/sell/Sell';
 import {LocaleConfig} from 'react-native-calendars/src/index';
 import {SellCollege} from '@screens/sell/sell-college';
 import {SellDepartment} from '@screens/sell/sell-department';
+import Detail from '@screens/Detail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -471,6 +472,17 @@ function App() {
                 headerShown: true,
                 headerTitle: '학과 선택',
                 headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="Detail"
+              component={Detail}
+              options={{
+                headerShown: true,
+                headerTitle: '',
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',

@@ -33,7 +33,6 @@ export const ProfileImage = styled.View`
   margin-left: 17px;
   margin-right: 13px;
   border-radius: 42px;
-  background: #eee;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 `;
 

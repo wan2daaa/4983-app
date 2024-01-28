@@ -1,14 +1,22 @@
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import * as styles from '@components/home/book-list-box/book-list-box.styles';
 import {BookStatus} from '@components/home/book-status/book-status';
 import useFormatTimeAgo from '@/hooks/use-format-time-ago';
 import {useFormatPrice} from '@/hooks/use-format-price';
+import {useEffect} from 'react';
 
-const BookListBox = ({bookData, index}) => {
+const BookListBox = ({bookData, index, navigation}) => {
   const dateTime = new Date(bookData.tradeAvailableDatetime);
+  const usedBookId = bookData.usedBookId;
 
   return (
-    <styles.EachBookContainer key={`eachBookListBox${index}`}>
+    <styles.EachBookContainer
+      key={`eachBookListBox${index}`}
+      onPress={() =>
+        navigation.navigate('Detail', {
+          usedBookId,
+        })
+      }>
       <styles.MainImage
         width={100}
         height={100}

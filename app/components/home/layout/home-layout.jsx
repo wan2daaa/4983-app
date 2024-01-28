@@ -51,6 +51,7 @@ const HomeLayout = ({
               key={`eachBook${index}`}
               bookData={bookData}
               index={index}
+              navigation={navigation}
             />
           );
         })}
