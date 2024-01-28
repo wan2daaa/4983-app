@@ -2,7 +2,7 @@ export const Categories = [
   {
     id: 1,
     name: '교양',
-    value: 'LIBERAL_ARTS',
+    value: 'GE',
     isNotCollege: true,
     children: [],
     collapsed: true,
