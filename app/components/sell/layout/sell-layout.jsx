@@ -28,12 +28,14 @@ export const SellLayout = ({
   collegeLiberalArtLabel,
   collegeLiberalArtValue,
   departmentLabel,
-  departmentValue,
+  setDepartmentLabel,
+  setDepartmentValue,
   setCollegeLiberalArtLabel,
   setCollegeLiberalArtValue,
   setImageUris,
   imageUris,
   registerUsedBook,
+  canPostBook,
 }) => {
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -45,6 +47,8 @@ export const SellLayout = ({
           setIsCollegeLiberalArtsClicked={setIsCollegeLiberalArtsClicked}
           collegeLiberalArtLabel={collegeLiberalArtLabel}
           departmentLabel={departmentLabel}
+          setDepartmentLabel={setDepartmentLabel}
+          setDepartmentValue={setDepartmentValue}
           setCollegeLiberalArtLabel={setCollegeLiberalArtLabel}
           setCollegeLiberalArtValue={setCollegeLiberalArtValue}
           collegeLiberalArtValue={collegeLiberalArtValue}
@@ -86,10 +90,18 @@ export const SellLayout = ({
           setIsDiscolorationAndDamage={setIsDiscolorationAndDamage}
           setIsUnderlinedOrWrite={setIsUnderlinedOrWrite}
         />
+      </ScrollView>
+      {canPostBook ? (
         <styles.RegisterButton onPress={registerUsedBook}>
           <styles.RegisterButtonText>등록하기</styles.RegisterButtonText>
         </styles.RegisterButton>
-      </ScrollView>
+      ) : (
+        <styles.CanNotRegisterButton>
+          <styles.CanNotRegisterButtonText>
+            등록하기
+          </styles.CanNotRegisterButtonText>
+        </styles.CanNotRegisterButton>
+      )}
     </View>
   );
 };

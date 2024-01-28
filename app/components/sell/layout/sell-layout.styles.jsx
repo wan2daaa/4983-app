@@ -20,3 +20,24 @@ export const RegisterButtonText = styled.Text`
   font-style: normal;
   font-weight: 700;
 `;
+
+export const CanNotRegisterButton = styled.View`
+  width: 343px;
+  height: 59px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  background: #ccc;
+`;
+
+export const CanNotRegisterButtonText = styled.Text`
+  color: #898a8d;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+`;

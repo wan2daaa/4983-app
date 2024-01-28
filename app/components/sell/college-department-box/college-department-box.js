@@ -8,6 +8,8 @@ export const CollegeDepartmentBox = ({
   isCollegeLiberalArtsClicked,
   setIsCollegeLiberalArtsClicked,
   departmentLabel,
+  setDepartmentLabel,
+  setDepartmentValue,
   collegeLiberalArtLabel,
   setCollegeLiberalArtLabel,
   setCollegeLiberalArtValue,
@@ -57,7 +59,9 @@ export const CollegeDepartmentBox = ({
           <styles.LiberalArtsTouchableOpacity
             onPress={() => {
               setCollegeLiberalArtLabel('교양');
-              setCollegeLiberalArtValue('LIBERAL_ARTS');
+              setCollegeLiberalArtValue('GE');
+              setDepartmentLabel('');
+              setDepartmentValue('GE');
               setIsCollegeLiberalArtsClicked(false);
             }}>
             <styles.LiberalArtsText>교양</styles.LiberalArtsText>

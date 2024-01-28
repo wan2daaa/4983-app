@@ -1,11 +1,9 @@
 import {SellLayout} from '@components/sell/layout/sell-layout';
 import {useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Categories, findCategoryNameByValue} from '@data/categories';
+import {findCategoryNameByValue} from '@data/categories';
 import {useRecoilState} from 'recoil';
 import {
-  recoilAccountHolder,
   recoilSellCollege,
   recoilSellDepartment,
 } from '@/recoil/atoms/SignupAtoms';
@@ -35,6 +33,8 @@ export const Sell = ({navigation}) => {
   const [departmentLabel, setDepartmentLabel] = useState('학과');
   const [departmentValue, setDepartmentValue] = useState('');
 
+  const [canPostBook, setCanPostBook] = useState(false);
+
   const [sellCollege, setSellCollege] = useRecoilState(recoilSellCollege);
   const [sellDepartment, setSellDepartment] =
     useRecoilState(recoilSellDepartment);
@@ -59,12 +59,46 @@ export const Sell = ({navigation}) => {
     setSellCollege('');
   }, [isFocused]);
 
+  useEffect(() => {
+    if (
+      collegeLiberalArtValue !== '' &&
+      departmentValue !== '' &&
+      imageUris.length > 0 &&
+      selectedDate !== '' &&
+      selectedTime &&
+      price !== 0 &&
+      name !== '' &&
+      publisher !== ''
+    ) {
+      setCanPostBook(true);
+    } else {
+      setCanPostBook(false);
+    }
+  }, [
+    collegeLiberalArtValue,
+    departmentValue,
+    imageUris,
+    selectedDate,
+    selectedTime,
+    price,
+    name,
+    publisher,
+  ]);
+
   const registerUsedBook = () => {
     postUsedBook(
       collegeLiberalArtValue,
       departmentValue,
       price,
-      `${selectedDate}T${selectedTime.getHours()}:${selectedTime.getMinutes()}:00`,
+      `${selectedDate}T${
+        selectedTime.getHours() < 10
+          ? `0${selectedTime.getHours()}`
+          : selectedTime.getHours()
+      }:${
+        selectedTime.getMinutes() < 10
+          ? `0${selectedTime.getMinutes()}`
+          : selectedTime.getMinutes()
+      }:00`,
       name,
       publisher,
       isUnderlinedOrWrite,
@@ -101,11 +135,14 @@ export const Sell = ({navigation}) => {
       collegeLiberalArtLabel={collegeLiberalArtLabel}
       collegeLiberalArtValue={collegeLiberalArtValue}
       departmentLabel={departmentLabel}
+      setDepartmentLabel={setDepartmentLabel}
+      setDepartmentValue={setDepartmentValue}
       setCollegeLiberalArtLabel={setCollegeLiberalArtLabel}
       setCollegeLiberalArtValue={setCollegeLiberalArtValue}
       imageUris={imageUris}
       setImageUris={setImageUris}
       registerUsedBook={registerUsedBook}
+      canPostBook={canPostBook}
     />
   );
 };

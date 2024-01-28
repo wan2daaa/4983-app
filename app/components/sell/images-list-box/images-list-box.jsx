@@ -1,11 +1,8 @@
 import * as styles from '@components/sell/images-list-box/images-list-box.styles';
 import CameraIcon from '@assets/images/sell/camera-icon.svg';
-import {
-  EachImage,
-  EachImageText,
-} from '@components/sell/images-list-box/images-list-box.styles';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {Alert, Image} from 'react-native';
+import {Alert} from 'react-native';
+
 export const ImagesListBox = ({imageUris, setImageUris}) => {
   const showPhoto = async () => {
     if (imageUris.length >= 10) {
@@ -27,10 +24,9 @@ export const ImagesListBox = ({imageUris, setImageUris}) => {
         Alert.alert('사진은 10장까지 업로드 가능합니다.');
         return;
       }
-      const uris = imageUris;
-      response.assets?.forEach(value => uris.push(value));
+      let uris = imageUris;
+      response.assets.forEach(value => uris.push(value));
 
-      console.log('uris: ', uris);
       setImageUris(uris);
     }
   };
