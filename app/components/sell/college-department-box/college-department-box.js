@@ -16,8 +16,10 @@ export const CollegeDepartmentBox = ({
   collegeLiberalArtValue,
 }) => {
   const college =
-    Categories.find(category => category.value === collegeLiberalArtValue) ??
-    -1;
+    Categories.find(
+      category =>
+        category.value === collegeLiberalArtValue && !category.isNotCollege,
+    ) ?? -1;
 
   return (
     <View style={{zIndex: 1100}}>
@@ -37,8 +39,9 @@ export const CollegeDepartmentBox = ({
               return;
             }
 
-            navigation.navigate('SellDepartment', {
+            navigation.navigate('Department', {
               selectedCollegeId: college.id,
+              isSell: true,
             });
           }}>
           <styles.CollegeDepartmentText>
@@ -52,7 +55,9 @@ export const CollegeDepartmentBox = ({
           <styles.CollegeOptionTouchableOpacity
             onPress={() => {
               setIsCollegeLiberalArtsClicked(false);
-              navigation.navigate('SellCollege');
+              navigation.navigate('College', {
+                isSell: true,
+              });
             }}>
             <styles.CollegeOptionText>단과대</styles.CollegeOptionText>
           </styles.CollegeOptionTouchableOpacity>
