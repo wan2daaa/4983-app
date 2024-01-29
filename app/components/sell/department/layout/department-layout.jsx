@@ -1,11 +1,13 @@
 import {ScrollView, TouchableWithoutFeedback, View} from 'react-native';
-import * as styles from '@components/sell/sell-department/layout/sell-department-layout.styles';
+import * as styles from '@components/sell/department/layout/department-layout.styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const SellDepartmentLayout = ({
+export const DepartmentLayout = ({
   navigation,
   departments,
   setSellDepartment,
+  isSell,
+  usedBookId,
 }) => {
   return (
     <styles.Container>
@@ -16,9 +18,12 @@ export const SellDepartmentLayout = ({
               <styles.DepartmentBox
                 key={department.id}
                 onPress={() => {
-                  console.log('save sell-department :', department.value);
                   setSellDepartment(department.value);
-                  navigation.navigate('Sell');
+                  isSell
+                    ? navigation.navigate('Sell')
+                    : navigation.navigate('Modify', {
+                        usedBookId: usedBookId,
+                      });
                 }}>
                 <styles.DepartmentText>{department.name}</styles.DepartmentText>
               </styles.DepartmentBox>

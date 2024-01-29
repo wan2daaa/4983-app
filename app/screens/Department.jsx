@@ -1,21 +1,27 @@
 import {Categories} from '@data/categories';
-import {SellDepartmentLayout} from '@components/sell/sell-department/layout/sell-department-layout';
+import {DepartmentLayout} from '@components/sell/department/layout/department-layout';
 import {useRecoilState} from 'recoil';
 import {recoilSellDepartment} from '@/recoil/atoms/SignupAtoms';
+import {useState} from 'react';
 
-export const SellDepartment = ({navigation, route}) => {
+export const Department = ({navigation, route}) => {
   const departments = Categories.filter(
     category => category.id === route.params.selectedCollegeId,
   )[0].children;
+
+  const [isSell] = useState(route.params.isSell);
+  const [usedBookId] = useState(route.params.usedBookId);
 
   const [sellDepartment, setSellDepartment] =
     useRecoilState(recoilSellDepartment);
 
   return (
-    <SellDepartmentLayout
+    <DepartmentLayout
       navigation={navigation}
       departments={departments}
       setSellDepartment={setSellDepartment}
+      isSell={isSell}
+      usedBookId={usedBookId}
     />
   );
 };
