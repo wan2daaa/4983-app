@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const EachChatContainer = styled.View`
+export const EachChatContainer = styled.TouchableOpacity`
   height: 64px;
   flex-direction: row;
   align-items: center;

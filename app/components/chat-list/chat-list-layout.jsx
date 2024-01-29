@@ -19,20 +19,9 @@ export const ChatListLayout = ({navigation, chatDataList}) => {
       </styles.HeaderContainer>
       <styles.BorderLine />
       <styles.ScrollViewContainer>
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
-        <EachChat />
+        {chatDataList.map((chatData, index) => (
+          <EachChat navigation={navigation} chatData={chatData} />
+        ))}
       </styles.ScrollViewContainer>
     </styles.Container>
   );

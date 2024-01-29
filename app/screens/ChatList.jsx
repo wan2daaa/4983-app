@@ -7,6 +7,7 @@ export const ChatList = ({navigation}) => {
 
   useEffect(() => {
     getChatList().then(res => {
+      console.log('res: ', res);
       setChatDataList(res);
     });
   }, []);

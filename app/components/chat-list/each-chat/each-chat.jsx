@@ -1,23 +1,40 @@
 import {Image, Text, View} from 'react-native';
 import * as styles from '@components/chat-list/each-chat/each-chat.styles';
 import NewChatIcon from '@assets/images/chat-list/new-chat.svg';
+import {
+  useFormatTimeAmPm,
+  UseFormatTimeAmPm,
+} from '@/hooks/use-format-time-am-pm';
 
-export const EachChat = () => {
+export const EachChat = ({navigation, chatData}) => {
   return (
-    <styles.EachChatContainer>
+    <styles.EachChatContainer
+      onPress={() => {
+        navigation.navigate('Chatbot', {
+          ChatRoomId: chatData.chatRoomId,
+        });
+      }}>
       <Image
         style={{borderRadius: 48, marginLeft: 16}}
         width={48}
         height={48}
-        source={'@assets/images/chat-list/test-image.png'}
+        source={{
+          uri: chatData.imageUrl,
+        }}
       />
-      <styles.EachChatTextContainer>
-        <styles.BookNameText>재무관리 1</styles.BookNameText>
-        <styles.ChatText>‘안녕하소'님이 거래 요청을 보냈어요!</styles.ChatText>
+      <styles.EachChatTextContainer onPress={() => {}}>
+        <styles.BookNameText>{chatData.usedBookName}</styles.BookNameText>
+        <styles.ChatText>
+          {chatData.message.length > 17
+            ? chatData.message.substring(0, 17) + '...'
+            : chatData.message}
+        </styles.ChatText>
       </styles.EachChatTextContainer>
       <styles.OtherChatContainer>
-        <styles.ChatTimeText>오후6:57</styles.ChatTimeText>
-        <NewChatIcon style={{marginTop: 8}} />
+        <styles.ChatTimeText>
+          {useFormatTimeAmPm(chatData.createdAt)}
+        </styles.ChatTimeText>
+        {chatData.isRead ? <View /> : <NewChatIcon style={{marginTop: 8}} />}
       </styles.OtherChatContainer>
     </styles.EachChatContainer>
   );
