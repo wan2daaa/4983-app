@@ -48,6 +48,7 @@ export const ModalEditBox = styled.TouchableOpacity`
   border-bottom-color: rgba(54, 51, 46, 0.5);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  z-index: 1000;
 `;
 
 export const ModalDeleteBox = styled.TouchableOpacity`

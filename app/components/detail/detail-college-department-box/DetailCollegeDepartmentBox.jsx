@@ -59,7 +59,9 @@ const DetailCollegeDepartmentBox = ({
         </styles.Box>
       )}
       {isBookOwner && (
-        <styles.MoreButton onPress={handleModalOpen}>
+        <styles.MoreButton
+          onPress={handleModalOpen}
+          hitSlop={{bottom: 10, top: 10, left: 5, right: 5}}>
           <MoreButtonIcon />
         </styles.MoreButton>
       )}
@@ -67,7 +69,13 @@ const DetailCollegeDepartmentBox = ({
       <Modal visible={isModal} transparent={true} animationType="none">
         <styles.ModalContainer onPress={handleModalClose}>
           <styles.ModalBox>
-            <styles.ModalEditBox>
+            <styles.ModalEditBox
+              onPress={() => {
+                setIsModal(false);
+                navigation.navigate('Modify', {
+                  usedBookId,
+                });
+              }}>
               <styles.ModalText>수정하기</styles.ModalText>
             </styles.ModalEditBox>
             <styles.ModalDeleteBox onPress={handleDeleteModalOpen}>

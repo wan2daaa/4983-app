@@ -12,7 +12,7 @@ import {useEffect, useState} from 'react';
 const NumberWithComma = data =>
   String(data).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
-const DetailLayout = ({usedBookId, navigation}) => {
+const DetailLayout = ({usedBookId, isFocused, navigation}) => {
   const [usedBookView, setUsedBookView] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const DetailLayout = ({usedBookId, navigation}) => {
     if (usedBookId) {
       fetchData();
     }
-  }, [usedBookId]);
+  }, [usedBookId, isFocused]);
 
   return (
     <styles.Container>

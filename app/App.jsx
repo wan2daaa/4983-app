@@ -37,9 +37,10 @@ import {ChatList} from '@screens/ChatList';
 import {Search} from '@screens/Search';
 import {Sell} from '@screens/sell/Sell';
 import {LocaleConfig} from 'react-native-calendars/src/index';
-import {SellCollege} from '@screens/sell/sell-college';
-import {SellDepartment} from '@screens/sell/sell-department';
+import {College} from '@screens/College';
+import {Department} from '@screens/Department';
 import Detail from '@screens/Detail';
+import {Modify} from '@screens/modify/Modify';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -451,11 +452,12 @@ function App() {
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
+                unmountOnBlur: true,
               }}
             />
             <Stack.Screen
-              name="SellCollege"
-              component={SellCollege}
+              name="College"
+              component={College}
               options={{
                 headerShown: true,
                 headerTitle: '단과대 선택',
@@ -466,8 +468,8 @@ function App() {
               }}
             />
             <Stack.Screen
-              name="SellDepartment"
-              component={SellDepartment}
+              name="Department"
+              component={Department}
               options={{
                 headerShown: true,
                 headerTitle: '학과 선택',
@@ -483,6 +485,20 @@ function App() {
               options={{
                 headerShown: true,
                 headerTitle: '',
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                unmountOnBlur: true,
+              }}
+            />
+            <Stack.Screen
+              name="Modify"
+              component={Modify}
+              options={{
+                headerShown: true,
+                headerShadowVisible: false,
+                headerTitle: '수정하기',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',

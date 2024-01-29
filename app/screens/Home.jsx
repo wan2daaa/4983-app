@@ -24,7 +24,7 @@ const Home = ({navigation}) => {
       .catch(error => {
         console.log('이거에러', error);
       });
-  }, [isFastTradeChecked, paramCollege, paramDepartment]);
+  }, [isFastTradeChecked, paramCollege, paramDepartment, isFocused]);
 
   useEffect(() => {
     let collegeIdList = [];

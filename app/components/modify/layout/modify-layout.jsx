@@ -1,0 +1,117 @@
+import {ScrollView, View} from 'react-native';
+import {BorderLine} from '@components/common/border-line/border-line';
+import {CollegeDepartmentBox} from '@components/modify/college-department-box/college-department-box';
+import {ImagesListBox} from '@components/modify/images-list-box/images-list-box';
+import {InputBox} from '@components/modify/input-box/input-box';
+import * as styles from '@components/modify/layout/modify-layout.styles';
+
+export const ModifyLayout = ({
+  navigation,
+  isCollegeLiberalArtsClicked,
+  setIsCollegeLiberalArtsClicked,
+  isCoverDamaged,
+  isDiscolorationAndDamage,
+  isUnderlinedOrWrite,
+  setIsCoverDamaged,
+  setIsDiscolorationAndDamage,
+  setIsUnderlinedOrWrite,
+  selectedDate,
+  setSelectedDate,
+  selectedTime,
+  setSelectedTime,
+  name,
+  price,
+  publisher,
+  setName,
+  setPrice,
+  setPublisher,
+  collegeLiberalArtLabel,
+  collegeLiberalArtValue,
+  departmentLabel,
+  setDepartmentLabel,
+  setDepartmentValue,
+  setCollegeLiberalArtLabel,
+  setCollegeLiberalArtValue,
+  setImageUris,
+  imageUris,
+  registerUsedBook,
+  canPostBook,
+  savedImages,
+  setSavedImages,
+  usedBookId,
+}) => {
+  return (
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <BorderLine />
+      <ScrollView style={{flex: 1}}>
+        <CollegeDepartmentBox
+          navigation={navigation}
+          isCollegeLiberalArtsClicked={isCollegeLiberalArtsClicked}
+          setIsCollegeLiberalArtsClicked={setIsCollegeLiberalArtsClicked}
+          collegeLiberalArtLabel={collegeLiberalArtLabel}
+          departmentLabel={departmentLabel}
+          setDepartmentLabel={setDepartmentLabel}
+          setDepartmentValue={setDepartmentValue}
+          setCollegeLiberalArtLabel={setCollegeLiberalArtLabel}
+          setCollegeLiberalArtValue={setCollegeLiberalArtValue}
+          collegeLiberalArtValue={collegeLiberalArtValue}
+          usedBookId={usedBookId}
+        />
+        <ImagesListBox
+          usedBookId={usedBookId}
+          imageUris={imageUris}
+          setImageUris={setImageUris}
+          savedImages={savedImages}
+          setSavedImages={setSavedImages}
+        />
+        <InputBox
+          inputTitle="판매 가격"
+          input={price}
+          setInput={setPrice}
+          placeholder="판매 가격을 입력해주세요"
+        />
+        <InputBox
+          isUsingDate
+          inputTitle="거래 날짜/시간 선택"
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+        />
+        <InputBox
+          inputTitle="전공서적명"
+          input={name}
+          setInput={setName}
+          placeholder="판매하고자 하는 책의 이름을 입력해주세요"
+        />
+        <InputBox
+          inputTitle="출판사"
+          input={publisher}
+          setInput={setPublisher}
+          placeholder="책의 출판사를 입력해주세요"
+        />
+        <InputBox
+          isUsingSelectBox
+          inputTitle="서적 상태 체크란"
+          isCoverDamaged={isCoverDamaged}
+          isDiscolorationAndDamage={isDiscolorationAndDamage}
+          isUnderlinedOrWrite={isUnderlinedOrWrite}
+          setIsCoverDamaged={setIsCoverDamaged}
+          setIsDiscolorationAndDamage={setIsDiscolorationAndDamage}
+          setIsUnderlinedOrWrite={setIsUnderlinedOrWrite}
+        />
+      </ScrollView>
+      {canPostBook ? (
+        <styles.RegisterButton onPress={registerUsedBook}>
+          <styles.RegisterButtonText>등록하기</styles.RegisterButtonText>
+        </styles.RegisterButton>
+      ) : (
+        <styles.CanNotRegisterButton>
+          <styles.CanNotRegisterButtonText>
+            등록하기
+          </styles.CanNotRegisterButtonText>
+        </styles.CanNotRegisterButton>
+      )}
+    </View>
+  );
+};
