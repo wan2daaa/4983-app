@@ -4,14 +4,14 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const MapBox = styled.View`
+export const MapBox = styled.TouchableOpacity`
   width: 100%;
   height: 113px;
   align-items: center;
   justify-content: center;
 `;
 
-export const Box = styled.TouchableOpacity`
+export const Box = styled.View`
   width: 355px;
   height: 100px;
   flex-direction: row;

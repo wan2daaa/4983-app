@@ -15,7 +15,13 @@ const MypagePurchaseBookListContent = ({navigation, usedBooks}) => {
           <MypagePurchaseBookListNoContent navigation={navigation} />
         ) : (
           usedBooks.map(book => (
-            <styles.MapBox key={book.usedBookId}>
+            <styles.MapBox
+              key={book.usedBookId}
+              onPress={() =>
+                navigation.navigate('Detail', {
+                  usedBookId: book.usedBookId,
+                })
+              }>
               <styles.Box>
                 <styles.ImageBox
                   width={100}

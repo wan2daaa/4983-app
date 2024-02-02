@@ -40,7 +40,10 @@ import {LocaleConfig} from 'react-native-calendars/src/index';
 import {College} from '@screens/College';
 import {Department} from '@screens/Department';
 import Detail from '@screens/Detail';
+import Chatbot from '@screens/chatbot/Chatbot';
 import {Modify} from '@screens/modify/Modify';
+import ChatbotLocker from '@screens/chatbot/ChatbotLocker';
+import ChatbotLockerPassword from '@screens/chatbot/ChatbotLockerPassword';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -502,6 +505,45 @@ function App() {
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
+              }}
+            />
+            <Stack.Screen
+              name="Chatbot"
+              component={Chatbot}
+              options={{
+                headerShown: true,
+                headerTitle: '거래 채팅봇',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="ChatbotLocker"
+              component={ChatbotLocker}
+              options={{
+                headerShown: true,
+                headerTitle: '사물함 선택',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="ChatbotLockerPassword"
+              component={ChatbotLockerPassword}
+              options={{
+                headerShown: true,
+                headerTitle: '사물함 비밀번호 입력',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerShadowVisible: false,
               }}
             />
           </Stack.Navigator>
