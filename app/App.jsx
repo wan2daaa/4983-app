@@ -1,9 +1,4 @@
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {RecoilRoot} from 'recoil';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';

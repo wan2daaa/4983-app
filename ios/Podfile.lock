@@ -435,6 +435,8 @@ PODS:
     - React-Core
   - react-native-safe-area-context (4.9.0):
     - React-Core
+  - react-native-splash-screen (3.3.0):
+    - React-Core
   - React-NativeModulesApple (0.72.7):
     - hermes-engine
     - React-callinvoker
@@ -602,6 +604,7 @@ DEPENDENCIES:
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -697,6 +700,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-perflogger:
@@ -788,6 +793,7 @@ SPEC CHECKSUMS:
   React-logger: 8edc785c47c8686c7962199a307015e2ce9a0e4f
   react-native-date-picker: 90d1d60802a20085125657940b944f2bb4e5c113
   react-native-image-picker: 5e076db26cd81660cfb6db5bcf517cfa12054d45
+  react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
   React-NativeModulesApple: b6868ee904013a7923128892ee4a032498a1024a
   React-perflogger: 31ea61077185eb1428baf60c0db6e2886f141a5a
@@ -819,4 +825,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c2881c507334e80bd113f5b9f88e13b6a9b032d6
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.13.0

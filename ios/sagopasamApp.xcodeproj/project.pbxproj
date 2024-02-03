@@ -510,6 +510,7 @@
 				DEVELOPMENT_TEAM = GDR7G9DSV8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sagopasamApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "사고파삼";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,6 +539,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GDR7G9DSV8;
 				INFOPLIST_FILE = sagopasamApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "사고파삼";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
