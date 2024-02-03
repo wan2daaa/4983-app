@@ -793,8 +793,8 @@ SPEC CHECKSUMS:
   React-logger: 8edc785c47c8686c7962199a307015e2ce9a0e4f
   react-native-date-picker: 90d1d60802a20085125657940b944f2bb4e5c113
   react-native-image-picker: 5e076db26cd81660cfb6db5bcf517cfa12054d45
-  react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
+  react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   React-NativeModulesApple: b6868ee904013a7923128892ee4a032498a1024a
   React-perflogger: 31ea61077185eb1428baf60c0db6e2886f141a5a
   React-RCTActionSheet: 392090a3abc8992eb269ef0eaa561750588fc39d
@@ -825,4 +825,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c2881c507334e80bd113f5b9f88e13b6a9b032d6
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.2

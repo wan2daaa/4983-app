@@ -7,6 +7,9 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
+import org.devio.rn.splashscreen.SplashScreen;
+
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -31,4 +34,11 @@ public class MainActivity extends ReactActivity {
         // If you opted-in for the New Architecture, we enable the Fabric Renderer.
         DefaultNewArchitectureEntryPoint.getFabricEnabled());
   }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      androidx.core.splashscreen.SplashScreen.installSplashScreen(this);
+      SplashScreen.show(this);
+      super.onCreate(savedInstanceState);
+    }
 }

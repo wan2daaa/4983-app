@@ -47,6 +47,7 @@ import {firebase} from '@react-native-firebase/messaging';
 import Notice from '@screens/notice/Notice';
 import NoticeDetail from '@screens/notice/NoticeDetail';
 import BackButton from '@assets/images/common/BackButton.svg';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -155,6 +156,12 @@ function BottomTabs() {
 }
 
 function App() {
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1500); //스플래시 활성화 시간
+  });
+
   useEffect(() => {
     firebase.messaging().setBackgroundMessageHandler(() => {
       console.log('background Alarm received');
