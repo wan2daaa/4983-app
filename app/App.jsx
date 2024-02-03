@@ -1,6 +1,11 @@
 // TODO. headerTitle 넣은곳에 headerTitleStyle 넣기 -> headerTitleStyle: {fontSize: 20, fontWeight: '700'}
 
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {RecoilRoot} from 'recoil';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -44,6 +49,7 @@ import Chatbot from '@screens/chatbot/Chatbot';
 import {Modify} from '@screens/modify/Modify';
 import ChatbotLocker from '@screens/chatbot/ChatbotLocker';
 import ChatbotLockerPassword from '@screens/chatbot/ChatbotLockerPassword';
+import BackButton from '@assets/images/common/BackButton.svg';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

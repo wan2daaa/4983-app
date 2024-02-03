@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
+  z-index: 999;
 `;
 
 export const ProfileContainer = styled.View`

@@ -10,13 +10,13 @@ const HelpGuideSwiper = () => {
       data={[1, 2, 3, 4]}
       renderItem={({item, index}) => {
         if (index === 0) {
-          return <styles.GuideImageOne />;
+          return <styles.GuideImageOne style={{width: 218, height: 309}} />;
         } else if (index === 1) {
-          return <styles.GuideImageTwo />;
+          return <styles.GuideImageTwo style={{width: 218, height: 309}} />;
         } else if (index === 2) {
-          return <styles.GuideImageThree />;
+          return <styles.GuideImageThree style={{width: 218, height: 309}} />;
         } else if (index === 3) {
-          return <styles.GuideImageFour />;
+          return <styles.GuideImageFour style={{width: 218, height: 309}} />;
         }
       }}
       sliderWidth={width}

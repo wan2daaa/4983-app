@@ -10,13 +10,15 @@ const HelpPurchaseSwiper = () => {
       data={[1, 2, 3, 4]}
       renderItem={({item, index}) => {
         if (index === 0) {
-          return <styles.PurchaseImageOne />;
+          return <styles.PurchaseImageOne style={{width: 218, height: 309}} />;
         } else if (index === 1) {
-          return <styles.PurchaseImageTwo />;
+          return <styles.PurchaseImageTwo style={{width: 218, height: 309}} />;
         } else if (index === 2) {
-          return <styles.PurchaseImageThree />;
+          return (
+            <styles.PurchaseImageThree style={{width: 218, height: 309}} />
+          );
         } else if (index === 3) {
-          return <styles.PurchaseImageFour />;
+          return <styles.PurchaseImageFour style={{width: 218, height: 309}} />;
         }
       }}
       sliderWidth={width}

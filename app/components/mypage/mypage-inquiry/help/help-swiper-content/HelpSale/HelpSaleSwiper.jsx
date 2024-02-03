@@ -1,5 +1,5 @@
 import * as styles from './HelpSaleSwiper.styles';
-import {Dimensions} from 'react-native';
+import {Dimensions, Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
 const HelpSaleSwiper = () => {
@@ -10,13 +10,13 @@ const HelpSaleSwiper = () => {
       data={[1, 2, 3, 4]}
       renderItem={({item, index}) => {
         if (index === 0) {
-          return <styles.SaleImageOne />;
+          return <styles.SaleImageOne style={{width: 218, height: 309}} />;
         } else if (index === 1) {
-          return <styles.SaleImageTwo />;
+          return <styles.SaleImageTwo style={{width: 218, height: 309}} />;
         } else if (index === 2) {
-          return <styles.SaleImageThree />;
+          return <styles.SaleImageThree style={{width: 218, height: 309}} />;
         } else if (index === 3) {
-          return <styles.SaleImageFour />;
+          return <styles.SaleImageFour style={{width: 218, height: 309}} />;
         }
       }}
       sliderWidth={width}
