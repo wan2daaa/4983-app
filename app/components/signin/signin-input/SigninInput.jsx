@@ -1,30 +1,19 @@
 import * as styles from './SigninInput.styles';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import NonCheckIcon from '@assets/images/signin/NonCheck.svg';
 import CheckIcon from '@assets/images/signin/Check.svg';
-import {TouchableOpacity} from 'react-native';
+import {TouchableWithoutFeedback} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import PasswordOn from '@assets/images/signin/PasswordViewOn.svg';
-import PasswordOff from '@assets/images/signin/PasswordViewOff.svg';
 
-const SigninInput = ({setStudentId, setPassword, LoginError, errorMsg}) => {
+const SigninInput = ({
+  setStudentId,
+  setPassword,
+  LoginError,
+  errorMsg,
+  isChecked,
+  setIsChecked,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    const loadCheckedState = async () => {
-      try {
-        const savedState = await AsyncStorage.getItem('isChecked');
-        if (savedState !== null) {
-          setIsChecked(savedState === 'true');
-          console.log('자동로그인 isChecked:', savedState);
-        }
-      } catch (error) {
-        console.error('Error', error);
-      }
-    };
-    loadCheckedState();
-  }, []);
 
   const toggleCheck = async () => {
     const newValue = !isChecked;
@@ -53,24 +42,24 @@ const SigninInput = ({setStudentId, setPassword, LoginError, errorMsg}) => {
       </styles.InputBox>
       <styles.InputBox>
         <styles.InputText>비밀번호</styles.InputText>
-        <styles.PasswordBox>
-          <styles.PasswordInput
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            placeholder="비밀번호를 입력해 주세요."
-            secureTextEntry={!showPassword}
-            onChangeText={setPassword}
-          />
-          <TouchableOpacity onPress={togglePassword} style={{paddingRight: 20}}>
-            {showPassword ? (
-              <PasswordOn width={18} height={18} />
-            ) : (
-              <PasswordOff width={18} height={18} />
-            )}
-          </TouchableOpacity>
-        </styles.PasswordBox>
+        {/*<styles.PasswordBox>*/}
+        <styles.Input
+          id="password"
+          type={showPassword ? 'text' : 'password'}
+          placeholder="비밀번호를 입력해 주세요."
+          secureTextEntry={!showPassword}
+          onChangeText={setPassword}
+        />
+        <styles.PasswordIconBox onPress={togglePassword}>
+          {showPassword ? (
+            <styles.PasswordOn width={18} height={18} />
+          ) : (
+            <styles.PasswordOff width={18} height={18} />
+          )}
+        </styles.PasswordIconBox>
+        {/*</styles.PasswordBox>*/}
         <styles.Box>
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={toggleCheck}
             hitSlop={{top: 10, bottom: 10}}>
             <styles.CheckContainer>
@@ -81,7 +70,7 @@ const SigninInput = ({setStudentId, setPassword, LoginError, errorMsg}) => {
               )}
               <styles.CheckText>자동 로그인</styles.CheckText>
             </styles.CheckContainer>
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
           {!LoginError && <styles.ErrorText>{errorMsg}</styles.ErrorText>}
         </styles.Box>
       </styles.InputBox>

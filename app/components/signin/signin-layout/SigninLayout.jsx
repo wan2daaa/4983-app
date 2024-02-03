@@ -3,14 +3,22 @@ import Logo from '@assets/images/signin/SigninLogo.svg';
 import SigninInput from '@components/signin/signin-input/SigninInput';
 import SigninButton from '@components/signin/signin-button/SigninButton';
 import FindLinkBox from '@components/signin/find-link-box/FindLinkBox';
-import React, {useState} from 'react';
+import React from 'react';
 
-const SigninLayout = ({navigation}) => {
-  const [studentId, setStudentId] = useState('');
-  const [password, setPassword] = useState('');
-  const [LoginError, setLoginError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-
+const SigninLayout = ({
+  navigation,
+  isChecked,
+  setIsChecked,
+  studentId,
+  setStudentId,
+  password,
+  setPassword,
+  LoginError,
+  setLoginError,
+  errorMsg,
+  setErrorMsg,
+  handleLogin,
+}) => {
   return (
     <styles.SigninLayout>
       <styles.TitleBox>
@@ -24,14 +32,10 @@ const SigninLayout = ({navigation}) => {
         setPassword={setPassword}
         Loginerror={LoginError}
         errorMsg={errorMsg}
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
       />
-      <SigninButton
-        navigation={navigation}
-        studentId={studentId}
-        password={password}
-        setLoginError={setLoginError}
-        setErrorMsg={setErrorMsg}
-      />
+      <SigninButton handleLogin={handleLogin} />
       <FindLinkBox navigation={navigation} />
     </styles.SigninLayout>
   );

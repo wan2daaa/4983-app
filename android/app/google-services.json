@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970648688317",
+    "project_id": "sagopaas-f66fd",
+    "storage_bucket": "sagopaas-f66fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970648688317:android:0faddfec94f3fd187d89d4",
+        "android_client_info": {
+          "package_name": "com.sagopasamapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCddH1g6fFVzuXt8OqRdeV4a_xEbbt9mbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

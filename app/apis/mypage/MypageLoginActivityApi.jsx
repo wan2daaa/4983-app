@@ -6,6 +6,7 @@ export const UserLogout = () => {
     .then(response => {
       console.log('로그아웃 성공: ', response.data);
       AsyncStorage.removeItem('accessToken');
+      AsyncStorage.removeItem('isChecked');
       return response.data;
     })
     .catch(error => {

@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {API} from '@/apis/common/CommonApi';
 
-export const Signin = async (studentId, password) => {
+export const SigninApi = async (studentId, password) => {
+  console.log('studentId', studentId);
+  console.log('password', password);
   try {
     const response = await API.post(
       '/api/v1/login',

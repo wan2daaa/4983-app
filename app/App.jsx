@@ -1,4 +1,3 @@
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {
   SafeAreaView,
   StatusBar,
@@ -48,6 +47,8 @@ import Chatbot from '@screens/chatbot/Chatbot';
 import {Modify} from '@screens/modify/Modify';
 import ChatbotLocker from '@screens/chatbot/ChatbotLocker';
 import ChatbotLockerPassword from '@screens/chatbot/ChatbotLockerPassword';
+import {useEffect} from 'react';
+import {firebase} from '@react-native-firebase/messaging';
 import Notice from '@screens/notice/Notice';
 import NoticeDetail from '@screens/notice/NoticeDetail';
 import BackButton from '@assets/images/common/BackButton.svg';
@@ -159,6 +160,12 @@ function BottomTabs() {
 }
 
 function App() {
+  useEffect(() => {
+    firebase.messaging().setBackgroundMessageHandler(() => {
+      console.log('background Alarm received');
+    });
+  }, []);
+
   LocaleConfig.locales['kr'] = {
     monthNames: [
       '1월',

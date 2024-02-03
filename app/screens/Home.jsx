@@ -4,6 +4,9 @@ import HomeLayout from '@components/home/layout/home-layout';
 import {Categories} from '@data/categories';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
+import {PermissionsAndroid, Platform} from 'react-native';
+import {BASE_API} from '@/apis/common/CommonApi';
+import messaging from '@react-native-firebase/messaging';
 import {mainBannerList} from '@/apis/notice/NoticeApi';
 
 const Home = ({navigation}) => {
@@ -18,6 +21,39 @@ const Home = ({navigation}) => {
   const [mainBannerData, setMainBannerData] = useState([]);
 
   const isFocused = useIsFocused();
+
+  useEffect(() => {
+    const requestUserPermission = async () => {
+      if (Platform.OS === 'android') {
+        PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+        );
+      }
+
+      const authStatus = await messaging().requestPermission();
+      console.log('Authorization status', authStatus);
+      const enabled =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+      if (enabled) {
+        return getToken();
+      }
+    };
+
+    const getToken = async () => {
+      const fcmToken = await messaging().getToken();
+      console.log('디바이스 토큰값: ', fcmToken);
+
+      BASE_API.post('/api/v1/fcm', {
+        token: fcmToken,
+      }).then(() => {
+        console.log('success');
+      });
+    };
+
+    requestUserPermission();
+  }, []);
 
   useEffect(() => {
     fetchBookList(isFastTradeChecked, paramCollege, paramDepartment)
