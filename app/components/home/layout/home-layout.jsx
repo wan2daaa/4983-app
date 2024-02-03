@@ -4,6 +4,8 @@ import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import SearchIcon from '@assets/images/home/SearchIcon.svg';
 import FilterButton from '@components/home/filter-button/filter-button';
+import {Dimensions, Image, Text} from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 const HomeLayout = ({
   isFastTradeChecked,
@@ -13,7 +15,26 @@ const HomeLayout = ({
   setParamCollege,
   setParamDepartment,
   navigation,
+  mainBannerData,
 }) => {
+  const width = Dimensions.get('window').width;
+  const renderBannerItem = ({item}) => (
+    <styles.BannerContainer
+      key={item.id}
+      onPress={() => {
+        navigation.navigate('NoticeDetail', {id: item.id});
+      }}>
+      {item.imageUrl ? (
+        <Image
+          source={{uri: item.imageUrl}}
+          style={{width: '100%', height: '100%'}}
+        />
+      ) : (
+        <Text>No Banner Image</Text>
+      )}
+    </styles.BannerContainer>
+  );
+
   return (
     <styles.MainContainer>
       <styles.HeaderContainer>
@@ -45,6 +66,13 @@ const HomeLayout = ({
         </styles.FastTradeIcon>
       </styles.FastTradeContainer>
       <styles.ScrollViewContainer>
+        <Carousel
+          data={mainBannerData}
+          renderItem={renderBannerItem}
+          sliderWidth={width}
+          itemWidth={width}
+          keyExtractor={item => item.id.toString()}
+        />
         {bookListData.map((bookData, index) => {
           return (
             <BookListBox

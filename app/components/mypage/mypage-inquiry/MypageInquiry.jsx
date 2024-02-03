@@ -16,7 +16,7 @@ const MypageInquiry = ({navigation}) => {
         <styles.ContentText>도움말</styles.ContentText>
       </styles.BoxContainer>
 
-      <styles.BoxContainer>
+      <styles.BoxContainer onPress={() => navigation.navigate('Notice')}>
         <AnnouncementIcon width={33} height={24} />
         <styles.ContentText>공지사항</styles.ContentText>
       </styles.BoxContainer>

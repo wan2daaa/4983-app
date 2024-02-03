@@ -4,6 +4,7 @@ import HomeLayout from '@components/home/layout/home-layout';
 import {Categories} from '@data/categories';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
+import {mainBannerList} from '@/apis/notice/NoticeApi';
 
 const Home = ({navigation}) => {
   const [isFastTradeChecked, setIsFastTradeChecked] = useState(false);
@@ -13,6 +14,8 @@ const Home = ({navigation}) => {
 
   const [paramCollege, setParamCollege] = useState('');
   const [paramDepartment, setParamDepartment] = useState('');
+
+  const [mainBannerData, setMainBannerData] = useState([]);
 
   const isFocused = useIsFocused();
 
@@ -25,6 +28,18 @@ const Home = ({navigation}) => {
         console.log('이거에러', error);
       });
   }, [isFastTradeChecked, paramCollege, paramDepartment, isFocused]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await mainBannerList();
+        console.log('mainBannerData', res);
+        setMainBannerData(res);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, [isFocused]);
 
   useEffect(() => {
     let collegeIdList = [];
@@ -142,6 +157,7 @@ const Home = ({navigation}) => {
       setParamCollege={setParamCollege}
       setParamDepartment={setParamDepartment}
       navigation={navigation}
+      mainBannerData={mainBannerData}
     />
   );
 };

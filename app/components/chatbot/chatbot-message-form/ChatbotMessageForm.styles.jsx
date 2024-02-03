@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import {Image} from 'react-native';
 import ProfileImage from '@assets/images/chatbot/Profile.png';
-import ChatbotImage from '@assets/images/chatbot/ChatbotImage.svg';
 
 export const Container = styled.View`
   position: relative;

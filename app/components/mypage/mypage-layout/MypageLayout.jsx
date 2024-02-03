@@ -1,12 +1,11 @@
 import * as styles from './MypageLayout.styles';
 import BackButton from '@assets/images/common/BackButton.svg';
-import {useEffect, useLayoutEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import MypageTransaction from '@components/mypage/mypage-transaction/MypageTransaction';
-import {Image, Modal, ScrollView, TouchableOpacity} from 'react-native';
+import {Image, Modal, ScrollView} from 'react-native';
 import MypageInquiry from '@components/mypage/mypage-inquiry/MypageInquiry';
 import MypageLoginActivity from '@components/mypage/mypage-login-activity/MypageLoginActivity';
 import {getMemberInfo, PasswordCheck} from '@/apis/mypage/MypageApi';
-import DefaultImage from '@assets/images/mypage/DefaultImage.svg';
 
 const MypageLayout = ({navigation}) => {
   const [isModal, setIsModal] = useState(false);
@@ -26,10 +25,6 @@ const MypageLayout = ({navigation}) => {
     return getMember;
   }, [navigation]);
 
-  useEffect(() => {
-    console.log('imageUrl in useEffect:', imageUrl);
-  }, [imageUrl]);
-
   const handleModalOpen = () => {
     setIsModal(!isModal);
   };
@@ -47,46 +42,38 @@ const MypageLayout = ({navigation}) => {
     });
   };
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: true,
-      headerShadowVisible: true,
-      headerTitle: '마이페이지',
-      headerTitleStyle: {fontSize: 20, fontWeight: '700'},
-      headerTitleAlign: 'center',
-      headerBackTitleVisible: false,
-      headerTintColor: '#414141',
-      headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          hitSlop={{top: 10, bottom: 10}}>
-          <BackButton width={40} height={40} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
     <styles.Container>
+      <styles.Header>
+        <styles.BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <BackButton />
+        </styles.BackButton>
+        <styles.HeaderTitle>마이페이지</styles.HeaderTitle>
+      </styles.Header>
       <ScrollView>
         <styles.ProfileContainer>
           <styles.ProfileBox>
             <styles.ProfileImage>
-              {imageUrl ? (
-                <Image
-                  source={{uri: imageUrl}}
-                  width={84}
-                  height={84}
-                  style={{borderRadius: 42}}
-                />
-              ) : (
-                <DefaultImage width={49} height={61} />
-              )}
+              <Image
+                source={{
+                  uri:
+                    imageUrl ||
+                    'https://4983-s3.s3.ap-northeast-2.amazonaws.com/baseImage.png',
+                }}
+                width={84}
+                height={84}
+                style={{borderRadius: 42}}
+              />
             </styles.ProfileImage>
             <styles.NameBox>
               <styles.Name>{nickname}</styles.Name>
             </styles.NameBox>
-            <styles.EditProfileButton onPress={handleModalOpen}>
+            <styles.EditProfileButton
+              onPress={handleModalOpen}
+              hitSlop={{top: 10, bottom: 10, left: 20, right: 20}}>
               <styles.EditProfileButtonText>
                 회원 정보 수정
               </styles.EditProfileButtonText>

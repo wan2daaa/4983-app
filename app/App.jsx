@@ -1,5 +1,4 @@
-// TODO. headerTitle 넣은곳에 headerTitleStyle 넣기 -> headerTitleStyle: {fontSize: 20, fontWeight: '700'}
-
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {
   SafeAreaView,
   StatusBar,
@@ -49,6 +48,8 @@ import Chatbot from '@screens/chatbot/Chatbot';
 import {Modify} from '@screens/modify/Modify';
 import ChatbotLocker from '@screens/chatbot/ChatbotLocker';
 import ChatbotLockerPassword from '@screens/chatbot/ChatbotLockerPassword';
+import Notice from '@screens/notice/Notice';
+import NoticeDetail from '@screens/notice/NoticeDetail';
 import BackButton from '@assets/images/common/BackButton.svg';
 
 const Stack = createNativeStackNavigator();
@@ -148,9 +149,9 @@ function BottomTabs() {
         name="마이페이지"
         component={Mypage}
         options={{
-          tabBarStyle: {display: 'none'},
           unmountOnBlur: true,
           tabBarLabel: '',
+          tabBarStyle: {display: 'none'},
         }}
       />
     </Tab.Navigator>
@@ -438,6 +439,7 @@ function App() {
                 headerShown: true,
                 headerShadowVisible: false,
                 headerTitle: '중고 서적 거래 채팅',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
@@ -550,6 +552,32 @@ function App() {
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',
                 headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="Notice"
+              component={Notice}
+              options={{
+                headerShown: true,
+                headerTitle: '이벤트/공지사항',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerShadowVisible: true,
+              }}
+            />
+            <Stack.Screen
+              name="NoticeDetail"
+              component={NoticeDetail}
+              options={{
+                headerShown: true,
+                headerTitle: '',
+                headerTitleStyle: {fontSize: 20, fontWeight: '700'},
+                headerTitleAlign: 'center',
+                headerBackTitleVisible: false,
+                headerTintColor: '#414141',
+                headerShadowVisible: true,
               }}
             />
           </Stack.Navigator>

@@ -25,7 +25,7 @@ export const SearchIconContainer = styled.TouchableOpacity`
 `;
 
 export const FastTradeContainer = styled.View`
-  height: 56px;
+  height: 40px;
   flex-direction: row;
   align-items: center;
 `;
@@ -68,4 +68,9 @@ export const SellButtonText = styled.Text`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
+`;
+
+export const BannerContainer = styled.TouchableOpacity`
+  height: 81px;
+  background: #ffffff;
 `;

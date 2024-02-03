@@ -6,6 +6,27 @@ export const Container = styled.View`
   z-index: 999;
 `;
 
+export const Header = styled.View`
+  width: 100%;
+  height: 52px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 0;
+`;
+
+export const HeaderTitle = styled.Text`
+  color: #000000;
+  font-size: 20px;
+  font-weight: 700;
+`;
+
 export const ProfileContainer = styled.View`
   width: 100%;
   height: 139.46px;

@@ -17,8 +17,6 @@ export const ImageDelete = async imageUrl => {
       data: {imageUrl},
     });
 
-    console.log('빨리 보고 시퍼 힝구 뿌뿌ㅜ ㅜ');
-    console.log('내가 더 보고시포 보고싶으면 빨리유ㅏ언제돼?');
     console.log('이미지 삭제 성공', response.data);
     return response.data;
   } catch (error) {
@@ -56,7 +54,7 @@ export const EditProfile = async (
   accountBank,
   accountNumber,
   phoneNumber,
-  fileList,
+  file,
 ) => {
   const formData = new FormData();
 
@@ -65,18 +63,14 @@ export const EditProfile = async (
     JSON.stringify({nickname, accountBank, accountNumber, phoneNumber}),
   );
 
-  if (fileList === []) {
-    const files = fileList.map(file => {
-      return {
-        name: file.fileName,
-        type: 'image/jpeg',
-        uri: file.uri,
-      };
-    });
+  if (file !== {}) {
+    const mappedFile = {
+      name: file.fileName,
+      type: 'image/jpeg',
+      uri: file.uri,
+    };
 
-    files.forEach(file => {
-      formData.append('fileImage', file);
-    });
+    formData.append('fileImage', mappedFile);
   }
 
   try {

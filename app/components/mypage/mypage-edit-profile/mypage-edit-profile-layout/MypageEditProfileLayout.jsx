@@ -17,10 +17,7 @@ import {
   mypageGetMemberInfo,
 } from '@/apis/mypage/MypageEditProfileApi';
 import PhotoEdit from '@assets/images/mypage/PhotoEditIcon.svg';
-import {useRecoilState} from 'recoil';
-import {fileListState} from '@/recoil/atoms/MypageAtoms';
 import {launchImageLibrary} from 'react-native-image-picker';
-import DefaultImage from '@assets/images/mypage/DefaultImage.svg';
 
 const MypageEditProfileLayout = ({navigation}) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -38,7 +35,7 @@ const MypageEditProfileLayout = ({navigation}) => {
   const [verificationSuccess, setVerificationSuccess] = useState(false);
   const [editButtonDisabled, setEditButtonDisabled] = useState(true);
   const [verificationCode, setVerificationCode] = useState('');
-  const [fileList, setFileList] = useRecoilState(fileListState);
+  const [file, setFile] = useState({});
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -56,9 +53,8 @@ const MypageEditProfileLayout = ({navigation}) => {
   }, [navigation, editButtonDisabled]);
 
   useEffect(() => {
-    return navigation.addListener('focus', () => {
+    const profileGetMember = navigation.addListener('focus', () => {
       mypageGetMemberInfo().then(res => {
-        console.log('res>>', res);
         setImageUrl(res.imageUrl);
         setCurrentNickname(res.nickname);
         setCurrentAccountBank(res.accountBank);
@@ -66,6 +62,8 @@ const MypageEditProfileLayout = ({navigation}) => {
         setCurrentPhoneNumber(res.phoneNumber);
       });
     });
+
+    return profileGetMember;
   }, [navigation]);
 
   const handleModalOpen = () => {
@@ -75,38 +73,27 @@ const MypageEditProfileLayout = ({navigation}) => {
     setIsModal(false);
   };
 
-  const handleImagePress = () => {
-    launchImageLibrary({mediaType: 'photo'}, response => {
+  const handleImagePress = async () => {
+    await launchImageLibrary({mediaType: 'photo'}, response => {
       if (response.didCancel) {
       } else if (response.errorMessage) {
       } else {
         const selectedImage = response.assets?.[0];
         if (selectedImage) {
-          const imageUri = selectedImage.uri;
-          setUploadedImageUrl(imageUri);
-          setFileList(prevFileList => [...prevFileList, selectedImage]);
+          setUploadedImageUrl(selectedImage.uri);
+          setFile(selectedImage);
           setEditButtonDisabled(false);
-          console.log('Selected Image URI:', imageUri);
         }
+      }
+    }).then(res => {
+      const selectedImage = res.assets?.[0];
+      if (selectedImage) {
+        setUploadedImageUrl(selectedImage.uri);
+        setFile(selectedImage);
+        setEditButtonDisabled(false);
       }
       handleModalClose();
     });
-  };
-
-  const handleImageDelete = () => {
-    ImageDelete(imageUrl)
-      .then(res => {
-        setIsModal(false);
-        setEditButtonDisabled(false);
-        setUploadedImageUrl('');
-        setFileList([]);
-        setImageUrl('');
-      })
-      .catch(error => {
-        console.log('이미지 삭제 실패>>', error);
-        setIsModal(false);
-        setEditButtonDisabled(true);
-      });
   };
 
   const handleRegistration = () => {
@@ -126,13 +113,28 @@ const MypageEditProfileLayout = ({navigation}) => {
       requestAccountBank,
       requestAccountNumber,
       requestPhoneNumber,
-      imageUrl === '' ? [] : fileList,
+      file,
     )
       .then(() => {
         navigation.navigate('마이페이지');
       })
       .catch(err => {
         console.error(err);
+      });
+  };
+  const handleImageDelete = () => {
+    ImageDelete(imageUrl)
+      .then(res => {
+        // setFile([]);
+        setUploadedImageUrl('');
+        setImageUrl('');
+        setIsModal(false);
+        setEditButtonDisabled(false);
+      })
+      .catch(error => {
+        console.log('이미지 삭제 실패>>', error);
+        setIsModal(false);
+        setEditButtonDisabled(true);
       });
   };
 
@@ -142,16 +144,17 @@ const MypageEditProfileLayout = ({navigation}) => {
         <ScrollView>
           <styles.ProfileBox>
             <styles.ProfileImage>
-              {imageUrl ? (
-                <Image
-                  source={{uri: uploadedImageUrl || imageUrl || null}}
-                  width={84}
-                  height={84}
-                  style={{borderRadius: 42}}
-                />
-              ) : (
-                <DefaultImage width={49} height={61} />
-              )}
+              <Image
+                source={{
+                  uri:
+                    uploadedImageUrl ||
+                    imageUrl ||
+                    'https://4983-s3.s3.ap-northeast-2.amazonaws.com/baseImage.png',
+                }}
+                width={84}
+                height={84}
+                style={{borderRadius: 42}}
+              />
               <styles.PhotoEditBox
                 onPress={handleModalOpen}
                 hitSlop={{top: 20, bottom: 20}}>
