@@ -36,31 +36,6 @@ export const Input = styled.TextInput.attrs({
   font-weight: 400;
 `;
 
-export const PasswordBox = styled.View`
-  width: 100%;
-  height: 50%;
-  margin-bottom: 1.5%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #fff;
-  background: #f4f4f4;
-`;
-
-export const PasswordInput = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
-  width: 60%;
-  height: 50%;
-  padding-left: 17px;
-  background: #f4f4f4;
-  color: #36332e;
-  font-size: 15px;
-  font-weight: 400;
-  //background: yellow;
-`;
-
 export const PasswordIconBox = styled.TouchableOpacity`
   position: absolute;
   top: 49px;
@@ -84,6 +59,7 @@ export const CheckContainer = styled.View`
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+  margin-top: 1.5%;
 `;
 
 export const CheckText = styled.Text`
