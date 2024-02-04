@@ -6,3 +6,43 @@ export const Container = styled.View`
   border-top-color: #f6f6f6;
   background: #ffffff;
 `;
+
+export const ModalContainer = styled.View`
+  flex: 1;
+  background: rgba(54, 51, 46, 0.5);
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalBox = styled.View`
+  width: 315px;
+  height: 165px;
+  align-items: center;
+  border-radius: 34px;
+  background: #fff;
+`;
+
+export const ModalTitle = styled.Text`
+  margin-top: 29px;
+  margin-bottom: 13px;
+  color: #36332e;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 32px;
+`;
+
+export const ModalButton = styled.TouchableOpacity`
+  width: 225px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: #3a3a3a;
+`;
+
+export const ModalButtonText = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+`;

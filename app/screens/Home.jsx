@@ -8,6 +8,7 @@ import {PermissionsAndroid, Platform} from 'react-native';
 import {BASE_API} from '@/apis/common/CommonApi';
 import messaging from '@react-native-firebase/messaging';
 import {mainBannerList} from '@/apis/notice/NoticeApi';
+import {getWithdraw} from '@/apis/auth/member/MemberApi';
 
 const Home = ({navigation}) => {
   const [isFastTradeChecked, setIsFastTradeChecked] = useState(false);
@@ -19,6 +20,7 @@ const Home = ({navigation}) => {
   const [paramDepartment, setParamDepartment] = useState('');
 
   const [mainBannerData, setMainBannerData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isFocused = useIsFocused();
 
@@ -76,6 +78,25 @@ const Home = ({navigation}) => {
 
     fetchData();
   }, [isFocused]);
+
+  useEffect(() => {
+    getWithdraw()
+      .then(res => {
+        setIsModalOpen(res);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }, [isFocused]);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    navigation.navigate('홈');
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     let collegeIdList = [];
@@ -194,6 +215,9 @@ const Home = ({navigation}) => {
       setParamDepartment={setParamDepartment}
       navigation={navigation}
       mainBannerData={mainBannerData}
+      isModalOpen={isModalOpen}
+      handleModalOpen={handleModalOpen}
+      handleModalClose={handleModalClose}
     />
   );
 };

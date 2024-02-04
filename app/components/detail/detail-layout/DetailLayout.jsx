@@ -7,8 +7,9 @@ import DetailBookNamePublisherBox from '@components/detail/detail-book-name-publ
 import DetailPossibleDateBox from '@components/detail/detail-possible-date-box/DetailPossibleDateBox';
 import DetailBookStatus from '@components/detail/detail-book-status/DetailBookStatus';
 import {UsedBookView} from '@/apis/detail/DetailApi';
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {ChatRoomCreate} from '@/apis/chatbot/ChatbotApi';
+import {getWithdraw} from '@/apis/auth/member/MemberApi';
 
 const NumberWithComma = data =>
   String(data).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
@@ -16,6 +17,8 @@ const NumberWithComma = data =>
 const DetailLayout = ({usedBookId, isFocused, navigation}) => {
   const [usedBookView, setUsedBookView] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWithdrawModal, setIsWithdrawModal] = useState(false);
+  const [errorMessages, setErrorMessages] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,23 +36,40 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
   }, [usedBookId, isFocused]);
 
   const handleBuyButtonClick = async () => {
-    try {
-      await ChatRoomCreate(
-        Number(`${usedBookId}`),
-        ChatRoomId => {
-          navigation.navigate('Chatbot', {
-            ChatRoomId,
-          });
-        },
-        error => {
-          console.error('채팅방 생성 실패', error);
-          setIsModalOpen(true);
-        },
-      );
-    } catch (error) {
-      console.error('채팅방 생성 실패', error);
-      setIsModalOpen(true);
+    const withdrawResponse = await getWithdraw();
+
+    if (withdrawResponse) {
+      handleWithdrawModalOpen();
+    } else {
+      try {
+        await ChatRoomCreate(
+          Number(`${usedBookId}`),
+          ChatRoomId => {
+            navigation.navigate('Chatbot', {
+              ChatRoomId,
+            });
+          },
+          error => {
+            console.error('채팅방 생성 실패', error);
+            setIsModalOpen(true);
+            const errorMessage = error.response.data.message;
+            setErrorMessages(errorMessage);
+          },
+        );
+      } catch (error) {
+        console.error('채팅방 생성 실패', error);
+        setIsModalOpen(true);
+        const errorMessage = error.response.data.message;
+        setErrorMessages(errorMessage);
+      }
     }
+  };
+
+  const handleWithdrawModalOpen = () => {
+    setIsWithdrawModal(true);
+  };
+  const handleWithdrawModalClose = () => {
+    setIsWithdrawModal(false);
   };
 
   return (
@@ -105,10 +125,7 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
       <Modal visible={isModalOpen} transparent={true} animationType="none">
         <styles.ModalContainer>
           <styles.ModalBox>
-            <styles.ModalTitle>
-              본인이 판매하는 전공서적은{'\n'}
-              구매할 수 없어요!
-            </styles.ModalTitle>
+            <styles.ModalTitle>{errorMessages}</styles.ModalTitle>
             <styles.ModalButton
               onPress={() => {
                 setIsModalOpen(false);
@@ -117,6 +134,20 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
               <styles.ModalButtonText>
                 다른 전공서적 둘러보기
               </styles.ModalButtonText>
+            </styles.ModalButton>
+          </styles.ModalBox>
+        </styles.ModalContainer>
+      </Modal>
+
+      <Modal visible={isWithdrawModal} transparent={true} animationType="none">
+        <styles.ModalContainer>
+          <styles.ModalBox>
+            <styles.ModalTitle>
+              서비스 이용 제한 대상자로,{'\n'}
+              앞으로 30일간 이용이 정지되었어요.
+            </styles.ModalTitle>
+            <styles.ModalButton onPress={handleWithdrawModalClose}>
+              <styles.ModalButtonText>확인</styles.ModalButtonText>
             </styles.ModalButton>
           </styles.ModalBox>
         </styles.ModalContainer>

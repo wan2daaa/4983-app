@@ -4,7 +4,7 @@ import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import UnCheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import SearchIcon from '@assets/images/home/SearchIcon.svg';
 import FilterButton from '@components/home/filter-button/filter-button';
-import {Dimensions, Image, Text} from 'react-native';
+import {Dimensions, Image, Modal, Text} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
 const HomeLayout = ({
@@ -16,8 +16,20 @@ const HomeLayout = ({
   setParamDepartment,
   navigation,
   mainBannerData,
+  isModalOpen,
+  handleModalOpen,
+  handleModalClose,
 }) => {
   const width = Dimensions.get('window').width;
+
+  const handleSellButton = () => {
+    if (isModalOpen) {
+      handleModalOpen();
+    } else {
+      navigation.navigate('Sell');
+    }
+  };
+
   const renderBannerItem = ({item}) => (
     <styles.BannerContainer
       key={item.id}
@@ -85,13 +97,24 @@ const HomeLayout = ({
         })}
       </styles.ScrollViewContainer>
       <styles.SellButtonContainer>
-        <styles.SellButtonBox
-          onPress={() => {
-            navigation.navigate('Sell');
-          }}>
+        <styles.SellButtonBox onPress={handleSellButton}>
           <styles.SellButtonText>판매하기</styles.SellButtonText>
         </styles.SellButtonBox>
       </styles.SellButtonContainer>
+
+      <Modal visible={isModalOpen} transparent={true} animationType="none">
+        <styles.ModalContainer>
+          <styles.ModalBox>
+            <styles.ModalTitle>
+              서비스 이용 제한 대상자로,{'\n'}
+              앞으로 30일간 이용이 정지되었어요.
+            </styles.ModalTitle>
+            <styles.ModalButton onPress={handleModalClose}>
+              <styles.ModalButtonText>확인</styles.ModalButtonText>
+            </styles.ModalButton>
+          </styles.ModalBox>
+        </styles.ModalContainer>
+      </Modal>
     </styles.MainContainer>
   );
 };

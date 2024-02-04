@@ -97,3 +97,5 @@ export const ModalButtonText = styled.Text`
   font-size: 18px;
   font-weight: 400;
 `;
+
+export const MessageBr = styled.Text``;

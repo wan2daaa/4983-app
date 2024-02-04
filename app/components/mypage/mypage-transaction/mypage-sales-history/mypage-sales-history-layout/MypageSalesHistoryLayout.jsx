@@ -2,10 +2,15 @@ import * as styles from './MypageSalesHistoryLayout.styles';
 import {useEffect, useState} from 'react';
 import {getSalesUsedBookList} from '@/apis/mypage/MypageTransactionApi';
 import MypageSalesBookListContent from '@components/mypage/mypage-transaction/mypage-sales-history/mypage-sales-book-list-content/MypageSalesBookListContent';
+import {useIsFocused} from '@react-navigation/native';
+import {getWithdraw} from '@/apis/auth/member/MemberApi';
+import {Modal} from 'react-native';
 
 const MypageSalesHistoryLayout = ({navigation}) => {
+  const isFocused = useIsFocused();
   const [activeButton, setActiveButton] = useState('SALE');
   const [usedBooks, setUsedBooks] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +25,21 @@ const MypageSalesHistoryLayout = ({navigation}) => {
 
     fetchData();
   }, [activeButton]);
+
+  useEffect(() => {
+    getWithdraw()
+      .then(res => {
+        setIsModalOpen(res);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }, [isFocused]);
+
+  const handleModalClose = () => {
+    navigation.navigate('홈');
+    setIsModalOpen(false);
+  };
 
   return (
     <styles.Container>
@@ -50,6 +70,20 @@ const MypageSalesHistoryLayout = ({navigation}) => {
         usedBooks={usedBooks}
         activeButton={activeButton}
       />
+
+      <Modal visible={isModalOpen} transparent={true} animationType="none">
+        <styles.ModalContainer>
+          <styles.ModalBox>
+            <styles.ModalTitle>
+              서비스 이용 제한 대상자로,{'\n'}
+              앞으로 30일간 이용이 정지되었어요.
+            </styles.ModalTitle>
+            <styles.ModalButton onPress={handleModalClose}>
+              <styles.ModalButtonText>확인</styles.ModalButtonText>
+            </styles.ModalButton>
+          </styles.ModalBox>
+        </styles.ModalContainer>
+      </Modal>
     </styles.Container>
   );
 };
