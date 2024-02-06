@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {Categories} from '@data/categories';
 import * as styles from '@components/home/filter-button/filter-button.styles';
-import {TouchableOpacity, View} from 'react-native';
-import SettingIcon from '@assets/images/home/SettingIcon.svg';
+import {Image, TouchableOpacity, View} from 'react-native';
+import SettingIcon from '@assets/images/home/SettingIcon.png';
 
 const FilterButton = ({
   filterOptions,
@@ -40,8 +40,12 @@ const FilterButton = ({
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Category', {filterOptions});
-        }}>
-        <SettingIcon width={49} height={35} />
+        }}
+        style={{width: 69, height: 39}}>
+        <Image
+          source={SettingIcon}
+          style={{width: 39, height: 30, alignSelf: 'center'}}
+        />
       </TouchableOpacity>
       <styles.filterDiv
         horizontal={true}
