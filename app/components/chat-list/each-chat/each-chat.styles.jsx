@@ -27,8 +27,10 @@ export const ChatText = styled.Text`
 `;
 
 export const OtherChatContainer = styled.View`
+  position: absolute;
   height: 44px;
-  margin-left: 24px;
+  right: 10px;
+  //margin-left: 30px;
   align-items: flex-end;
 `;
 
