@@ -113,7 +113,7 @@ export const InputBox = ({
       )}
     </styles.InputBox>
   ) : isUsingSelectBox ? (
-    <styles.InputBox style={{zIndex: -1, height: 105}}>
+    <styles.InputBox style={{zIndex: -1, height: 125}}>
       <styles.TitleBox>
         <styles.TitleText>{inputTitle}</styles.TitleText>
         <styles.InputEssentialIcon>*</styles.InputEssentialIcon>
