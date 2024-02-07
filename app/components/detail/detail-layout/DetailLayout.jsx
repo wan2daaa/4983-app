@@ -7,9 +7,10 @@ import DetailBookNamePublisherBox from '@components/detail/detail-book-name-publ
 import DetailPossibleDateBox from '@components/detail/detail-possible-date-box/DetailPossibleDateBox';
 import DetailBookStatus from '@components/detail/detail-book-status/DetailBookStatus';
 import {UsedBookView} from '@/apis/detail/DetailApi';
-import {Fragment, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ChatRoomCreate} from '@/apis/chatbot/ChatbotApi';
 import {getWithdraw} from '@/apis/auth/member/MemberApi';
+import BackButton from '@assets/images/common/BackButton.svg';
 
 const NumberWithComma = data =>
   String(data).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
@@ -74,6 +75,14 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
 
   return (
     <styles.Container>
+      <styles.Header>
+        <styles.BackButton
+          onPress={() => {
+            navigation.navigate('홈');
+          }}>
+          <BackButton />
+        </styles.BackButton>
+      </styles.Header>
       {usedBookView && (
         <styles.Box>
           <ScrollView>

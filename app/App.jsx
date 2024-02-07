@@ -159,7 +159,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 1500); //스플래시 활성화 시간
+    }, 1500);
   });
 
   useEffect(() => {
@@ -503,8 +503,6 @@ function App() {
               name="Detail"
               component={Detail}
               options={{
-                headerShown: true,
-                headerTitle: '',
                 headerTitleAlign: 'center',
                 headerBackTitleVisible: false,
                 headerTintColor: '#414141',

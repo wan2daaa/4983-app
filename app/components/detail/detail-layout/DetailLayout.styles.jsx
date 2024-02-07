@@ -99,3 +99,21 @@ export const ModalButtonText = styled.Text`
 `;
 
 export const MessageBr = styled.Text``;
+
+export const Header = styled.View`
+  width: 100%;
+  height: 44px;
+  background: #ffffff;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom-width: 1.5px;
+  border-bottom-color: #eee;
+`;
+
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 0;
+`;
