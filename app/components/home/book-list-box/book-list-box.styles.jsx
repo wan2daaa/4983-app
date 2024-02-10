@@ -11,7 +11,7 @@ export const MainImage = styled.Image`
 `;
 
 export const BookInfoContainer = styled.View`
-  left: 17px;
+  left: 22px;
   gap: 4px;
 `;
 
