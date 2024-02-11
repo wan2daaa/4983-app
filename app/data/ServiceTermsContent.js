@@ -220,6 +220,6 @@ export const ServiceTermsContent = {
   },
   section21: {
     title: '적용 일자',
-    content: '본 약관은 2024. 03.01 부터 적용됩니다.\n',
+    content: '본 약관은 2024.03.01 부터 적용됩니다.\n',
   },
 };
