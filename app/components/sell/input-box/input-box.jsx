@@ -56,7 +56,11 @@ export const InputBox = ({
         </View>
         <View>
           <styles.DateTimeTextInput
-            value={`${selectedTime.getHours()}:${
+            value={`${
+              selectedTime.getHours() < 10
+                ? `0${selectedTime.getHours()}`
+                : `${selectedTime.getHours()}`
+            }:${
               selectedTime.getMinutes() < 10
                 ? `0${selectedTime.getMinutes()}`
                 : `${selectedTime.getMinutes()}`

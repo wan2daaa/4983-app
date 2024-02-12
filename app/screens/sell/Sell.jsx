@@ -21,7 +21,13 @@ export const Sell = ({navigation}) => {
   const [isCoverDamaged, setIsCoverDamaged] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(
+    new Date(2024, 1, 1, 0, 0, 0, 0),
+  );
+
+  useEffect(() => {
+    console.log(selectedTime);
+  }, []);
 
   const [price, setPrice] = useState(0);
   const [name, setName] = useState('');
