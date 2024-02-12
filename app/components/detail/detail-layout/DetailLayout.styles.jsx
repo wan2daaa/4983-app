@@ -23,8 +23,10 @@ export const Title = styled.Text`
 `;
 
 export const BottomBox = styled.View`
+  bottom: 59px;
   width: 100%;
   height: 59px;
+  background: #ffffff;
   align-items: center;
   justify-content: center;
   flex-direction: row;
