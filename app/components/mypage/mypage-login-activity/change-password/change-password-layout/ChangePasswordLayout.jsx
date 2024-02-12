@@ -1,4 +1,9 @@
-import {ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import * as styles from './ChangePasswordLayout.styles';
 import ChangePasswordInput from '@components/mypage/mypage-login-activity/change-password/change-password-input/ChangePasswordInput';
 import ChangePasswordButton from '@components/mypage/mypage-login-activity/change-password/change-password-button/ChangePasswordButton';
@@ -18,27 +23,31 @@ const ChangePasswordLayout = ({navigation}) => {
   }, [isPasswordCheck, isNewPasswordCheck, isCheckPasswordCheck]);
 
   return (
-    <styles.Container>
-      <TouchableWithoutFeedback>
-        <ScrollView>
-          <styles.Title>
-            비밀번호를 <styles.TitleColor>재설정</styles.TitleColor>해주세요.
-          </styles.Title>
-          <ChangePasswordInput
-            setIsPasswordCheck={setIsPasswordCheck}
-            setIsNewPasswordCheck={setIsNewPasswordCheck}
-            setIsCheckPasswordCheck={setIsCheckPasswordCheck}
-            newPasswords={newPasswords}
-            setNewPasswords={setNewPasswords}
-          />
-        </ScrollView>
-      </TouchableWithoutFeedback>
-      <ChangePasswordButton
-        navigation={navigation}
-        isClicked={isClicked}
-        newPasswords={newPasswords}
-      />
-    </styles.Container>
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
+      <styles.Container>
+        <TouchableWithoutFeedback>
+          <ScrollView>
+            <styles.Title>
+              비밀번호를 <styles.TitleColor>재설정</styles.TitleColor>해주세요.
+            </styles.Title>
+            <ChangePasswordInput
+              setIsPasswordCheck={setIsPasswordCheck}
+              setIsNewPasswordCheck={setIsNewPasswordCheck}
+              setIsCheckPasswordCheck={setIsCheckPasswordCheck}
+              newPasswords={newPasswords}
+              setNewPasswords={setNewPasswords}
+            />
+          </ScrollView>
+        </TouchableWithoutFeedback>
+        <ChangePasswordButton
+          navigation={navigation}
+          isClicked={isClicked}
+          newPasswords={newPasswords}
+        />
+      </styles.Container>
+    </KeyboardAvoidingView>
   );
 };
 
