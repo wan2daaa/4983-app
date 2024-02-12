@@ -157,10 +157,16 @@ function BottomTabs() {
 
 function App() {
   useEffect(() => {
+    const ac = new AbortController();
+
     setTimeout(() => {
       SplashScreen.hide();
     }, 1500);
-  });
+
+    return function cleanup() {
+      ac.abort();
+    };
+  }, []);
 
   useEffect(() => {
     firebase.messaging().setBackgroundMessageHandler(() => {
@@ -168,7 +174,7 @@ function App() {
     });
   }, []);
 
-  LocaleConfig.locales['kr'] = {
+  LocaleConfig.locales.kr = {
     monthNames: [
       '1월',
       '2월',
