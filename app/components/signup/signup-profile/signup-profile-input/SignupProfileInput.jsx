@@ -53,8 +53,7 @@ const SignupProfileInput = ({
           </styles.ButtonBox>
         </styles.InputButtonBox>
         {isStudentIdDuplicate !== null && (
-          <styles.MessageText
-            fontColor={isStudentIdDuplicate ? '#f61818' : '#02B878'}>
+          <styles.MessageText isStudentIdDuplicate={isStudentIdDuplicate}>
             {!isStudentIdDuplicate
               ? '사용 가능한 학번입니다.'
               : '이미 가입된 학번 정보입니다.'}
@@ -87,12 +86,11 @@ const SignupProfileInput = ({
           </styles.ButtonBox>
         </styles.InputButtonBox>
         {isNicknameDuplicate !== null && (
-          <styles.MessageText
-            fontColor={isNicknameDuplicate ? '#f61818' : '#02B878'}>
+          <styles.MessageText2 isNicknameDuplicate={isNicknameDuplicate}>
             {!isNicknameDuplicate
               ? '사용 가능한 닉네임입니다.'
               : '사용 중인 닉네임이에요!'}
-          </styles.MessageText>
+          </styles.MessageText2>
         )}
       </styles.InputBox>
     </styles.Container>

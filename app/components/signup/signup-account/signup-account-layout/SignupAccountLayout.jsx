@@ -26,7 +26,7 @@ const SignupAccountLayout = ({navigation}) => {
     useRecoilState(recoilAccountNumber);
 
   useEffect(() => {
-    accountHolder.length >= 3 && accountNumber.length >= 11
+    accountHolder.length >= 2 && accountNumber.length >= 11
       ? setIsAccountEntered(true)
       : setIsAccountEntered(false);
   }, [accountHolder, accountNumber]);
