@@ -5,7 +5,6 @@ import UncheckedButton from '@assets/images/signup/UnCheckedButton.svg';
 import CheckedButton from '@assets/images/signup/CheckedButton.svg';
 import SignupCollegeButton from '@components/signup/signup-college/signup-college-button/SignupCollegeButton';
 import {useEffect} from 'react';
-import {useRecoilState} from 'recoil';
 
 const SignupCollegeLayout = ({
   navigation,
@@ -34,9 +33,7 @@ const SignupCollegeLayout = ({
                 <styles.CollegeBox
                   key={category.id}
                   onPress={() => {
-                    selectedCollegeId !== -1
-                      ? setSelectedCollegeId(category.id)
-                      : setSelectedCollegeId(-1);
+                    setSelectedCollegeId(category.id);
                   }}>
                   {selectedCollegeId === category.id ? (
                     <styles.Button>

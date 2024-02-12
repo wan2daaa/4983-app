@@ -13,7 +13,7 @@ import {
   recoilPhoneNumber,
   recoilStudentId,
 } from '@/recoil/atoms/SignupAtoms';
-import {Signin} from '@/apis/auth/signin/SigninApi';
+import {SigninApi} from '@/apis/auth/signin/SigninApi';
 
 const SignupDepartmentButton = ({navigation, selectedCollegeId}) => {
   const [studentId] = useRecoilState(recoilStudentId);
@@ -27,41 +27,43 @@ const SignupDepartmentButton = ({navigation, selectedCollegeId}) => {
   const [accountNumber] = useRecoilState(recoilAccountNumber);
 
   return (
-    <styles.ButtonBox selectedCollegeId={selectedCollegeId}>
-      <TouchableOpacity
-        onPress={() => {
-          if (selectedCollegeId === -1) return;
+    <TouchableOpacity
+      onPress={() => {
+        if (selectedCollegeId === -1) {
+          return;
+        }
 
-          registerMember(
-            studentId,
-            department,
-            nickname,
-            password,
-            phoneNumber,
-            marketingAgreement,
-            accountHolder,
-            accountBank,
-            accountNumber,
-          )
-            .then(response => {
-              console.log('회원가입 성공:', response);
-              Signin(studentId, password)
-                .then(() => {
-                  navigation.navigate('SignupComplete');
-                })
-                .catch(err => {
-                  console.log('회원가입후 로그인 실패:', err);
-                });
-            })
-            .catch(error => {
-              console.error('회원가입 실패:', error);
-            });
-        }}>
+        registerMember(
+          studentId,
+          department,
+          nickname,
+          password,
+          phoneNumber,
+          marketingAgreement,
+          accountHolder,
+          accountBank,
+          accountNumber,
+        )
+          .then(response => {
+            console.log('회원가입 성공:', response);
+            SigninApi(studentId, password)
+              .then(() => {
+                navigation.navigate('SignupComplete');
+              })
+              .catch(err => {
+                console.log('회원가입후 로그인 실패:', err);
+              });
+          })
+          .catch(error => {
+            console.error('회원가입 실패:', error);
+          });
+      }}>
+      <styles.ButtonBox selectedCollegeId={selectedCollegeId}>
         <styles.ButtonText selectedCollegeId={selectedCollegeId}>
           다음
         </styles.ButtonText>
-      </TouchableOpacity>
-    </styles.ButtonBox>
+      </styles.ButtonBox>
+    </TouchableOpacity>
   );
 };
 

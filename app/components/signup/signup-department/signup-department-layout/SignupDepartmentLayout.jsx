@@ -30,9 +30,7 @@ const SignupDepartmentLayout = ({
               <styles.CollegeBox
                 key={department.id}
                 onPress={() => {
-                  selectedDepartmentId !== -1
-                    ? setSelectedDepartmentId(department.id)
-                    : setSelectedDepartmentId(-1);
+                  setSelectedDepartmentId(department.id);
                 }}>
                 {selectedDepartmentId === department.id ? (
                   <styles.Button>
