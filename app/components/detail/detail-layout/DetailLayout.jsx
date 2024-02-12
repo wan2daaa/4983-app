@@ -122,9 +122,11 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
         </styles.Box>
       )}
       <styles.BottomBox>
-        <styles.PriceBox>
-          <styles.Price>{NumberWithComma(usedBookView.price)}원</styles.Price>
-        </styles.PriceBox>
+        {usedBookView && (
+          <styles.PriceBox>
+            <styles.Price>{NumberWithComma(usedBookView.price)}원</styles.Price>
+          </styles.PriceBox>
+        )}
         <styles.Button onPress={handleBuyButtonClick}>
           <styles.ButtonText>구매하기</styles.ButtonText>
         </styles.Button>
