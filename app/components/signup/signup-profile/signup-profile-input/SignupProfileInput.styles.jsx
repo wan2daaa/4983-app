@@ -52,7 +52,15 @@ export const ButtonText = styled.Text`
 export const MessageText = styled.Text`
   margin-top: 3px;
   padding-left: 6px;
-  color: #02b878;
+  color: ${props => (props.isStudentIdDuplicate ? '#f61818' : '#02be7c')};
+  font-size: 10px;
+  font-weight: 500;
+`;
+
+export const MessageText2 = styled.Text`
+  margin-top: 3px;
+  padding-left: 6px;
+  color: ${props => (props.isNicknameDuplicate ? '#f61818' : '#02be7c')};
   font-size: 10px;
   font-weight: 500;
 `;
