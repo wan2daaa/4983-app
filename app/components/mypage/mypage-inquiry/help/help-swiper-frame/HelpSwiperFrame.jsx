@@ -3,7 +3,7 @@ import HelpSaleSwiper from '@components/mypage/mypage-inquiry/help/help-swiper-c
 import HelpPurchaseSwiper from '@components/mypage/mypage-inquiry/help/help-swiper-content/HelpPurchase/HelpPurchaseSwiper';
 import HelpGuideSwiper from '@components/mypage/mypage-inquiry/help/help-swiper-content/HelpGuide/HelpGuideSwiper';
 
-const HelpSwiperFrame = ({navigation}) => {
+const HelpSwiperFrame = ({navigation, isSignup}) => {
   return (
     <styles.HelpBox>
       <styles.HelpTitle>판매방법</styles.HelpTitle>
@@ -19,7 +19,11 @@ const HelpSwiperFrame = ({navigation}) => {
         <HelpGuideSwiper />
       </styles.HelpFrame>
       <styles.ButtonBox
-        onPress={() => navigation.navigate('홈')}
+        onPress={() => {
+          isSignup
+            ? navigation.navigate('BottomTabs')
+            : navigation.navigate('홈');
+        }}
         hitSlop={{top: 20, bottom: 20}}>
         <styles.ButtonText>시작하러 가기</styles.ButtonText>
       </styles.ButtonBox>

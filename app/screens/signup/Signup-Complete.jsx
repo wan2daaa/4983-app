@@ -37,7 +37,11 @@ const SignupComplete = ({navigation}) => {
               fontWeight: 700,
               textAlign: 'center',
             }}
-            onPress={() => navigation.navigate('Help')}>
+            onPress={() =>
+              navigation.navigate('Help', {
+                isSignup: true,
+              })
+            }>
             사용법 보러 가기
           </Text>
         </TouchableOpacity>

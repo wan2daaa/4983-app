@@ -4,12 +4,12 @@ import HelpImage from '@assets/images/mypage/help/HelpImage.png';
 import {ScrollView} from 'react-native';
 import HelpSwiperFrame from '@components/mypage/mypage-inquiry/help/help-swiper-frame/HelpSwiperFrame';
 
-const HelpLayout = ({navigation}) => {
+const HelpLayout = ({navigation, isSignup}) => {
   return (
     <styles.Container>
       <ScrollView>
         <Image source={HelpImage} style={{alignSelf: 'center'}} />
-        <HelpSwiperFrame navigation={navigation} />
+        <HelpSwiperFrame navigation={navigation} isSignup={isSignup} />
       </ScrollView>
     </styles.Container>
   );

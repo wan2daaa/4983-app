@@ -507,7 +507,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sagopasamApp/sagopasamApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GDR7G9DSV8;
+				DEVELOPMENT_TEAM = T8Y3S278NX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sagopasamApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "사고파삼";
@@ -521,7 +521,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sagopasam;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sagopasam.app;
 				PRODUCT_NAME = sagopasamApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -537,7 +537,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sagopasamApp/sagopasamApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GDR7G9DSV8;
+				DEVELOPMENT_TEAM = T8Y3S278NX;
 				INFOPLIST_FILE = sagopasamApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "사고파삼";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -550,7 +550,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sagopasam;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sagopasam.app;
 				PRODUCT_NAME = sagopasamApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
