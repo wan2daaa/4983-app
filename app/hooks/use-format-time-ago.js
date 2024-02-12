@@ -1,8 +1,11 @@
 export default function useFormatTimeAgo(createdAt) {
+  const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국 표준시간과의 차이 (9시간)
   const now = new Date();
   const createdDate = new Date(createdAt);
+  const koreaCreatedDate = new Date(createdDate.getTime() + koreaTimeOffset);
+
   const timeDifferenceInSeconds = Math.floor(
-    (now.valueOf() - createdDate.valueOf()) / 1000,
+    (now.valueOf() - koreaCreatedDate.valueOf()) / 1000,
   );
 
   if (timeDifferenceInSeconds < 60) {
