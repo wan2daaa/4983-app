@@ -2,13 +2,13 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
+  height: 100%;
   background: #f6f6f6;
   align-items: center;
 `;
 
 export const Box = styled.View`
   width: 360px;
-  height: 100%;
   margin-top: 6px;
   border-radius: 10px;
   background: #ffffff;
@@ -23,7 +23,8 @@ export const Title = styled.Text`
 `;
 
 export const BottomBox = styled.View`
-  bottom: 59px;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   height: 59px;
   background: #ffffff;

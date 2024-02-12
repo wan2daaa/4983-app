@@ -1,5 +1,5 @@
 import * as styles from './DetailLayout.styles';
-import {Modal, ScrollView} from 'react-native';
+import {Modal, ScrollView, View} from 'react-native';
 import DetailCollegeDepartmentBox from '@components/detail/detail-college-department-box/DetailCollegeDepartmentBox';
 import DetailProfileBox from '@components/detail/detail-profile-box/DetailProfileBox';
 import DetailImageBox from '@components/detail/detail-image-box/DetailImageBox';
@@ -85,7 +85,7 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
       </styles.Header>
       {usedBookView && (
         <styles.Box>
-          <ScrollView>
+          <ScrollView style={{paddingBottom: 58}}>
             <DetailCollegeDepartmentBox
               navigation={navigation}
               usedBookId={usedBookId}
@@ -117,20 +117,18 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
               discolorationAndDamage={usedBookView.discolorationAndDamage}
               coverDamaged={usedBookView.coverDamaged}
             />
+            <View style={{padding: 59}} />
           </ScrollView>
-          <styles.BottomBox>
-            <styles.PriceBox>
-              <styles.Price>
-                {NumberWithComma(usedBookView.price)}원
-              </styles.Price>
-            </styles.PriceBox>
-            <styles.Button onPress={handleBuyButtonClick}>
-              <styles.ButtonText>구매하기</styles.ButtonText>
-            </styles.Button>
-          </styles.BottomBox>
         </styles.Box>
       )}
-
+      <styles.BottomBox>
+        <styles.PriceBox>
+          <styles.Price>{NumberWithComma(usedBookView.price)}원</styles.Price>
+        </styles.PriceBox>
+        <styles.Button onPress={handleBuyButtonClick}>
+          <styles.ButtonText>구매하기</styles.ButtonText>
+        </styles.Button>
+      </styles.BottomBox>
       <Modal visible={isModalOpen} transparent={true} animationType="none">
         <styles.ModalContainer>
           <styles.ModalBox>
