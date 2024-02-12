@@ -156,11 +156,11 @@ function BottomTabs() {
 }
 
 function App() {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     SplashScreen.hide();
-  //   }, 1500);
-  // });
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1500);
+  });
 
   useEffect(() => {
     firebase.messaging().setBackgroundMessageHandler(() => {

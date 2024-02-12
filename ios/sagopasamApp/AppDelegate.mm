@@ -17,9 +17,15 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
-  [RNSplashScreen show];
-  
-  return YES;
+//  [RNSplashScreen show];
+//  return YES;
+
+  BOOL ret = [super application:application didFinishLaunchingWithOptions:launchOptions];
+  if (ret == YES)
+  {
+    [RNSplashScreen show];
+  }
+  return ret;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
