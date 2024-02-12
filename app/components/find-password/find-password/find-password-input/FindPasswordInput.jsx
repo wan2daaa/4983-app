@@ -54,18 +54,11 @@ const FindPasswordInput = ({
     setLeftTime(LEFT_SEC);
   };
 
-  useEffect(
-    () => () => {
-      if (intervalref.current !== null) {
-        window.clearInterval(intervalref.current);
-      }
-    },
-    [],
-  );
-
   useEffect(() => {
     if (isLeftTimeEnabled) {
-      if (intervalref.current !== null) return;
+      if (intervalref.current !== null) {
+        return;
+      }
       intervalref.current = window.setInterval(() => {
         setLeftTime(time => (time > 0 ? time - 1 : 0));
       }, 1000);
