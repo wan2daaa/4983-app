@@ -56,7 +56,7 @@ export const ChatbotMessageBr = styled.Text``;
 export const ChatbotMessageTime = styled.Text`
   position: absolute;
   bottom: -10px;
-  right: 30px;
+  right: 22px;
   color: #8f8f8f;
   font-size: 12px;
   font-weight: 400;
