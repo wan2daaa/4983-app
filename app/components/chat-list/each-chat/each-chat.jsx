@@ -25,8 +25,8 @@ export const EachChat = ({navigation, chatData}) => {
       <styles.EachChatTextContainer onPress={() => {}}>
         <styles.BookNameText>{chatData.usedBookName}</styles.BookNameText>
         <styles.ChatText>
-          {chatData.message.length > 17
-            ? chatData.message.substring(0, 17) + '...'
+          {chatData.message.length > 12
+            ? chatData.message.substring(0, 12) + '...'
             : chatData.message}
         </styles.ChatText>
       </styles.EachChatTextContainer>
