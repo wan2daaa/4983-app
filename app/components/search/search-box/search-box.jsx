@@ -7,6 +7,7 @@ export const SearchBox = ({
   isFastTradeChecked,
   setIsFastTradeChecked,
   usedBookList,
+  navigation,
 }) => {
   return (
     <styles.Container>
@@ -30,6 +31,7 @@ export const SearchBox = ({
               key={`eachBook${index}`}
               bookData={bookData}
               index={index}
+              navigation={navigation}
             />
           );
         })}
