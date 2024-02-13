@@ -107,7 +107,11 @@ export const InputBox = ({
             [selectedDate]: {
               selected: true,
             },
+            [new Date().toISOString().split('T')[0]]: {
+              selected: true,
+            },
           }}
+          minDate={new Date()}
           theme={{
             textSectionTitleColor: '#000',
             selectedDayBackgroundColor: '#02B878',
