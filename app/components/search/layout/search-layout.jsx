@@ -64,6 +64,7 @@ export const SearchLayout = ({
             isFastTradeChecked={isFastTradeChecked}
             setIsFastTradeChecked={setIsFastTradeChecked}
             usedBookList={usedBookList}
+            navigation={navigation}
           />
         ) : (
           <RecentSearchBox

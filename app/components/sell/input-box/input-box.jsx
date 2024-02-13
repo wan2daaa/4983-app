@@ -45,6 +45,7 @@ export const InputBox = ({
             value={selectedDate}
             onChangeText={setSelectedDate}
             placeholder={'yyyy.mm.dd'}
+            editable={false}
           />
           <styles.CalendarIconTouchableOpacity
             onPress={() => {
@@ -67,6 +68,7 @@ export const InputBox = ({
             }`}
             placeholder={'00:00'}
             style={{paddingLeft: 35}}
+            editable={false}
           />
           <styles.TimeIconTouchableOpacity
             onPress={() => {

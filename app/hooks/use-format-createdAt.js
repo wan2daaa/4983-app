@@ -1,5 +1,8 @@
 export default function formatCreatedAt(createdAt) {
-  const date = new Date(createdAt);
+  const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국 표준시간과의 차이 (9시간)
+  const createdDate = new Date(createdAt);
+
+  const date = new Date(createdDate.getTime() + koreaTimeOffset);
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
