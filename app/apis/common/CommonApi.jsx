@@ -6,7 +6,7 @@ export const BASE_API = axios.create({
   baseURL: 'https://dev-server.4983.link',
   responseType: 'json',
   withCredentials: true,
-  timeout: 2000,
+  timeout: 10000,
 });
 
 export const API = axios.create({
