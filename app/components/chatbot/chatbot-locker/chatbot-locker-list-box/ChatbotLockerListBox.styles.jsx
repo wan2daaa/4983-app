@@ -12,13 +12,13 @@ export const ListBox = styled.TouchableOpacity`
   margin-top: 15px;
   margin-left: 15px;
   border-radius: 5px;
-  background: ${props => (props.isExists ? '#02B878' : '#ccc')};
+  background: ${props => (props.isExists ? '#ccc' : '#02B878')};
 `;
 
 export const ListBoxNumber = styled.Text`
   position: absolute;
   width: 21px;
-  height: 13px;
+  height: 15px;
   margin-top: 5px;
   margin-left: 09px;
   color: #000;

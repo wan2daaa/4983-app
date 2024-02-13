@@ -7,6 +7,8 @@ export const EachChatContainer = styled.TouchableOpacity`
 `;
 
 export const EachChatTextContainer = styled.View`
+  height: 64px;
+  justify-content: center;
   margin-left: 12px;
 `;
 

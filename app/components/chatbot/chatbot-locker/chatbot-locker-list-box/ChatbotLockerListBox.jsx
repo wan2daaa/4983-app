@@ -14,10 +14,10 @@ const ChatbotLockerListBox = ({
       if (ChatRoomId) {
         try {
           const response = await ChatbotLocker(Number(ChatRoomId));
-          console.log('채팅 메시지 조회 성공', response);
+          console.log('>>>>>>', response);
           setChatLockerNumber(response);
         } catch (error) {
-          console.error('채팅 메시지 조회 실패', error);
+          console.error('>>>>>', error);
         }
       }
     };
@@ -42,7 +42,7 @@ const ChatbotLockerListBox = ({
         <styles.ListBox
           onPress={() => handleListBoxButtonClick(chatLocker.lockerNumber)}
           isExists={chatLocker.isExists}
-          disabled={!chatLocker.isExists}>
+          disabled={chatLocker.isExists}>
           <styles.ListBoxNumber>
             {chatLocker.lockerNumber < 10
               ? `0${chatLocker.lockerNumber}`

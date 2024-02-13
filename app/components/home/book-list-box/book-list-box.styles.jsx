@@ -8,6 +8,7 @@ export const EachBookContainer = styled.TouchableOpacity`
 
 export const MainImage = styled.Image`
   left: 11px;
+  border-radius: 10px;
 `;
 
 export const BookInfoContainer = styled.View`
