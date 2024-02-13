@@ -17,7 +17,6 @@ export const CategoryDiv = styled.View`
 export const filterDiv = styled.ScrollView`
   height: 39px;
   background-color: #fff;
-
   z-index: 1000;
 `;
 
@@ -28,7 +27,7 @@ export const FilterButton = styled.TouchableOpacity`
   border-radius: 100px;
   border: 1px solid #c0c0c0;
   background: #fff;
-  padding: 8px 12px;
+  padding: 7px 12px;
   color: #8e8e8e;
 `;
 
