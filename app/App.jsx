@@ -43,11 +43,11 @@ import {Modify} from '@screens/modify/Modify';
 import ChatbotLocker from '@screens/chatbot/ChatbotLocker';
 import ChatbotLockerPassword from '@screens/chatbot/ChatbotLockerPassword';
 import {useEffect} from 'react';
-import {firebase} from '@react-native-firebase/messaging';
+import messaging, {firebase} from '@react-native-firebase/messaging';
 import Notice from '@screens/notice/Notice';
 import NoticeDetail from '@screens/notice/NoticeDetail';
-import BackButton from '@assets/images/common/BackButton.svg';
 import SplashScreen from 'react-native-splash-screen';
+import * as navigation from '@/RootNavigation';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -173,6 +173,21 @@ function App() {
       console.log('background Alarm received');
     });
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = firebase.messaging().onMessage(async remoteMessage => {
+      const {data} = remoteMessage;
+      const screenName = data.screen;
+
+      if (screenName === 'Chatbot') {
+        navigation.navigate(data.screenName, {
+          chatRoomId: data.chatRoomid,
+        });
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   LocaleConfig.locales.kr = {
     monthNames: [
