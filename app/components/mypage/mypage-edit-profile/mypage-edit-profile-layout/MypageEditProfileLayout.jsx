@@ -143,7 +143,7 @@ const MypageEditProfileLayout = ({navigation}) => {
       <TouchableWithoutFeedback>
         <ScrollView>
           <styles.ProfileBox>
-            <styles.ProfileImage>
+            <styles.ProfileImage onPress={handleModalOpen}>
               <Image
                 source={{
                   uri:

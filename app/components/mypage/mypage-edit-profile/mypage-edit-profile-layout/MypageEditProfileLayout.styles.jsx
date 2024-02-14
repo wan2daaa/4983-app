@@ -30,7 +30,7 @@ export const ProfileBox = styled.View`
   border-bottom-color: #f6f6f6;
 `;
 
-export const ProfileImage = styled.View`
+export const ProfileImage = styled.TouchableOpacity`
   width: 84px;
   height: 84px;
   align-self: center;
@@ -66,7 +66,7 @@ export const ModalContainer = styled.View`
 `;
 
 export const ModalBox = styled.View`
-  width: 330px;
+  width: 326px;
   height: 134px;
   position: absolute;
   bottom: 39px;
