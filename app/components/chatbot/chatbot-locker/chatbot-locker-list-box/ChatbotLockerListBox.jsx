@@ -8,6 +8,7 @@ const ChatbotLockerListBox = ({
   setSelectLockerNumber,
 }) => {
   const [chatLockerNumber, setChatLockerNumber] = useState([]);
+  const [selectedListBox, setSelectedListBox] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +35,7 @@ const ChatbotLockerListBox = ({
       setIsLockerClicked(true);
       console.log('=======', lockerNumber);
     }
+    setSelectedListBox(lockerNumber);
   };
 
   return (
@@ -42,8 +44,10 @@ const ChatbotLockerListBox = ({
         <styles.ListBox
           onPress={() => handleListBoxButtonClick(chatLocker.lockerNumber)}
           isExists={chatLocker.isExists}
+          isSelected={selectedListBox === chatLocker.lockerNumber}
           disabled={chatLocker.isExists}>
-          <styles.ListBoxNumber>
+          <styles.ListBoxNumber
+            isSelected={selectedListBox === chatLocker.lockerNumber}>
             {chatLocker.lockerNumber < 10
               ? `0${chatLocker.lockerNumber}`
               : chatLocker.lockerNumber}

@@ -12,7 +12,8 @@ export const ListBox = styled.TouchableOpacity`
   margin-top: 15px;
   margin-left: 15px;
   border-radius: 5px;
-  background: ${props => (props.isExists ? '#ccc' : '#02B878')};
+  background: ${props =>
+    props.isSelected ? '#50555C' : props.isExists ? '#ccc' : '#02B878'};
 `;
 
 export const ListBoxNumber = styled.Text`
@@ -21,7 +22,7 @@ export const ListBoxNumber = styled.Text`
   height: 15px;
   margin-top: 5px;
   margin-left: 09px;
-  color: #000;
+  color: ${props => (props.isSelected ? '#fff' : '#000')};
   font-size: 14px;
   font-weight: 700;
 `;
