@@ -14,8 +14,7 @@ const MypageEditAccount = ({
   setEditButtonDisabled,
 }) => {
   useEffect(() => {
-    setEditButtonDisabled(!accountBank);
-    setEditButtonDisabled(!accountNumber);
+    setEditButtonDisabled(!accountBank || !accountNumber);
   }, [accountBank, accountNumber, setEditButtonDisabled]);
 
   const renderBankList = () => (
@@ -90,9 +89,10 @@ const MypageEditAccount = ({
           <SelectAccountIcon width={15} height={14} />
         </styles.DropDown>
         <styles.Input
-          id={setAccountNumber}
-          type="text"
+          id="accountNumber"
+          value={accountNumber}
           onChangeText={setAccountNumber}
+          type="text"
           placeholder={currentAccountNumber}
         />
       </styles.InputBox>
