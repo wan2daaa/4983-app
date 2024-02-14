@@ -47,7 +47,7 @@ import messaging, {firebase} from '@react-native-firebase/messaging';
 import Notice from '@screens/notice/Notice';
 import NoticeDetail from '@screens/notice/NoticeDetail';
 import SplashScreen from 'react-native-splash-screen';
-import * as navigation from '@/RootNavigation';
+import {navigationRef} from '@/RootNavigation';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -180,14 +180,14 @@ function App() {
       const screenName = data.screen;
 
       if (screenName === 'Chatbot') {
-        navigation.navigate(data.screenName, {
+        navigationRef.current?.navigate(data.screenName, {
           chatRoomId: data.chatRoomid,
         });
       }
     });
 
     return unsubscribe;
-  }, [navigation]);
+  }, []);
 
   LocaleConfig.locales.kr = {
     monthNames: [
@@ -229,7 +229,7 @@ function App() {
     <RecoilRoot>
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
