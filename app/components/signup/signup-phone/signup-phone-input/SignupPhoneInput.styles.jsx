@@ -27,13 +27,31 @@ export const InputButtonBox = styled.View`
   justify-content: space-between;
 `;
 
-export const Input = styled.TextInput.attrs({
+export const InputBox = styled.View`
+  width: 232px;
+  height: 32px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-width: 0.5px;
+  border-bottom-color: #818181;
+`;
+
+export const PhoneInput = styled.TextInput.attrs({
   placeholderTextColor: '#818181',
 })`
   width: 232px;
   padding-left: 5px;
   border-bottom-width: 0.5px;
   border-bottom-color: #818181;
+`;
+
+export const Input = styled.TextInput.attrs({
+  placeholderTextColor: '#818181',
+})`
+  width: 170px;
+  height: 32px;
+  padding-left: 5px;
 `;
 
 export const ButtonBox = styled.View`
@@ -55,5 +73,12 @@ export const MessageText = styled.Text`
   padding-left: 6px;
   color: ${props => (props.isCertificationNumberMatch ? '#02B878' : '#f61818')};
   font-size: 10px;
+  font-weight: 500;
+`;
+
+export const LeftTime = styled.Text`
+  color: #f61818;
+  font-size: 10px;
+  font-style: normal;
   font-weight: 500;
 `;
