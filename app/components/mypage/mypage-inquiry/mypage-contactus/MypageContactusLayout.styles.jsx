@@ -46,13 +46,14 @@ export const CopyBox = styled.View`
   background: rgba(236, 236, 236, 0.6);
 `;
 
-export const CopyInput = styled.TextInput`
+export const CopyInput = styled.TextInput.attrs({
+  placeholderTextColor: '#818181',
+})`
   width: 249px;
   height: 52px;
   padding: 0 16px;
   font-size: 14px;
   font-weight: 500;
-  color: #818181;
 `;
 
 export const CopyButton = styled.TouchableOpacity`
