@@ -93,7 +93,7 @@ const ChatbotMessageButton = ({
   const handleChatPostDeleteClick = async () => {
     await ChatPostDelete(Number(ChatRoomId))
       .then(res => {
-        navigation.navigate('홈');
+        navigation.navigate('Home');
       })
       .catch(err => {
         console.error('게시글 삭제 실패', err);
@@ -117,7 +117,7 @@ const ChatbotMessageButton = ({
         </styles.ButtonContainer>
       )}
       {chat.contentType === 'BOOK_SALE_REJECTION_BUYER' && (
-        <styles.Button onPress={() => navigation.navigate('홈')}>
+        <styles.Button onPress={() => navigation.navigate('Home')}>
           <styles.ButtonText>서적 검색하러 가기</styles.ButtonText>
         </styles.Button>
       )}
@@ -171,12 +171,12 @@ const ChatbotMessageButton = ({
         </styles.Button>
       )}
       {chat.contentType === 'TRADE_STOP_REQUEST_BEFORE_DEPOSIT_BUYER' && (
-        <styles.Button onPress={() => navigation.navigate('홈')}>
+        <styles.Button onPress={() => navigation.navigate('Home')}>
           <styles.ButtonText>서적 검색하러 가기</styles.ButtonText>
         </styles.Button>
       )}
       {chat.contentType === 'TRADE_STOP_REQUEST_AFTER_DEPOSIT_BUYER' && (
-        <styles.Button onPress={() => navigation.navigate('홈')}>
+        <styles.Button onPress={() => navigation.navigate('Home')}>
           <styles.ButtonText>서적 검색하러 가기</styles.ButtonText>
         </styles.Button>
       )}

@@ -62,7 +62,6 @@ export const CollegeOptionText = styled.Text`
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;
 
 export const LiberalArtsTouchableOpacity = styled.TouchableOpacity`
@@ -81,5 +80,4 @@ export const LiberalArtsText = styled.Text`
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;

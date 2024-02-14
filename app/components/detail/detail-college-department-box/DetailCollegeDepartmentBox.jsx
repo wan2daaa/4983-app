@@ -38,7 +38,7 @@ const DetailCollegeDepartmentBox = ({
       .then(response => {
         console.log('삭제 성공: ', response);
         handleDeleteModalClose();
-        navigation.navigate('홈');
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.error(

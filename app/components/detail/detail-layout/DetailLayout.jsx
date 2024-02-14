@@ -78,7 +78,7 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
       <styles.Header>
         <styles.BackButton
           onPress={() => {
-            navigation.navigate('홈');
+            navigation.navigate('Home');
           }}>
           <BackButton />
         </styles.BackButton>
@@ -138,7 +138,7 @@ const DetailLayout = ({usedBookId, isFocused, navigation}) => {
             <styles.ModalButton
               onPress={() => {
                 setIsModalOpen(false);
-                navigation.navigate('홈');
+                navigation.navigate('Home');
               }}>
               <styles.ModalButtonText>
                 다른 전공서적 둘러보기

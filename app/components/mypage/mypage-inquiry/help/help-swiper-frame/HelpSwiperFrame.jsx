@@ -22,7 +22,7 @@ const HelpSwiperFrame = ({navigation, isSignup}) => {
         onPress={() => {
           isSignup
             ? navigation.navigate('BottomTabs')
-            : navigation.navigate('홈');
+            : navigation.navigate('Home');
         }}
         hitSlop={{top: 20, bottom: 20}}>
         <styles.ButtonText>시작하러 가기</styles.ButtonText>
