@@ -8,7 +8,7 @@ const MypageContactusLayout = ({navigation}) => {
   };
 
   const handleCopyPhone = () => {
-    Clipboard.setString('010-4487-3122');
+    Clipboard.setString('050-6933-3122');
   };
 
   return (
@@ -48,7 +48,7 @@ const MypageContactusLayout = ({navigation}) => {
           <styles.CopyInput
             id="inputPhone"
             type="text"
-            placeholder="010-4487-3122"
+            placeholder="050-6933-3122"
             readOnly
           />
           <styles.CopyButton onPress={handleCopyPhone}>
