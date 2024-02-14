@@ -1,6 +1,7 @@
 import * as styles from './SignupPhoneInput.styles';
 import {TouchableOpacity} from 'react-native';
 import {sendPhoneNumber} from '@/apis/auth/signup/singupApi';
+import {useEffect, useRef, useState} from 'react';
 
 const SignupPhoneInput = ({
   phoneNumber,
@@ -11,13 +12,33 @@ const SignupPhoneInput = ({
   setVerifyCertificationNumber,
   isCertificationNumberMatch,
   setIsCertificationNumberMatch,
+  leftTime,
+  setLeftTime,
+  isLeftTimeEnabled,
 }) => {
+  const intervalref = useRef(null);
+  const formatTime = time => time.toString().padStart(2, '0');
+
+  const minutes = Math.floor(leftTime / 60);
+  const seconds = formatTime(leftTime % 60);
+
+  useEffect(() => {
+    if (isLeftTimeEnabled) {
+      if (intervalref.current !== null) {
+        return;
+      }
+      intervalref.current = window.setInterval(() => {
+        setLeftTime(time => (time > 0 ? time - 1 : 0));
+      }, 1000);
+    }
+  }, [isLeftTimeEnabled]);
+
   return (
     <styles.Container>
       <styles.InputContainer>
         <styles.InputTitle>휴대폰 번호</styles.InputTitle>
         <styles.InputButtonBox>
-          <styles.Input
+          <styles.PhoneInput
             placeholder="번호를 입력해 주세요."
             maxLength={11}
             keyboardType="number-pad"
@@ -46,10 +67,17 @@ const SignupPhoneInput = ({
       <styles.InputContainer>
         <styles.InputTitle>인증 번호</styles.InputTitle>
         <styles.InputButtonBox>
-          <styles.Input
-            placeholder="인증 번호를 입력해 주세요."
-            onChangeText={setVerifyCertificationNumber}
-          />
+          <styles.InputBox>
+            <styles.Input
+              placeholder="인증 번호를 입력해 주세요."
+              onChangeText={setVerifyCertificationNumber}
+            />
+            {isLeftTimeEnabled && (
+              <styles.LeftTime>
+                남은시간 {minutes}:{seconds}
+              </styles.LeftTime>
+            )}
+          </styles.InputBox>
           <styles.ButtonBox
             style={{
               backgroundColor:

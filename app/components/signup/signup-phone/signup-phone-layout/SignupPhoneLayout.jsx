@@ -17,6 +17,8 @@ const SignupPhoneLayout = ({navigation}) => {
 
   const [useRecoilPhoneNumber, setRecoilPhoneNumber] =
     useRecoilState(recoilPhoneNumber);
+  const [leftTime, setLeftTime] = useState(180);
+  const [isLeftTimeEnabled, setIsLeftTimeEnabled] = useState(false);
 
   const handleSendPhoneNumber = phonenumber => {
     sendPhoneNumber(phonenumber).then(res => {
@@ -24,7 +26,10 @@ const SignupPhoneLayout = ({navigation}) => {
         'res.data.certificationNumber : ' + res.data.certificationNumber,
       );
       setCertificationNumber(res.data.certificationNumber);
+      setIsLeftTimeEnabled(true);
     });
+    const LEFT_SEC = 180;
+    setLeftTime(LEFT_SEC);
   };
 
   const handleNextPage = () => {
@@ -51,6 +56,9 @@ const SignupPhoneLayout = ({navigation}) => {
             setVerifyCertificationNumber={setVerifyCertificationNumber}
             isCertificationNumberMatch={isCertificationNumberMatch}
             setIsCertificationNumberMatch={setIsCertificationNumberMatch}
+            leftTime={leftTime}
+            setLeftTime={setLeftTime}
+            isLeftTimeEnabled={isLeftTimeEnabled}
           />
         </ScrollView>
       </TouchableWithoutFeedback>
