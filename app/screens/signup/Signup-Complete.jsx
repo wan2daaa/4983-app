@@ -23,6 +23,7 @@ const SignupComplete = ({navigation}) => {
       </View>
       <View style={{flex: 1, alignItems: 'center'}}>
         <TouchableOpacity
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
           style={{
             width: 309,
             height: 52,

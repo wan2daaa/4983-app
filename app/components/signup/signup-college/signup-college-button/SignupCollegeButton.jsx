@@ -10,7 +10,7 @@ const SignupCollegeButton = ({navigation, selectedCollegeId}) => {
             selectedCollegeId: selectedCollegeId,
           });
         }}
-        hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
+        hitSlop={{top: 40, bottom: 40, left: 40, right: 40}}>
         <styles.ButtonText selectedCollegeId={selectedCollegeId}>
           다음
         </styles.ButtonText>

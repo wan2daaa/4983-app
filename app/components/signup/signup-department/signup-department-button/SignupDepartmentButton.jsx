@@ -28,6 +28,7 @@ const SignupDepartmentButton = ({navigation, selectedCollegeId}) => {
 
   return (
     <TouchableOpacity
+      hitSlop={{top: 40, bottom: 40, left: 40, right: 40}}
       onPress={() => {
         if (selectedCollegeId === -1) {
           return;

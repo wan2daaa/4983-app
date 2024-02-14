@@ -5,7 +5,7 @@ const SignupAccountButton = ({handleNextPage, isAccountEntered}) => {
   return (
     <styles.ButtonBox isAccountEntered={isAccountEntered}>
       <TouchableOpacity
-        hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+        hitSlop={{top: 40, bottom: 40, left: 40, right: 40}}
         disabled={!isAccountEntered}
         onPress={handleNextPage}>
         <styles.ButtonText isAccountEntered={isAccountEntered}>

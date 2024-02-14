@@ -6,7 +6,7 @@ const SignupPhoneButton = ({handleNextPage, isCertificationNumberMatch}) => {
     <styles.ButtonBox isCertificationNumberMatch={isCertificationNumberMatch}>
       <TouchableOpacity
         onPress={handleNextPage}
-        hitSlop={{top: 10, bottom: 10, left: 30, right: 30}}>
+        hitSlop={{top: 40, bottom: 40, left: 40, right: 40}}>
         <styles.ButtonText
           isCertificationNumberMatch={isCertificationNumberMatch}>
           다음

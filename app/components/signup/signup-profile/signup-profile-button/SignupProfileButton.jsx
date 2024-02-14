@@ -6,7 +6,7 @@ const SignupProfileButton = ({handleNextPage, canGoNextPage}) => {
     <styles.ButtonBox canGoNextPage={canGoNextPage}>
       <TouchableOpacity
         onPress={handleNextPage}
-        hitSlop={{left: 20, right: 20, top: 10, bottom: 10}}>
+        hitSlop={{left: 40, right: 40, top: 40, bottom: 40}}>
         <styles.ButtonText canGoNextPage={canGoNextPage}>
           다음
         </styles.ButtonText>
