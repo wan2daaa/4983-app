@@ -35,7 +35,7 @@ const MypagePurchaseHistoryLayout = ({navigation}) => {
   }, [isFocused]);
 
   const handleModalClose = () => {
-    navigation.navigate('홈');
+    navigation.navigate('Home');
     setIsModalOpen(false);
   };
 

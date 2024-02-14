@@ -44,12 +44,12 @@ export const SearchLayout = ({
           }}
         />
         <styles.BackButtonTouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('Home')}
           hitSlop={{left: 10, right: 10, top: 10, bottom: 10}}>
           <BackButton
             width={20}
             height={20}
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.navigate('Home')}
           />
         </styles.BackButtonTouchableOpacity>
         <styles.SearchButtonTouchableOpacity

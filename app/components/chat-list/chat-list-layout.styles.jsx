@@ -21,6 +21,7 @@ export const HeaderText = styled.Text`
 export const BackButtonTouchableOpacity = styled.TouchableOpacity`
   position: absolute;
   left: 12px;
+  background-color: rebeccapurple;
 `;
 
 export const ScrollViewContainer = styled.ScrollView`

@@ -3,12 +3,11 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
-  z-index: 999;
 `;
 
-export const Header = styled.View`
+export const Header = styled.TouchableOpacity`
   width: 100%;
-  height: 52px;
+  height: 40px;
   background: #ffffff;
   flex-direction: row;
   align-items: center;
@@ -17,9 +16,11 @@ export const Header = styled.View`
 
 export const BackButton = styled.TouchableOpacity`
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   left: 0;
+
+  z-index: 1000;
 `;
 
 export const HeaderTitle = styled.Text`

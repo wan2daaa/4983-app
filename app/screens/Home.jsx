@@ -26,11 +26,9 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     const requestUserPermission = async () => {
-      if (Platform.OS === 'android') {
-        PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-        );
-      }
+      await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+      );
 
       const authStatus = await messaging().requestPermission();
       console.log('Authorization status', authStatus);
@@ -94,7 +92,7 @@ const Home = ({navigation}) => {
   };
 
   const handleModalClose = () => {
-    navigation.navigate('홈');
+    navigation.navigate('Home');
     setIsModalOpen(false);
   };
 

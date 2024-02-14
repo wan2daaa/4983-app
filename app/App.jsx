@@ -1,4 +1,4 @@
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {RecoilRoot} from 'recoil';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -54,7 +54,7 @@ const Tab = createBottomTabNavigator();
 
 function getTabBarIcon(routeName, focused) {
   switch (routeName) {
-    case '홈':
+    case 'Home':
       return focused ? (
         <HomeIcon width={39} height={48} />
       ) : (
@@ -100,7 +100,9 @@ function getTabBarIcon(routeName, focused) {
 function BottomTabs() {
   return (
     <Tab.Navigator
+      initialRouteName={'Home'}
       screenOptions={({route}) => ({
+        header: () => <View />,
         headerShown: false,
         tabBarIcon: ({focused}) => getTabBarIcon(route.name, focused),
         tabBarStyle: {
@@ -110,7 +112,7 @@ function BottomTabs() {
         },
       })}>
       <Tab.Screen
-        name="홈"
+        name="Home"
         component={Home}
         options={{unmountOnBlur: true, tabBarLabel: ''}}
       />
@@ -120,7 +122,6 @@ function BottomTabs() {
         options={{
           unmountOnBlur: true,
           tabBarLabel: '',
-          tabBarStyle: {display: 'none'},
         }}
       />
 
@@ -128,8 +129,8 @@ function BottomTabs() {
         name="도움말"
         component={Help}
         options={{
-          tabBarStyle: {display: 'none'},
           unmountOnBlur: true,
+          tabBarStyle: {display: 'none'},
           tabBarLabel: '',
         }}
       />
@@ -137,6 +138,7 @@ function BottomTabs() {
         name="검색"
         component={Search}
         options={{
+          header: () => <View />,
           unmountOnBlur: true,
           tabBarLabel: '',
           tabBarStyle: {display: 'none'},
@@ -146,6 +148,7 @@ function BottomTabs() {
         name="마이페이지"
         component={Mypage}
         options={{
+          header: () => <View />,
           unmountOnBlur: true,
           tabBarLabel: '',
           tabBarStyle: {display: 'none'},
@@ -236,6 +239,8 @@ function App() {
               gestureEnabled: false,
             }}>
             <Stack.Screen name="Signin" component={Signin} />
+            <Stack.Screen name="BottomTabs" component={BottomTabs} />
+
             <Stack.Screen
               name="FindPassword"
               component={FindPassword}
@@ -368,7 +373,6 @@ function App() {
               }}
             />
             <Stack.Screen name="Category" component={Category} options={{}} />
-            <Stack.Screen name="BottomTabs" component={BottomTabs} />
             <Stack.Screen
               name="MypageTerms"
               component={MypageTerms}

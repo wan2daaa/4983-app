@@ -9,7 +9,7 @@ const MypagePurchaseBookListNoContent = ({navigation}) => {
       </styles.Content>
       <styles.Button
         onPress={() => {
-          navigation.navigate('홈');
+          navigation.navigate('Home');
         }}>
         <styles.ButtonText>구매하러 가기</styles.ButtonText>
       </styles.Button>

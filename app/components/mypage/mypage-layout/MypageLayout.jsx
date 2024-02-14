@@ -44,12 +44,19 @@ const MypageLayout = ({navigation}) => {
 
   return (
     <styles.Container>
-      <styles.Header>
+      <styles.Header
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
         <styles.BackButton
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate('Home');
           }}>
-          <BackButton />
+          <BackButton
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          />
         </styles.BackButton>
         <styles.HeaderTitle>마이페이지</styles.HeaderTitle>
       </styles.Header>
