@@ -23,9 +23,8 @@
   ![Styled-component](https://img.shields.io/badge/styled%20components-DB7093?style=flat&logo=styledcomponents&logoColor=white)
 
 ### 구현한 기능
-<div style="display: inline-block; border-radius: 30px; overflow: hidden;">
-  <img src="./app/assets/images/readme/gif/Sagopasam_Screen.gif" alt="project-gif" height="500" >
-</div>
+
+<img src="./app/assets/images/readme/gif/Sagopasam_Screen.gif" alt="project-gif" height="500" style="border-radius: 30px; display: inline-block; overflow: hidden;">
 
 복잡한 의사소통 과정과 사기 거래 때문에 불편했던 중고거래, 중고거래의 불편함을 해소한 **사고파삼**에서는 쉽고 빠르게 필요했던 전공책을 사고 팔 수 있습니다.
 
