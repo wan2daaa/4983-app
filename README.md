@@ -23,7 +23,7 @@
   ![Styled-component](https://img.shields.io/badge/styled%20components-DB7093?style=flat&logo=styledcomponents&logoColor=white)
 
 ### 구현한 기능
-<div style="border-radius: 30px; overflow: hidden;">
+<div style="display: inline-block; border-radius: 30px; overflow: hidden;">
   <img src="./app/assets/images/readme/gif/Sagopasam_Screen.gif" alt="project-gif" height="500" >
 </div>
 
